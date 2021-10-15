@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Degree extends Model
 {
     use HasFactory;
+
+    protected $table = 'degrees';
+
+    protected $primaryKey = 'deg_id';
+
+    protected $fillable = ['deg_id', 'deg_title', 'deleted','user'];
 }

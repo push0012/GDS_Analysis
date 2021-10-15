@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class District extends Model
 {
     use HasFactory;
+
+    protected $table = 'districts';
+
+    protected $primaryKey = 'ds_id';
+
+    public $timestamps = false;
+
+    protected $fillable = ['ds_id', 'ds_name'];
 }
