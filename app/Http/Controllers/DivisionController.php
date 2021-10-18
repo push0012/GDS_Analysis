@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Division;
 
 class DivisionController extends Controller
 {
@@ -13,7 +14,7 @@ class DivisionController extends Controller
      */
     public function index()
     {
-        //
+        return Division::get();
     }
 
     /**
@@ -45,7 +46,7 @@ class DivisionController extends Controller
      */
     public function show($id)
     {
-        //
+        return Division::findorfail($id);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Institute;
 
 class InstituteController extends Controller
 {
@@ -13,7 +14,7 @@ class InstituteController extends Controller
      */
     public function index()
     {
-        //
+        return Institute::get();
     }
 
     /**

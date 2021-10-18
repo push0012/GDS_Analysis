@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Stream;
 
 class StreamController extends Controller
 {
@@ -13,7 +14,7 @@ class StreamController extends Controller
      */
     public function index()
     {
-        //
+        return Stream::get();
     }
 
     /**

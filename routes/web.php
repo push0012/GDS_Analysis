@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\DivisionController;
+use App\Http\Controllers\InstituteController;
+use App\Http\Controllers\StreamController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -60,4 +65,14 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
+
+Route::resource('districts', DistrictController::class)->only([
+    'index', 'show'
+]);
+Route::resource('divisions', DivisionController::class)->only([
+    'index', 'show'
+]);
+Route::resource('institutes', InstituteController::class);
+
+Route::resource('streams', StreamController::class);
 
