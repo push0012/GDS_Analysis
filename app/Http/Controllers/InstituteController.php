@@ -35,7 +35,7 @@ class InstituteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Institute::create($request->all());
     }
 
     /**
