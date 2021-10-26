@@ -14,10 +14,11 @@ class Institute extends Model
     protected $primaryKey = 'ins_id';
 
     protected $fillable = [
-        'ins_id', 
+        //'ins_id', 
         'ins_name', 
         'ins_type',
         'ins_category',
         'deleted',
-        'user'];
+        'user'
+    ];
 }

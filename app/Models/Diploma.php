@@ -13,5 +13,10 @@ class Diploma extends Model
 
     protected $primaryKey = 'dip_id';
 
-    protected $fillable = ['dip_id', 'dip_title', 'deleted','user'];
+    protected $fillable = [
+        //'dip_id',
+        'dip_title',
+        'deleted',
+        'user'
+    ];
 }

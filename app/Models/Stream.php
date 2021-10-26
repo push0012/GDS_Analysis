@@ -14,7 +14,7 @@ class Stream extends Model
     protected $primaryKey = 'str_id';
 
     protected $fillable = [
-        'str_id', 
+        //'str_id', 
         'str_name',
         'deleted',
         'user'

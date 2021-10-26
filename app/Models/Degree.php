@@ -13,5 +13,10 @@ class Degree extends Model
 
     protected $primaryKey = 'deg_id';
 
-    protected $fillable = ['deg_id', 'deg_title', 'deleted','user'];
+    protected $fillable = [
+        //'deg_id',
+        'deg_title',
+        'deleted',
+        'user'
+    ];
 }
