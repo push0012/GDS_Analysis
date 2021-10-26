@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Stream;
+use Auth;
 
 class StreamController extends Controller
 {
@@ -35,7 +36,10 @@ class StreamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //$email = Auth::user()->email;
+        //$request->request->add(['user' => $email]);
+        //$request->user = "pushpamal";
+        return Stream::create($request->all());
     }
 
     /**
