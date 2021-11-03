@@ -14,7 +14,8 @@ class InstituteController extends Controller
      */
     public function index()
     {
-        return Institute::get();
+        return view('pages.institutes.institute_list');
+        //return Institute::get();
     }
 
     /**
@@ -24,7 +25,7 @@ class InstituteController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.institutes.institute');
     }
 
     /**
