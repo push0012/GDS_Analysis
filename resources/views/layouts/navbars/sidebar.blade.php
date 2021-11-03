@@ -71,6 +71,12 @@
           <p>{{ __('Notifications') }}</p>
         </a>
       </li>
+      <li class="nav-item{{ $activePage == 'notifications' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ url('institutes') }}">
+          <i class="material-icons">business</i>
+          <p>{{ __('Institutes') }}</p>
+        </a>
+      </li>
       
       <li class="nav-item active-pro{{ $activePage == 'upgrade' ? ' active' : '' }}">
         <a class="nav-link text-white bg-info" href="{{ route('upgrade') }}">
