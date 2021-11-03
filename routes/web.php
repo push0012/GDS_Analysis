@@ -66,6 +66,11 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
 
+Route::group(['middleware' => 'auth'], function () {
+	Route::resource('institutes', InstituteController::class);
+
+});
+
 Route::resource('districts', DistrictController::class)->only([
     'index', 'show'
 ]);
