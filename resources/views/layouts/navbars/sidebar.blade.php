@@ -71,19 +71,19 @@
           <p>{{ __('Notifications') }}</p>
         </a>
       </li>
-      <li class="nav-item{{ $activePage == 'notifications' ? ' active' : '' }}">
+      <li class="nav-item{{ $activePage == 'degree' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ url('register/graduate/create') }}">
+          <i class="material-icons">school</i>
+          <p>{{ __('Degree') }}</p>
+        </a>
+      </li>
+      <li class="nav-item{{ $activePage == 'institutes' ? ' active' : '' }}">
         <a class="nav-link" href="{{ url('institutes') }}">
           <i class="material-icons">business</i>
           <p>{{ __('Institutes') }}</p>
         </a>
       </li>
       
-      <li class="nav-item active-pro{{ $activePage == 'upgrade' ? ' active' : '' }}">
-        <a class="nav-link text-white bg-info" href="{{ route('upgrade') }}">
-          <i class="material-icons text-white">unarchive</i>
-          <p>{{ __('Upgrade to PRO') }}</p>
-        </a>
-      </li>
     </ul>
   </div>
 </div>
