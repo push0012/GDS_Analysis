@@ -14,7 +14,11 @@ class InstituteController extends Controller
      */
     public function index()
     {
-        return view('pages.institutes.institute_list');
+        $institutes = Institute::get();
+
+        return view('pages.institutes.institute_list', ['institutes' => $institutes]);
+
+        //return view('pages.institutes.institute_list');
         //return Institute::get();
     }
 
@@ -36,7 +40,9 @@ class InstituteController extends Controller
      */
     public function store(Request $request)
     {
-        return Institute::create($request->all());
+         Institute::create($request->all());
+         return back()->withStatus(__('Institute Successfully Inserted.'));
+         //return view('pages.institutes.institute');
     }
 
     /**
