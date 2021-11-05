@@ -5,7 +5,7 @@ use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\InstituteController;
 use App\Http\Controllers\StreamController;
-
+use App\Http\Controllers\DegreeRegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +68,19 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('institutes', InstituteController::class);
+
+});
+Route::group(['middleware' => 'auth'], function () {
+
+	Route::group(['prefix'=>'register','as'=>'register.'], function(){
+
+		Route::group(['prefix'=>'graduate','as'=>'graduate.'], function(){
+
+			Route::get('/create',  [DegreeRegisterController::class, 'index']);
+			
+		});
+		
+	});
 
 });
 
