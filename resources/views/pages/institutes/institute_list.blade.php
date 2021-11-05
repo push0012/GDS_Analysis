@@ -1,172 +1,55 @@
-@extends('layouts.app', ['activePage' => 'Institutes', 'titlePage' => __('Institute List')])
+@extends('layouts.app', ['activePage' => 'institutes', 'titlePage' => __('Institute List')])
 
 @section('content')
 <div class="content">
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header card-header-primary">
-            <h4 class="card-title ">Simple Table</h4>
-            <p class="card-category"> Here is a subtitle for this table</p>
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table">
-                <thead class=" text-primary">
-                  <th>
-                    ID
-                  </th>
-                  <th>
-                    Name
-                  </th>
-                  <th>
-                    Country
-                  </th>
-                  <th>
-                    City
-                  </th>
-                  <th>
-                    Salary
-                  </th>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      1
-                    </td>
-                    <td>
-                      Dakota Rice
-                    </td>
-                    <td>
-                      Niger
-                    </td>
-                    <td>
-                      Oud-Turnhout
-                    </td>
-                    <td class="text-primary">
-                      $36,738
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      2
-                    </td>
-                    <td>
-                      Minerva Hooper
-                    </td>
-                    <td>
-                      Curaçao
-                    </td>
-                    <td>
-                      Sinaai-Waas
-                    </td>
-                    <td class="text-primary">
-                      $23,789
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      3
-                    </td>
-                    <td>
-                      Sage Rodriguez
-                    </td>
-                    <td>
-                      Netherlands
-                    </td>
-                    <td>
-                      Baileux
-                    </td>
-                    <td class="text-primary">
-                      $56,142
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      4
-                    </td>
-                    <td>
-                      Philip Chaney
-                    </td>
-                    <td>
-                      Korea, South
-                    </td>
-                    <td>
-                      Overland Park
-                    </td>
-                    <td class="text-primary">
-                      $38,735
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      5
-                    </td>
-                    <td>
-                      Doris Greene
-                    </td>
-                    <td>
-                      Malawi
-                    </td>
-                    <td>
-                      Feldkirchen in Kärnten
-                    </td>
-                    <td class="text-primary">
-                      $63,542
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      6
-                    </td>
-                    <td>
-                      Mason Porter
-                    </td>
-                    <td>
-                      Chile
-                    </td>
-                    <td>
-                      Gloucester
-                    </td>
-                    <td class="text-primary">
-                      $78,615
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+      <div class="row " >
+            <div class="col-md-12 " align="right">
+             
+              <a href="{{ url('/institutes/create') }}" class="btn btn-primary">
+              
+                <span class="material-icons left">
+                add_circle
+                </span>
+                Add New
+                </a>
+              
             </div>
-          </div>
         </div>
-      </div>
+      <div class="row ">
       <div class="col-md-12">
         <div class="card card-plain">
           <div class="card-header card-header-primary">
-            <h4 class="card-title mt-0"> Table on Plain Background</h4>
-            <p class="card-category"> Here is a subtitle for this table</p>
+            <h4 class="card-title mt-0">Institute List</h4>
+            <p class="card-category"> Here are the institutes those present student attended</p>
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table table-hover" id="myTable">
+              <table class="table table-hover stripe" id="myTable">
                 <thead class="">
                   <th>
                     ID
                   </th>
                   <th>
-                    Name
+                    Institute Name
                   </th>
                   <th>
-                    Country
+                    Institute Type
                   </th>
                   <th>
-                    City
-                  </th>
-                  <th>
-                    Salary
+                    Institute Category
                   </th>
                 </thead>
                 <tbody>
-                  <tr>
+                @foreach($institutes as $key => $data)
+                    <tr>    
+                      <th>{{$data->ins_id}}</th>
+                      <th>{{$data->ins_name}}</th>
+                      <th>{{$data->ins_type}}</th>
+                      <th>{{$data->ins_category}}</th>          
+                    </tr>
+                @endforeach
+                 <!-- <tr>
                     <td>
                       1
                     </td>
@@ -179,95 +62,8 @@
                     <td>
                       Oud-Turnhout
                     </td>
-                    <td>
-                      $36,738
-                    </td>
                   </tr>
-                  <tr>
-                    <td>
-                      2
-                    </td>
-                    <td>
-                      Minerva Hooper
-                    </td>
-                    <td>
-                      Curaçao
-                    </td>
-                    <td>
-                      Sinaai-Waas
-                    </td>
-                    <td>
-                      $23,789
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      3
-                    </td>
-                    <td>
-                      Sage Rodriguez
-                    </td>
-                    <td>
-                      Netherlands
-                    </td>
-                    <td>
-                      Baileux
-                    </td>
-                    <td>
-                      $56,142
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      4
-                    </td>
-                    <td>
-                      Philip Chaney
-                    </td>
-                    <td>
-                      Korea, South
-                    </td>
-                    <td>
-                      Overland Park
-                    </td>
-                    <td>
-                      $38,735
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      5
-                    </td>
-                    <td>
-                      Doris Greene
-                    </td>
-                    <td>
-                      Malawi
-                    </td>
-                    <td>
-                      Feldkirchen in Kärnten
-                    </td>
-                    <td>
-                      $63,542
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      6
-                    </td>
-                    <td>
-                      Mason Porter
-                    </td>
-                    <td>
-                      Chile
-                    </td>
-                    <td>
-                      Gloucester
-                    </td>
-                    <td>
-                      $78,615
-                    </td>
-                  </tr>
+-->
                 </tbody>
               </table>
             </div>
@@ -278,9 +74,6 @@
   </div>
 </div>
 <script>
-$(document).ready( function () {
-    $('#myTable').DataTable();
-} );
 
 </script>
 @endsection

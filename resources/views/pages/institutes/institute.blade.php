@@ -1,8 +1,21 @@
-@extends('layouts.app', ['activePage' => 'profile', 'titlePage' => __('Institute')])
+@extends('layouts.app', ['activePage' => 'institutes', 'titlePage' => __('Institute')])
 
 @section('content')
   <div class="content">
     <div class="container-fluid">
+      <div class="row " >
+            <div class="col-md-12 " align="right">
+             
+              <a href="{{ url('/institutes') }}" class="btn btn-primary">
+              
+                <span class="material-icons left">
+                list
+                </span>
+                Show Institute List
+                </a>
+              
+            </div>
+      </div>
       <div class="row">
         <div class="col-md-12">
           <form method="post" action="{{ url('institutes') }}" autocomplete="off" class="form-horizontal">
