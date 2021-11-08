@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Degree;
 
 class DegreeController extends Controller
 {
@@ -34,7 +35,7 @@ class DegreeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       return Degree::create($request->all());
     }
 
     /**
