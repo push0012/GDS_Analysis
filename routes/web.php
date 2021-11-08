@@ -6,7 +6,7 @@ use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\InstituteController;
 use App\Http\Controllers\StreamController;
 use App\Http\Controllers\DegreeRegisterController;
-
+use App\Http\Controllers\DegreeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -94,3 +94,4 @@ Route::resource('institutes', InstituteController::class);
 
 Route::resource('streams', StreamController::class);
 
+Route::resource('degrees', DegreeController::class);
