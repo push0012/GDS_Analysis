@@ -46,7 +46,9 @@ class DivisionController extends Controller
      */
     public function show($id)
     {
-        return Division::findorfail($id);
+        $divisions = Division::where("ds_id",$id)->pluck("dv_name","dv_id");
+        return json_encode($divisions);
+        //return Division::findorfail($id);
     }
 
     /**
