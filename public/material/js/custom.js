@@ -23,6 +23,7 @@ jQuery(document).ready(function ()
                      {
                         console.log(data);
                         jQuery('select[name="dv_id"]').empty();
+                        $('select[name="dv_id"]').append('<option value="0" disabled="disabled" selected="selected">Pick One...</option>');
                         jQuery.each(data, function(key,value){
                            $('select[name="dv_id"]').append('<option value="'+ key +'">'+ value +'</option>');
                         });

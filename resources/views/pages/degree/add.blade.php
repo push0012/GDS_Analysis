@@ -37,7 +37,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="{{ url('institutes') }}" autocomplete="off" class="form-horizontal">
+          <form method="post" action="{{ url('register/graduate/store') }}" autocomplete="off" class="form-horizontal">
           <!--action="{{ url('institutes') }}"-->
           @csrf
             @method('post')

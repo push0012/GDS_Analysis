@@ -30,7 +30,7 @@
         @guest()
             @include('layouts.page_templates.guest')
         @endguest
-        @if (auth()->check())
+        <!--@if (auth()->check())
         <div class="fixed-plugin">
           <div class="dropdown show-dropdown">
             <a href="#" data-toggle="dropdown">
@@ -81,7 +81,7 @@
                         Get the pro version
                       </a>
                   </li> -->
-              <li class="button-container">
+              <!--<li class="button-container">
                 <a href="https://material-dashboard-laravel.creative-tim.com/docs/getting-started/laravel-setup.html" target="_blank" class="btn btn-default btn-block">
                   View Documentation
                 </a>
@@ -104,7 +104,7 @@
             </ul>
           </div>
         </div>
-        @endif
+        @endif-->
         <!--   Core JS Files   -->
         <script src="{{ asset('material') }}/js/core/jquery.min.js"></script>
         <script src="{{ asset('material') }}/js/core/popper.min.js"></script>

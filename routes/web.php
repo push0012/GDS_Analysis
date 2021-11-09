@@ -78,7 +78,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::group(['prefix'=>'graduate','as'=>'graduate.'], function(){
 
 			Route::get('/create',  [DegreeRegisterController::class, 'index']);
-			
+
+			Route::post('/store',  [DegreeRegisterController::class, 'store']);
 		});
 		
 	});
