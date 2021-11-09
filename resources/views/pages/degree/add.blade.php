@@ -11,6 +11,14 @@
     margin: 5px !important;
     border-top: 2px solid black !important;
   }
+  .middle-button{
+    padding: 5px;
+    margin-right:10px;
+    margin-top:10px;
+    border-style: solid;
+    border-radius:5px;
+    cursor:pointer;
+  }
 </style>
   <div class="content">
     <div class="container-fluid">
@@ -30,7 +38,8 @@
       <div class="row">
         <div class="col-md-12">
           <form method="post" action="{{ url('institutes') }}" autocomplete="off" class="form-horizontal">
-            @csrf
+          <!--action="{{ url('institutes') }}"-->
+          @csrf
             @method('post')
 
             <div class="card ">
@@ -196,7 +205,7 @@
                   <div class="col-sm-4">
                     <div class="form-group{{ $errors->has('ins_id') ? ' has-danger' : '' }}">
                       <select class="form-control" name="ins_id" id="ins_id">
-                        <option value="0" selected="selected" disabled="disabled">Pick one...</option>
+                        <option value="0" selected="selected" disabled="disabled">Pick One...</option>
                         @foreach($institutes as $key => $data)
                           <option value="{{$data->ins_id}}">{{$data->ins_name}}</option>
                         @endforeach
@@ -207,17 +216,15 @@
                       @endif
                     </div>
                   </div>
-                  <div class="col-sm-1 col-form-label">
-                  <a href="#" class="btn btn-primary">
-                      <span class="material-icons left">autorenew</span>
-                    </a>
-                   
-                  </div>
-                  <div class="col-sm-1 col-form-label">
                   
-                    <a href="#" class="btn btn-primary">
-                      <span class="material-icons left">autorenew</span>
+                  <div class="col-sm-2" style="margin-top:10px;">
+                  <a href="{{ url('institutes/create') }}" target="_blank" class="middle-button">
+                      <span class="material-icons left">add</span>
                     </a>
+                  
+                    <a type="button" onclick="load_institute();" class="middle-button">
+                      <span class="material-icons left">autorenew</span>
+</a>
                   </div>
                   <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('Degree') }}</label>
                   <div class="col-sm-4">
