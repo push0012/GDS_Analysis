@@ -7,6 +7,7 @@ use App\Http\Controllers\InstituteController;
 use App\Http\Controllers\StreamController;
 use App\Http\Controllers\DegreeRegisterController;
 use App\Http\Controllers\DegreeController;
+use App\Http\Controllers\AjaxController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -80,6 +81,16 @@ Route::group(['middleware' => 'auth'], function () {
 			
 		});
 		
+	});
+
+});
+
+Route::group(['middleware' => 'auth'], function () {
+
+	Route::group(['prefix'=>'ajax','as'=>'ajax.'], function(){
+
+			Route::get('/institutes_load',  [AjaxController::class, 'institutes']);
+			
 	});
 
 });
