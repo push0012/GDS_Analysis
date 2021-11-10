@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+
 use App\Models\Institute;
 use App\Models\Stream;
 use App\Models\Degree;
 use App\Models\Student;
 use App\Models\DegreeRegister;
+use App\Models\LastRegister;
+
 use DB;
 use Carbon\Carbon;
 
@@ -67,6 +70,9 @@ class DegreeRegisterController extends Controller
                 'str_id' => $request->str_id,
                 'ins_id' => $request->ins_id,
             ]);
+
+
+            LastRegister::where('id',1)->update(['last_record'=>$request->deg_reg_no]);
             /*$students = new Student;
 
             $students->stu_title = $request->name;
@@ -74,12 +80,34 @@ class DegreeRegisterController extends Controller
             $flight->save();*/
 
             DB::commit();
-            return back()->withStatus(__('Graduate Register Successfully Inserted.'));
+            return back()->withStatus(__('Graduate Register Details Successfully Inserted.'));
         } catch (\Throwable $e) {
             DB::rollback();
             throw $e;
-            return back()->withStatus(__('Graduate Register Unsuccessfull.'));
+            return back()->withStatus(__('Graduate Register Details Insertion Unsuccessfull.'));
         }
         
+    }
+
+    public function show()
+    {
+       /* $institutes = Institute::where('ins_type', 1)->get();
+        $streams = Stream::get();
+        $degrees = Degree::get();*/
+
+        $student_list = DB::table('degree_small_list')->get();
+
+        return view('pages.degree.list', ['students' => $student_list]);
+    }
+
+    public function view($id)
+    {
+       /* $institutes = Institute::where('ins_type', 1)->get();
+        $streams = Stream::get();
+        $degrees = Degree::get();*/
+
+        $student_one = DB::table('degree_view_one')->where('stu_id','=',$id)->first();
+
+        return view('pages.degree.view', ['student' => $student_one]);
     }
 }

@@ -71,12 +71,56 @@
           <p>{{ __('Notifications') }}</p>
         </a>
       </li>
-      <li class="nav-item{{ $activePage == 'degree' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ url('register/graduate/create') }}">
-          <i class="material-icons">school</i>
-          <p>{{ __('Degree') }}</p>
+      <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }} ">
+        <a class="nav-link " data-toggle="collapse" href="#graduate" aria-expanded="true">
+        <i class="material-icons" style="color: red;">school</i>
+          <p>{{ __('Graduate') }}
+            <b class="caret"></b>
+          </p>
         </a>
+            <div class="collapse show" id="graduate">
+            <ul class="nav">
+            <li class="nav-item{{ $activePage == 'degree_add' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ url('register/graduate/create') }}">
+                <i class="material-icons">person_add_alt</i>
+                <p>{{ __('Add New Graduate') }}</p>
+              </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'degree_list' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ url('register/graduate/show') }}">
+                <i class="material-icons">list</i>
+                <p>{{ __('Show Graduate List ') }}</p>
+              </a>
+            </li>
+          </ul>
+        </div>
       </li>
+
+      <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }} ">
+        <a class="nav-link " data-toggle="collapse" href="#diploma" aria-expanded="true">
+        <i class="material-icons" style="color: green;">receipt_long</i>
+          <p>{{ __('Diploma') }}
+            <b class="caret"></b>
+          </p>
+        </a>
+            <div class="collapse show" id="diploma">
+            <ul class="nav">
+            <li class="nav-item{{ $activePage == 'diploma_add' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ url('register/diploma/create') }}">
+                <i class="material-icons">person_add_alt</i>
+                <p>{{ __('Add New Diploma') }}</p>
+              </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'diploma_list' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ url('register/diploma/show') }}">
+                <i class="material-icons">list</i>
+                <p>{{ __('Show Diploma List') }}</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
       <li class="nav-item{{ $activePage == 'institutes' ? ' active' : '' }}">
         <a class="nav-link" href="{{ url('institutes') }}">
           <i class="material-icons">business</i>

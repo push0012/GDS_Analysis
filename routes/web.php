@@ -3,10 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\DivisionController;
+
 use App\Http\Controllers\InstituteController;
 use App\Http\Controllers\StreamController;
+
 use App\Http\Controllers\DegreeRegisterController;
+use App\Http\Controllers\DiplomaRegisterController;
+
 use App\Http\Controllers\DegreeController;
+use App\Http\Controllers\DiplomaController;
+
 use App\Http\Controllers\AjaxController;
 /*
 |--------------------------------------------------------------------------
@@ -78,8 +84,17 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::group(['prefix'=>'graduate','as'=>'graduate.'], function(){
 
 			Route::get('/create',  [DegreeRegisterController::class, 'index']);
-
 			Route::post('/store',  [DegreeRegisterController::class, 'store']);
+			Route::get('/show',  [DegreeRegisterController::class, 'show']);
+			Route::get('/view/{id}',  [DegreeRegisterController::class, 'view']);
+		});
+
+		Route::group(['prefix'=>'diploma','as'=>'diploma.'], function(){
+
+			Route::get('/create',  [DiplomaRegisterController::class, 'index']);
+			Route::post('/store',  [DiplomaRegisterController::class, 'store']);
+			Route::get('/show',  [DiplomaRegisterController::class, 'show']);
+			Route::get('/view/{id}',  [DiplomaRegisterController::class, 'view']);
 		});
 		
 	});
@@ -107,3 +122,4 @@ Route::resource('institutes', InstituteController::class);
 Route::resource('streams', StreamController::class);
 
 Route::resource('degrees', DegreeController::class);
+Route::resource('diplomas', DiplomaController::class);

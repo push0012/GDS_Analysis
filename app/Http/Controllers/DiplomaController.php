@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Diploma;
+
 class DiplomaController extends Controller
 {
     /**
@@ -34,7 +36,7 @@ class DiplomaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return Diploma::create($request->all());
     }
 
     /**

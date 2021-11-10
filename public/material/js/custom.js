@@ -4,7 +4,17 @@ $(document).ready( function () {
         paging: true,
         searching: false,
     } );
+    $('#myTabledeg').DataTable( {
+      paging: true,
+      searching: true,
+  } );
+  $('#myTableview').DataTable( {
+      paging: false,
+      searching: false,
+      
+  } );
 } );
+
 jQuery(document).ready(function ()
     {
       console.log("fuck here");
