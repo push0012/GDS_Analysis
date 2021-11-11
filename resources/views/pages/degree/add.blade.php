@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'degree_add', 'titlePage' => __('Graduate Register')])
+@extends('layouts.app', ['activePage' => 'degree_add', 'titlePage' => __('Graduated')])
 
 @section('content')
 <style>

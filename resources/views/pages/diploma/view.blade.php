@@ -1,9 +1,18 @@
-@extends('layouts.app', ['activePage' => 'diploma_list', 'titlePage' => __('Diploma Holding Student')])
+@extends('layouts.app', ['activePage' => 'diploma_list', 'titlePage' => __('Diploma Holder')])
 
 @section('content')
 <style>
   .first-column{
-    width:25% !important;
+    width:20% !important;
+  }
+  .second-column{
+    width:30% !important;
+  }
+  .third-column{
+    width:20% !important;
+  }
+  .forth-column{
+    width:30% !important;
   }
   
   }
@@ -14,7 +23,7 @@
       <div class="col-md-12">
         <div class="card card-plain">
           <div class="card-header card-header-primary">
-            <h4 class="card-title mt-0">Diploma Holder Student Details</h4>
+            <h4 class="card-title mt-0">Diploma Holding Student Details</h4>
             <p class="card-category"> </p>
           </div>
           <div class="card-body">
@@ -22,17 +31,17 @@
               <table class="table table-hover stripe" style="line-height:5px;" id="">
                 <tbody>
                     <tr >
-                        <td colspan="4"><h4>Registration Details</h4></td>
+                        <td class="text-primary" colspan="4"><h4>Registration Details</h4></td>
                     </tr>
                     <tr >    
                         <th class="first-column">Register Number</th>
-                        <td>{{$student->dip_reg_no}}</td>
+                        <td class="second-column">{{$student->dip_reg_no}}</td>
                          
-                        <th>Register Date</th>
-                        <td>{{$student->dip_reg_date}}</td>
+                        <th class="third-column">Register Date</th>
+                        <td class="forth-column">{{$student->dip_reg_date}}</td>
                     </tr>
                     <tr >
-                        <td colspan="4"><h4>Student Details</h4></td>
+                        <td class="text-primary" colspan="4"><h4>Student Details</h4></td>
                     </tr>
                     <tr>      
                         <th>Student Name</th>
@@ -54,6 +63,13 @@
                         <td colspan="3">{{$student->address}}</td>
                     </tr>
                     <tr >      
+                        <th>District</th>
+                        <td>{{$student->ds_name}}</td>
+                        
+                        <th>DS Division</th>
+                        <td>{{$student->dv_name}}</td>
+                    </tr>
+                    <tr >      
                         <th>Telephone</th>
                         <td>{{$student->telephone}}</td>
                         
@@ -61,10 +77,10 @@
                         <td>{{$student->email}}</td>
                     </tr>
                     <tr >
-                        <td colspan="4"><h4>Diploma Details</h4></td>
+                        <td class="text-primary" colspan="4"><h4>Diploma Details</h4></td>
                     </tr>
                     <tr>      
-                        <th>IInstitute</th>
+                        <th>Institute</th>
                         <td colspan="3">{{$student->ins_name}}</td>
                     </tr>
                     <tr>      
@@ -84,6 +100,16 @@
                         
                         <th>Job Preferences</th>
                         <td>{{$student->dip_job_preference}}</td>
+                    </tr>
+                    <tr >
+                        <td class="text-primary" colspan="4"><h4>Meta Details</h4></td>
+                    </tr>
+                    <tr>      
+                        <th>Data Updated by</th>
+                        <td>{{$student->user}}</td>
+                        
+                        <th>Data Updated at</th>
+                        <td>{{$student->updated_at}}</td>
                     </tr>
                 </tbody>
               </table>

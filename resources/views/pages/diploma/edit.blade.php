@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'diploma_add', 'titlePage' => __('Diploma Holder')])
+@extends('layouts.app', ['activePage' => 'diploma_list', 'titlePage' => __('Diploma Holder')])
 
 @section('content')
 <style>
@@ -37,14 +37,14 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="{{ url('register/diploma/store') }}" autocomplete="off" class="form-horizontal">
+          <form method="post" action="{{ url('register/diploma/update/'. $student->stu_id) }}" autocomplete="off" class="form-horizontal">
           <!--action="{{ url('institutes') }}"-->
           @csrf
-            @method('post')
+            @method('put')
 
             <div class="card ">
               <div class="card-header card-header-primary" style="padding-top:5px !important; padding-bottom:5px !important;">
-                <h4 class="card-title">{{ __('Insert New Diploma Holding Student') }}</h4>
+                <h4 class="card-title">{{ __('Edit Diploma Holding Student Details') }}</h4>
               </div>
               <div class="card-body ">
                 @if (session('status'))
@@ -63,7 +63,7 @@
                   <label class="col-sm-2 col-form-label text-dark bg-info">{{ __('Register No') }}</label>
                   <div class="col-sm-4">
                     <div class="form-group{{ $errors->has('dip_reg_no') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('dip_reg_no') ? ' is-invalid' : '' }}" name="dip_reg_no" id="dip_reg_no" type="text" placeholder="{{ __('Last Register No - '. $last_record->last_record) }}" value="" required="true" aria-required="true"/>
+                      <input class="form-control{{ $errors->has('dip_reg_no') ? ' is-invalid' : '' }}" name="dip_reg_no" id="dip_reg_no" type="text" placeholder="" value="{{ $student->dip_reg_no }}" required="true" aria-required="true"/>
                       @if ($errors->has('dip_reg_no'))
                         <span id="dip_reg_no-error" class="error text-danger" for="dip_reg_no">{{ $errors->first('dip_reg_no') }}</span>
                       @endif
@@ -72,7 +72,7 @@
                   <label class="col-sm-2 col-form-label text-dark bg-info">{{ __('Register Date') }}</label>
                   <div class="col-sm-4">
                     <div class="form-group{{ $errors->has('dip_reg_date') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('dip_reg_date') ? ' is-invalid' : '' }}" name="dip_reg_date" id="dip_reg_date" type="date" placeholder="{{ __('Register Date') }}" value="" required="true" aria-required="true"/>
+                      <input class="form-control{{ $errors->has('dip_reg_date') ? ' is-invalid' : '' }}" name="dip_reg_date" id="dip_reg_date" type="date" placeholder="" value="{{ $student->dip_reg_date }}" required="true" aria-required="true"/>
                       @if ($errors->has('dip_reg_date'))
                         <span id="dip_reg_date-error" class="error text-danger" for="dip_reg_date">{{ $errors->first('dip_reg_date') }}</span>
                       @endif
@@ -87,10 +87,12 @@
                     <div class="form-group{{ $errors->has('stu_title') ? ' has-danger' : '' }}">
                       <select class="form-control" name="stu_title" id="stu_title">
                         <option value="0" selected="selected" disabled="disabled">Pick one...</option>
-                        <option value="Rev.">Rev.</option>
-                        <option value="Mr.">Mr.</option>
-                        <option value="Mrs.">Mrs.</option>
-                        <option value="Miss">Miss.</option>
+                        
+                        <option value="Rev." {{ $student->stu_title == 'Rev.' ? 'selected' : '' }} >Rev.</option>
+
+                        <option {{ $student->stu_title == 'Mr.' ? 'selected' : '' }} value="Mr.">Mr.</option>
+                        <option {{ $student->stu_title == 'Mrs.' ? 'selected' : '' }} value="Mrs.">Mrs.</option>
+                        <option {{ $student->stu_title == 'Miss.' ? 'selected' : '' }} value="Miss">Miss.</option>
                       </select>
                       @if ($errors->has('stu_title'))
                         <span id="stu_title-error" class="error text-danger" for="stu_title">{{ $errors->first('ins_type') }}</span>
@@ -100,7 +102,7 @@
                   <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('Name') }}</label>
                   <div class="col-sm-6">
                     <div class="form-group{{ $errors->has('stu_name') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('stu_name') ? ' is-invalid' : '' }}" name="stu_name" id="stu_name" type="text" placeholder="{{ __('Student Name') }}" value="" required="true" aria-required="true"/>
+                      <input class="form-control{{ $errors->has('stu_name') ? ' is-invalid' : '' }}" name="stu_name" id="stu_name" type="text" placeholder="" value="{{ $student->stu_name }}" required="true" aria-required="true"/>
                       @if ($errors->has('stu_name'))
                         <span id="stu_name-error" class="error text-danger" for="stu_name">{{ $errors->first('stu_name') }}</span>
                       @endif
@@ -110,7 +112,7 @@
                   <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('Date of Birth') }}</label>
                     <div class="col-sm-2">
                         <div class="form-group{{ $errors->has('dob') ? ' has-danger' : '' }}">
-                            <input class="form-control{{ $errors->has('dob') ? ' is-invalid' : '' }}" name="dob" id="dob" type="date" placeholder="{{ __('Date of Birth') }}" value="" required="true" aria-required="true"/>
+                            <input class="form-control{{ $errors->has('dob') ? ' is-invalid' : '' }}" name="dob" id="dob" type="date" placeholder="" value="{{ $student->dob }}" required="true" aria-required="true"/>
                             @if ($errors->has('dob'))
                                 <span id="dob-error" class="error text-danger" for="dob">{{ $errors->first('dob') }}</span>
                             @endif
@@ -123,8 +125,8 @@
                     <div class="form-group{{ $errors->has('sex') ? ' has-danger' : '' }}">
                       <select class="form-control" name="sex" id="sex">
                         <option value="0" selected="selected" disabled="disabled">Pick one...</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                        <option value="Male" {{ $student->sex == 'Male' ? 'selected' : '' }} >Male</option>
+                        <option value="Female" {{ $student->sex == 'Female' ? 'selected' : '' }} >Female</option>
                       </select>
                       @if ($errors->has('sex'))
                         <span id="sex-error" class="error text-danger" for="sex">{{ $errors->first('sex') }}</span>
@@ -134,7 +136,7 @@
                   <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('Address') }}</label>
                     <div class="col-sm-6">
                         <div class="form-group{{ $errors->has('address') ? ' has-danger' : '' }}">
-                            <input class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" id="address" type="text" placeholder="{{ __('Student Address') }}" value="" required="true" aria-required="true"/>
+                            <input class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" id="address" type="text" placeholder="" value="{{ $student->address }}" required="true" aria-required="true"/>
                             @if ($errors->has('address'))
                                 <span id="address-error" class="error text-danger" for="address">{{ $errors->first('address') }}</span>
                             @endif
@@ -143,7 +145,7 @@
                     <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('NIC') }}</label>
                     <div class="col-sm-2">
                         <div class="form-group{{ $errors->has('nic') ? ' has-danger' : '' }}">
-                            <input class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}" name="nic" id="nic" type="text" placeholder="{{ __('NIC') }}" value="" required="true" aria-required="true"/>
+                            <input class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}" name="nic" id="nic" type="text" placeholder="" value="{{ $student->nic }}" required="true" aria-required="true"/>
                             @if ($errors->has('nic'))
                                 <span id="nic-error" class="error text-danger" for="nic">{{ $errors->first('nic') }}</span>
                             @endif
@@ -158,9 +160,9 @@
                     <div class="col-sm-1">
                     <div class="form-group{{ $errors->has('ds_id') ? ' has-danger' : '' }}">
                       <select class="form-control" name="ds_id" id="ds_id">
-                        <option value="0" selected="selected" disabled="disabled">Pick One...</option>
-                        <option value="1">Kegalle</option>
-                        <option value="2">Ratnapura</option>
+                        <option value="0" selected="selected" disabled="disabled">Pick one...</option>
+                        <option value="1" {{ $student->ds_name == 'Kegalle' ? 'selected' : '' }} >Kegalle</option>
+                        <option value="2" {{ $student->ds_name == 'Rathnapura' ? 'selected' : '' }} >Ratnapura</option>
                       </select>
                       @if ($errors->has('ds_id'))
                         <span id="ds_id-error" class="error text-danger" for="ds_id">{{ $errors->first('ds_id') }}</span>
@@ -172,7 +174,9 @@
                     <div class="form-group{{ $errors->has('dv_id') ? ' has-danger' : '' }}">
                       <select class="form-control" name="dv_id" id="dv_id">
                         <option value="0" selected="selected" disabled="disabled">Pick One...</option>
-                       
+                        @foreach($divisions as $key => $data)
+                          <option value="{{$data->dv_id}}" @if($data->dv_id==$student->dv_id) selected='selected' @endif >{{$data->dv_name}}</option>
+                        @endforeach
                       </select>
                       @if ($errors->has('dv_id'))
                         <span id="dv_id-error" class="error text-danger" for="dv_id">{{ $errors->first('dv_id') }}</span>
@@ -182,7 +186,7 @@
                   <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('TP No') }}</label>
                     <div class="col-sm-2">
                         <div class="form-group{{ $errors->has('telephone') ? ' has-danger' : '' }}">
-                            <input class="form-control{{ $errors->has('telephone') ? ' is-invalid' : '' }}" name="telephone" id="telephone" type="text" placeholder="{{ __('Telephone') }}" value="" required="true" aria-required="true"/>
+                            <input class="form-control{{ $errors->has('telephone') ? ' is-invalid' : '' }}" name="telephone" id="telephone" type="text" placeholder="" value="{{ $student->telephone }}" required="true" aria-required="true"/>
                             @if ($errors->has('telephone'))
                                 <span id="telephone-error" class="error text-danger" for="telephone">{{ $errors->first('telephone') }}</span>
                             @endif
@@ -191,7 +195,7 @@
                     <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('Email Address') }}</label>
                     <div class="col-sm-4">
                         <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                            <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="email" type="email" placeholder="{{ __('Email') }}" value="" required="true" aria-required="true"/>
+                            <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="email" type="email" placeholder="" value="{{ $student->email }}" required="true" aria-required="true"/>
                             @if ($errors->has('email'))
                                 <span id="email-error" class="error text-danger" for="email">{{ $errors->first('email') }}</span>
                             @endif
@@ -207,7 +211,7 @@
                       <select class="form-control" name="ins_id" id="ins_id">
                         <option value="0" selected="selected" disabled="disabled">Pick One...</option>
                         @foreach($institutes as $key => $data)
-                          <option value="{{$data->ins_id}}">{{$data->ins_name}}</option>
+                        <option value="{{$data->ins_id}}" @if($data->ins_id==$student->ins_id) selected='selected' @endif >{{$data->ins_name}}</option>
                         @endforeach
                       </select>
                       
@@ -229,10 +233,10 @@
                   <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('Diploma') }}</label>
                   <div class="col-sm-4">
                     <div class="form-group{{ $errors->has('dip_title') ? ' has-danger' : '' }}">
-                      <input class="form-control" list="dip_title" name="dip_title">
+                      <input class="form-control" list="dip_title" name="dip_title" value="{{ $student->dip_title }}">
                       <datalist id="dip_title">
                         @foreach($diplomas as $key => $data)
-                          <option value="{{$data->dip_title}}"></option>
+                          <option value="{{$data->dip_title}}" ></option>
                         @endforeach
                       </datalist>
                       @if ($errors->has('dip_title'))
@@ -248,9 +252,9 @@
                         <div class="form-group{{ $errors->has('dip_medium') ? ' has-danger' : '' }}">
                         <select class="form-control" name="dip_medium" id="dip_medium">
                             <option value="0" selected="selected" disabled="disabled">Pick One...</option>
-                            <option value="Sinhala">Sinhala</option>
-                            <option value="Tamil">Tamil</option>
-                            <option value="English">English</option>
+                            <option value="Sinhala" {{ $student->dip_medium == 'Sinhala' ? 'selected' : '' }}>Sinhala</option>
+                            <option value="Tamil" {{ $student->dip_medium == 'Tamil' ? 'selected' : '' }}>Tamil</option>
+                            <option value="English" {{ $student->dip_medium == 'English' ? 'selected' : '' }}>English</option>
                         </select>
                         @if ($errors->has('dip_medium'))
                             <span id="dip_medium-error" class="error text-danger" for="dip_medium">{{ $errors->first('dip_medium') }}</span>
@@ -260,15 +264,15 @@
                     <label class="col-sm-2 col-form-label text-dark bg-info">{{ __('Diploma Duration (in Months)') }}</label>
                     <div class="col-sm-4">
                         <div class="form-group{{ $errors->has('dip_duration') ? ' has-danger' : '' }}">
-                         <select class="form-control" name="dip_duration" id="dip_duration">
+                        <select class="form-control" name="dip_duration" id="dip_duration">
                             <option value="0" selected="selected" disabled="disabled">Pick one...</option>
-                            <option value="12" >12</option>
-                            <option value="18">18</option>
-                            <option value="24">24</option>
-                            <option value="30">30</option>
-                            <option value="36">36</option>
-                            <option value="42">42</option>
-                            <option value="48">48</option>
+                            <option value="12" {{ $student->dip_duration == '12' ? 'selected' : '' }}>12</option>
+                            <option value="18" {{ $student->dip_duration == '18' ? 'selected' : '' }}>18</option>
+                            <option value="24" {{ $student->dip_duration == '24' ? 'selected' : '' }}>24</option>
+                            <option value="30" {{ $student->dip_duration == '30' ? 'selected' : '' }}>30</option>
+                            <option value="36" {{ $student->dip_duration == '36' ? 'selected' : '' }}>36</option>
+                            <option value="42" {{ $student->dip_duration == '42' ? 'selected' : '' }}>42</option>
+                            <option value="48" {{ $student->dip_duration == '48' ? 'selected' : '' }}>48</option>
                           </select>
                         @if ($errors->has('dip_duration'))
                             <span id="dip_duration-error" class="error text-danger" for="dip_duration">{{ $errors->first('dip_duration') }}</span>
@@ -281,7 +285,7 @@
                     <label class="col-sm-2 col-form-label text-dark bg-info">{{ __('Effective Date') }}</label>
                     <div class="col-sm-4">
                         <div class="form-group{{ $errors->has('dip_effective_date') ? ' has-danger' : '' }}">
-                        <input class="form-control{{ $errors->has('dip_effective_date') ? ' is-invalid' : '' }}" name="dip_effective_date" id="dip_effective_date" type="date" placeholder="{{ __('Effective Date') }}" value="" required="true" aria-required="true"/>
+                        <input class="form-control{{ $errors->has('dip_effective_date') ? ' is-invalid' : '' }}" name="dip_effective_date" id="dip_effective_date" type="date" placeholder="" value="{{ $student->dip_effective_date }}" required="true" aria-required="true"/>
                         @if ($errors->has('dip_effective_date'))
                             <span id="dip_effective_date-error" class="error text-danger" for="dip_effective_date">{{ $errors->first('dip_effective_date') }}</span>
                         @endif
@@ -292,9 +296,9 @@
                         <div class="form-group{{ $errors->has('dip_job_preference') ? ' has-danger' : '' }}">
                         <select class="form-control" name="dip_job_preference" id="dip_job_preference">
                             <option value="0" selected="selected" disabled="disabled">Pick one...</option>
-                            <option value="Goverment">Goverment</option>
-                            <option value="Private">Private</option>
-                            <option value="Self Industry">Self Industry</option>
+                            <option value="Goverment" {{ $student->dip_job_preference == 'Goverment' ? 'selected' : '' }}>Goverment</option>
+                            <option value="Private" {{ $student->dip_job_preference == 'Private' ? 'selected' : '' }}>Private</option>
+                            <option value="Self Industry" {{ $student->dip_job_preference == 'Self Industry' ? 'selected' : '' }}>Self Industry</option>
                         </select>
                         @if ($errors->has('dip_job_preference'))
                             <span id="dip_job_preference-error" class="error text-danger" for="dip_job_preference">{{ $errors->first('dip_job_preference') }}</span>
@@ -304,10 +308,11 @@
                     
                 </div>
               </div>
-              <div class="card-footer ml-auto mr-auto">
-                <button type="submit" class="btn btn-success">{{ __('Save') }}</button>
-                <button type="reset" class="btn btn-primary">{{ __('Reset') }}</button>
-                <div class="col-md-12 " align="right">
+              <div class="card-footer ">
+                <div class="col-md-6 " align="right">
+                  <button type="submit" class="btn btn-success">{{ __('Update') }}</button>
+                </div>
+                <div class="col-md-6 " align="right">
                   <a href="{{ url('/register/diploma/show') }}" class="btn btn-info">
                     <span class="material-icons left">list</span>
                     Diploma Student List

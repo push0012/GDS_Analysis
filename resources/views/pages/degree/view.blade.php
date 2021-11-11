@@ -1,11 +1,18 @@
-@extends('layouts.app', ['activePage' => 'degree_list', 'titlePage' => __('Graduate Student List')])
+@extends('layouts.app', ['activePage' => 'degree_list', 'titlePage' => __('Graduated')])
 
 @section('content')
 <style>
   .first-column{
-    width:25% !important;
+    width:20% !important;
   }
-  
+  .second-column{
+    width:30% !important;
+  }
+  .third-column{
+    width:20% !important;
+  }
+  .forth-column{
+    width:30% !important;
   }
 </style>
 <div class="content">
@@ -22,17 +29,17 @@
               <table class="table table-hover stripe" style="line-height:5px;" id="">
                 <tbody>
                     <tr >
-                        <td colspan="4"><h4>Registration Details</h4></td>
+                        <td class="text-primary" colspan="4"><h4>Registration Details</h4></td>
                     </tr>
                     <tr >    
                         <th class="first-column">Register Number</th>
-                        <td>{{$student->deg_reg_no}}</td>
+                        <td class="second-column">{{$student->deg_reg_no}}</td>
                          
-                        <th>Register Date</th>
-                        <td>{{$student->deg_reg_date}}</td>
+                        <th class="third-column">Register Date</th>
+                        <td class="forth-column">{{$student->deg_reg_date}}</td>
                     </tr>
                     <tr >
-                        <td colspan="4"><h4>Student Details</h4></td>
+                        <td class="text-primary" colspan="4"><h4>Student Details</h4></td>
                     </tr>
                     <tr>      
                         <th>Student Name</th>
@@ -54,6 +61,13 @@
                         <td colspan="3">{{$student->address}}</td>
                     </tr>
                     <tr >      
+                        <th>District</th>
+                        <td>{{$student->ds_name}}</td>
+                        
+                        <th>DS Division</th>
+                        <td>{{$student->dv_name}}</td>
+                    </tr>
+                    <tr >      
                         <th>Telephone</th>
                         <td>{{$student->telephone}}</td>
                         
@@ -61,7 +75,7 @@
                         <td>{{$student->email}}</td>
                     </tr>
                     <tr >
-                        <td colspan="4"><h4>Degree Details</h4></td>
+                        <td class="text-primary" colspan="4"><h4>Degree Details</h4></td>
                     </tr>
                     <tr>      
                         <th>University</th>
@@ -92,6 +106,16 @@
                         <th>Job Preferences</th>
                         <td>{{$student->deg_job_preference}}</td>
                     </tr>
+                    <tr >
+                        <td class="text-primary" colspan="4"><h4>Meta Details</h4></td>
+                    </tr>
+                    <tr>      
+                        <th>Data Updated by</th>
+                        <td>{{$student->user}}</td>
+                        
+                        <th>Data Updated at</th>
+                        <td>{{$student->updated_at}}</td>
+                    </tr>
                 </tbody>
               </table>
             </div>
@@ -103,7 +127,7 @@
                     <span class="material-icons left">edit</span>
                     Edit
                 </a>
-                <a href="{{ url('/register/graduate/delete/'.$student->stu_id) }}" class="btn btn-danger">
+                <a href="#" class="btn btn-danger">
                     <span class="material-icons left">delete</span>
                     Delete
                 </a>

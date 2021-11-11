@@ -87,6 +87,8 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::post('/store',  [DegreeRegisterController::class, 'store']);
 			Route::get('/show',  [DegreeRegisterController::class, 'show']);
 			Route::get('/view/{id}',  [DegreeRegisterController::class, 'view']);
+			Route::get('/edit/{id}',  [DegreeRegisterController::class, 'edit']);
+			Route::put('/update/{id}',  [DegreeRegisterController::class, 'update']);
 		});
 
 		Route::group(['prefix'=>'diploma','as'=>'diploma.'], function(){
@@ -95,6 +97,8 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::post('/store',  [DiplomaRegisterController::class, 'store']);
 			Route::get('/show',  [DiplomaRegisterController::class, 'show']);
 			Route::get('/view/{id}',  [DiplomaRegisterController::class, 'view']);
+			Route::get('/edit/{id}',  [DiplomaRegisterController::class, 'edit']);
+			Route::put('/update/{id}',  [DiplomaRegisterController::class, 'update']);
 		});
 		
 	});
