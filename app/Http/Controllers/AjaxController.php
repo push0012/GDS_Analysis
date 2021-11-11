@@ -13,4 +13,7 @@ class AjaxController extends Controller
         return json_encode($institutes);
         //return view('pages.degree.add', ['institutes' => $institutes, 'streams' => $streams, 'degrees' => $degrees ]);
     }
+    public function year_sum_degree(){
+       
+    }
 }

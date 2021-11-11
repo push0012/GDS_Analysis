@@ -8,17 +8,15 @@
           <div class="card card-stats">
             <div class="card-header card-header-warning card-header-icon">
               <div class="card-icon">
-                <i class="material-icons">content_copy</i>
+                <i class="material-icons">school</i>
               </div>
-              <p class="card-category">This Year</p>
-              <h3 class="card-title">49/50
-                <small>GB</small>
+              <p class="card-category">This Year / All</p>
+              <h3 class="card-title">{{$degree_this_year->degree_all}} / {{$degree_all->degree_all}}
               </h3>
             </div>
             <div class="card-footer">
               <div class="stats">
-                <i class="material-icons text-info">info</i>
-                <a href="#pablo">Graduate Registration</a>
+                <i class="material-icons text-info">info</i>Graduated Registration
               </div>
             </div>
           </div>
@@ -27,14 +25,16 @@
           <div class="card card-stats">
             <div class="card-header card-header-success card-header-icon">
               <div class="card-icon">
-                <i class="material-icons">store</i>
+                <i class="material-icons">receipt_long</i>
               </div>
-              <p class="card-category">Revenue</p>
-              <h3 class="card-title">$34,245</h3>
+              <p class="card-category">This Year / All</p>
+              <h3 class="card-title">
+                {{$diploma_this_year->diploma_all}} / {{$diploma_all->diploma_all}}
+              </h3>
             </div>
             <div class="card-footer">
               <div class="stats">
-                <i class="material-icons">date_range</i> Last 24 Hours
+                <i class="material-icons text-info">info</i> Diploma Holder Registration
               </div>
             </div>
           </div>
@@ -50,7 +50,7 @@
             </div>
             <div class="card-footer">
               <div class="stats">
-                <i class="material-icons">local_offer</i> Tracked from Github
+                <i class="material-icons">local_offer</i> All Student
               </div>
             </div>
           </div>
