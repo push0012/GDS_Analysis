@@ -22,8 +22,9 @@ class DegreeRegisterController extends Controller
         $institutes = Institute::where('ins_type', 1)->get();
         $streams = Stream::get();
         $degrees = Degree::get();
+        $last_record = LastRegister::where('id', 1)->first();
 
-        return view('pages.degree.add', ['institutes' => $institutes, 'streams' => $streams, 'degrees' => $degrees ]);
+        return view('pages.degree.add', ['institutes' => $institutes, 'streams' => $streams, 'degrees' => $degrees, 'last_record' => $last_record ]);
     }
 
     public function store(Request $request)

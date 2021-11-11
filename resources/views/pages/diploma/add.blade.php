@@ -63,7 +63,7 @@
                   <label class="col-sm-2 col-form-label text-dark bg-info">{{ __('Register No') }}</label>
                   <div class="col-sm-4">
                     <div class="form-group{{ $errors->has('dip_reg_no') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('dip_reg_no') ? ' is-invalid' : '' }}" name="dip_reg_no" id="dip_reg_no" type="text" placeholder="{{ __('Register No') }}" value="" required="true" aria-required="true"/>
+                      <input class="form-control{{ $errors->has('dip_reg_no') ? ' is-invalid' : '' }}" name="dip_reg_no" id="dip_reg_no" type="text" placeholder="{{ __('Last Register No - '. $last_record->last_record) }}" value="" required="true" aria-required="true"/>
                       @if ($errors->has('dip_reg_no'))
                         <span id="dip_reg_no-error" class="error text-danger" for="dip_reg_no">{{ $errors->first('dip_reg_no') }}</span>
                       @endif

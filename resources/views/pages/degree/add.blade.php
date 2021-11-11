@@ -44,7 +44,8 @@
 
             <div class="card ">
               <div class="card-header card-header-primary" style="padding-top:5px !important; padding-bottom:5px !important;">
-                <h4 class="card-title">{{ __('Insert New Graduate Student') }}</h4>
+                <h4 class="card-title">{{ __('Insert New Graduate Student') }} </h4>
+                
               </div>
               <div class="card-body ">
                 @if (session('status'))
@@ -63,7 +64,7 @@
                   <label class="col-sm-2 col-form-label text-dark bg-info">{{ __('Register No') }}</label>
                   <div class="col-sm-4">
                     <div class="form-group{{ $errors->has('deg_reg_no') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('deg_reg_no') ? ' is-invalid' : '' }}" name="deg_reg_no" id="deg_reg_no" type="text" placeholder="{{ __('Register No') }}" value="" required="true" aria-required="true"/>
+                      <input class="form-control{{ $errors->has('deg_reg_no') ? ' is-invalid' : '' }}" name="deg_reg_no" id="deg_reg_no" type="text" placeholder="{{ __('Last Register No - '. $last_record->last_record) }}" value="" required="true" aria-required="true"/>
                       @if ($errors->has('deg_reg_no'))
                         <span id="ins_name-error" class="error text-danger" for="deg_reg_no">{{ $errors->first('deg_reg_no') }}</span>
                       @endif

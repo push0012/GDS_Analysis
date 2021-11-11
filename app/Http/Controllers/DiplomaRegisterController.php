@@ -22,8 +22,8 @@ class DiplomaRegisterController extends Controller
         $institutes = Institute::where('ins_type', 1)->orWhere('ins_type', 3)->get();
         //$streams = Stream::get();
         $diplomas = Diploma::get();
-
-        return view('pages.diploma.add', ['institutes' => $institutes, 'diplomas' => $diplomas ]);
+        $last_record = LastRegister::where('id', 2)->first();
+        return view('pages.diploma.add', ['institutes' => $institutes, 'diplomas' => $diplomas,  'last_record' => $last_record ]);
     }
 
     public function store(Request $request)
