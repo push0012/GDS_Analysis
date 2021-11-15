@@ -15,9 +15,32 @@ $(document).ready( function () {
   } );
 } );
 
+$("#copy").click(function(){
+   console.log('button clicked');
+   $("#copy_text").select();
+  document.execCommand('copy');
+   showNotification('bottom','center','Text Copied to Clipboard','info');
+});
+
+function showNotification(from, align,message,type) {
+   //type = ['', 'info', 'danger', 'success', 'warning', 'rose', 'primary'];
+   
+   $.notify({
+     icon: "add_alert",
+     message: message
+   }, {
+     type: type,
+     timer: 3000,
+     placement: {
+       from: from,
+       align: align
+     }
+   });
+ }
+
 jQuery(document).ready(function ()
     {
-      console.log("fuck here");
+      console.log("lic here");
             jQuery('select[name="ds_id"]').on('change',function(){
                console.log("here come");
                var countryID = jQuery(this).val();

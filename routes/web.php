@@ -115,6 +115,18 @@ Route::group(['middleware' => 'auth'], function () {
 
 });
 
+Route::group(['middleware' => 'auth'], function () {
+
+	Route::group(['prefix'=>'contacts','as'=>'contacts.'], function(){
+
+		Route::group(['prefix'=>'graduate','as'=>'graduate.'], function(){
+
+			Route::get('/',  [AjaxController::class, 'show']);
+			
+		});			
+	});
+});
+
 Route::resource('districts', DistrictController::class)->only([
     'index', 'show'
 ]);
@@ -127,3 +139,5 @@ Route::resource('streams', StreamController::class);
 
 Route::resource('degrees', DegreeController::class);
 Route::resource('diplomas', DiplomaController::class);
+
+Route::get('get_email',  [AjaxController::class, 'get_email']);

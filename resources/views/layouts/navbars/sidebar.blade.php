@@ -78,7 +78,7 @@
             <b class="caret"></b>
           </p>
         </a>
-            <div class="collapse show" id="graduate">
+            <div class="collapse" id="graduate">
             <ul class="nav">
             <li class="nav-item{{ $activePage == 'degree_add' ? ' active' : '' }}">
               <a class="nav-link" href="{{ url('register/graduate/create') }}">
@@ -103,7 +103,7 @@
             <b class="caret"></b>
           </p>
         </a>
-            <div class="collapse show" id="diploma">
+            <div class="collapse" id="diploma">
             <ul class="nav">
             <li class="nav-item{{ $activePage == 'diploma_add' ? ' active' : '' }}">
               <a class="nav-link" href="{{ url('register/diploma/create') }}">
@@ -115,6 +115,31 @@
               <a class="nav-link" href="{{ url('register/diploma/show') }}">
                 <i class="material-icons">list</i>
                 <p>{{ __('Show Diploma List') }}</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }} ">
+        <a class="nav-link " data-toggle="collapse" href="#contacts" aria-expanded="true">
+        <i class="material-icons" style="color: green;">import_contacts</i>
+          <p>{{ __('Show Contacts') }}
+            <b class="caret"></b>
+          </p>
+        </a>
+            <div class="collapse" id="contacts">
+            <ul class="nav">
+            <li class="nav-item{{ $activePage == 'cont_degree' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ url('contacts/graduate/') }}">
+                <i class="material-icons">school</i>
+                <p>{{ __('Graduate') }}</p>
+              </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'cont_diploma' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ url('register/diploma/show') }}">
+                <i class="material-icons">receipt_long</i>
+                <p>{{ __('Diploma') }}</p>
               </a>
             </li>
           </ul>
