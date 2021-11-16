@@ -33,10 +33,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <form method="post" action="{{ url('register/graduate/store') }}" autocomplete="off" class="form-horizontal">
-          <!--action="{{ url('institutes') }}"-->
-          @csrf
-            @method('post')
+          
 
             <div class="card ">
               <div class="card-header card-header-primary" style="padding-top:5px !important; padding-bottom:5px !important;">
@@ -44,6 +41,11 @@
                 
               </div>
               <div class="card-body ">
+              <form method="post" action="{{ url('register/graduate/store') }}" autocomplete="off" class="form-horizontal">
+              <!--action="{{ url('institutes') }}"-->
+              @csrf
+                @method('post')
+
                 @if (session('status'))
                   <div class="row">
                     <div class="col-sm-12">
@@ -57,8 +59,72 @@
                   </div>
                 @endif
                 <div class="row">
-                <label class="col-sm-2 col-form-label text-dark">{{ __('Contact Type') }}</label>
                   <div class="col-sm-2">
+                    <label class="col-form-label text-dark">{{ __('Contact Type') }}</label>
+                    <div class="form-group">
+                        <select class="form-control" name="contact_type" id="contact_type">
+                            <option value="0" selected="selected">Pick One...</option>
+                            <option value="1">Email</option>
+                            <option value="2">Telephone</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <label class="col-form-label text-dark">{{ __('District') }}</label>
+                    <div class="form-group">
+                        <select class="form-control" name="ds_id" id="ds_id">
+                            <option value="0" selected="selected">Pick One...</option>
+                            <option value="1">Kegalle</option>
+                            <option value="2">Ratnapura</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <label class="col-form-label text-dark">{{ __('DS Area') }}</label>
+                    <div class="form-group">
+                        <select class="form-control" name="dv_id" id="dv_id">
+                            <option value="0" selected="selected" disabled="disabled">Pick One...</option>
+                            
+                        </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <label class="col-form-label text-dark">{{ __('Gender') }}</label>
+                    <div class="form-group">
+                        <select class="form-control" name="sex" id="sex">
+                            <option value="0" selected="selected">Pick One...</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <label class="col-form-label text-dark">{{ __('Stream') }}</label>
+                    <div class="form-group">
+                        <select class="form-control" name="str_id" id="str_id">
+                            <option value="0" selected="selected">Pick One...</option>
+                            
+                        </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <label class="col-form-label text-dark">{{ __('Degree Medium') }}</label>
+                    <div class="form-group">
+                        <select class="form-control" name="contact_type" id="contact_type">
+                            <option value="0" selected="selected">Pick One...</option>
+                            <option value="1">Email</option>
+                            <option value="2">Telephone</option>
+                        </select>
+                     @if ($errors->has('contact_type'))
+                        <span id="contact_type-error" class="error text-danger" for="contact_type">{{ $errors->first('contact_type') }}</span>
+                      @endif
+                    </div>
+                  </div>
+                
+                </div>
+                <div class="row">
+                <div class="col-sm-6">
+                    <label class="col-form-label text-dark">{{ __('Institute') }}</label>
                     <div class="form-group{{ $errors->has('contact_type') ? ' has-danger' : '' }}">
                         <select class="form-control" name="contact_type" id="contact_type">
                             <option value="0" selected="selected" disabled="disabled">Pick one...</option>
@@ -70,22 +136,45 @@
                       @endif
                     </div>
                   </div>
-                  <label class="col-sm-2 col-form-label text-dark ">{{ __('Register Date') }}</label>
                   <div class="col-sm-2">
-                    <div class="form-group{{ $errors->has('deg_reg_date') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('deg_reg_date') ? ' is-invalid' : '' }}" name="deg_reg_date" id="deg_reg_date" type="date" placeholder="{{ __('Register Date') }}" value="" required="true" aria-required="true"/>
-                      @if ($errors->has('deg_reg_date'))
-                        <span id="deg_reg_date-error" class="error text-danger" for="deg_reg_date">{{ $errors->first('deg_reg_date') }}</span>
+                    <label class="col-form-label text-dark">{{ __('Degree Type') }}</label>
+                    <div class="form-group{{ $errors->has('contact_type') ? ' has-danger' : '' }}">
+                        <select class="form-control" name="contact_type" id="contact_type">
+                            <option value="0" selected="selected" disabled="disabled">Pick one...</option>
+                            <option value="1">Email</option>
+                            <option value="2">Telephone</option>
+                        </select>
+                     @if ($errors->has('contact_type'))
+                        <span id="contact_type-error" class="error text-danger" for="contact_type">{{ $errors->first('contact_type') }}</span>
                       @endif
                     </div>
                   </div>
+                  <div class="col-sm-2">
+                    <label class="col-form-label text-dark">{{ __('Degree Class') }}</label>
+                    <div class="form-group{{ $errors->has('contact_type') ? ' has-danger' : '' }}">
+                        <select class="form-control" name="contact_type" id="contact_type">
+                            <option value="0" selected="selected" disabled="disabled">Pick one...</option>
+                            <option value="1">Email</option>
+                            <option value="2">Telephone</option>
+                        </select>
+                     @if ($errors->has('contact_type'))
+                        <span id="contact_type-error" class="error text-danger" for="contact_type">{{ $errors->first('contact_type') }}</span>
+                      @endif
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <button type="reset" id="" style="width:130px;" class="btn btn-success">{{ __('Reset') }}</button>
+                    <button type="button" id="" style="width:130px;" class="btn btn-success">{{ __('Load Data') }}</button>
+                  </div>
                 </div>
+                </form>
                 <hr>
+                <form>
                 <div class="row">
                   <div class="col-sm-12">
                     <div class="form-group{{ $errors->has('stu_title') ? ' has-danger' : '' }}">
                         
-                     <textarea id="copy_text" rows="15" cols="120">{{$data}}</textarea>
+                     <textarea id="copy_text" rows="9" cols="120">{{$data}}</textarea>
                       @if ($errors->has('stu_title'))
                         <span id="stu_title-error" class="error text-danger" for="stu_title">{{ $errors->first('ins_type') }}</span>
                       @endif
@@ -93,14 +182,14 @@
                   </div>
                   
                 </div>
-                    
+                </form>
               </div>
               <div class="card-footer ml-auto mr-auto">
                 <button type="button" id="copy" class="btn btn-success">{{ __('Copy Text') }}</button>
                
               </div>
             </div>
-          </form>
+          
         </div>
       </div>
       <div class="row">
