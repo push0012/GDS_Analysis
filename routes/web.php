@@ -122,6 +122,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::group(['prefix'=>'graduate','as'=>'graduate.'], function(){
 
 			Route::get('/',  [AjaxController::class, 'show']);
+			Route::post('/filter',  [AjaxController::class, 'get_contacts']);
 			
 		});			
 	});

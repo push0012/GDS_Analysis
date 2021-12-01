@@ -96,3 +96,44 @@ function load_institute()
 function isMyFormValid(form){
    console.log(form);
 }
+
+function contact_filter()
+{
+        /*$contact_type = $('#contact_type').val();
+        $ds_id = $('#ds_id').val();
+        $dv_id = $('#dv_id').val();
+        $sex = $('#sex').val();
+        $str_id = $('#str_id').val();
+        $deg_medium = $('#deg_medium').val();
+        $ins_id = $('#ins_id').val();
+        $deg_type = $('#deg_type').val();
+        $deg_class = $('#deg_class').val();
+        $deg_effective_date_from = $('#deg_effective_date_from').val();
+        $deg_effective_date_to = $('#deg_effective_date_to').val();*/
+
+       /* $email = $('#email').val();
+        $mobile_number = $('#mobile_number').val();
+        let subject = $('#subject').val();
+        let message = $('#message').val();*/
+
+   $values = $('#contact_form').serialize();
+   //$values = $('#contact_form').serializeArray();
+  // $val =  JSON.parse($values);
+   console.log("come here");
+  // console.log('call here');
+   jQuery.ajax({
+      url : '/contacts/graduate/filter',
+      type : "POST",
+      data : $values,
+      dataType : "json",
+      success:function(data)
+      {
+         console.log(data);
+         
+      },
+      error:function(data){
+         console.log("error here")
+      }
+      
+   });
+}

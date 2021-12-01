@@ -37,14 +37,13 @@
 
             <div class="card ">
               <div class="card-header card-header-primary" style="padding-top:5px !important; padding-bottom:5px !important;">
-                <h4 class="card-title">{{ __('Insert New Graduate Student') }} </h4>
+                <h4 class="card-title">{{ __('Graduate Student Contact') }} </h4>
                 
               </div>
               <div class="card-body ">
-              <form method="post" action="{{ url('register/graduate/store') }}" autocomplete="off" class="form-horizontal">
+              <form method="" action="" autocomplete="off" class="form-horizontal" id="contact_form" name="contact_form">
               <!--action="{{ url('institutes') }}"-->
-              @csrf
-                @method('post')
+             
 
                 @if (session('status'))
                   <div class="row">
@@ -62,7 +61,7 @@
                   <div class="col-sm-2">
                     <label class="col-form-label text-dark">{{ __('Contact Type') }}</label>
                     <div class="form-group">
-                        <select class="form-control" name="contact_type" id="contact_type">
+                        <select class="form-control" name="contact_type" id="contact_type" required>
                             <option value="0" selected="selected">Pick One...</option>
                             <option value="1">Email</option>
                             <option value="2">Telephone</option>
@@ -83,7 +82,7 @@
                     <label class="col-form-label text-dark">{{ __('DS Area') }}</label>
                     <div class="form-group">
                         <select class="form-control" name="dv_id" id="dv_id">
-                            <option value="0" selected="selected" disabled="disabled">Pick One...</option>
+                            <option value="0" selected="selected">Pick One...</option>
                             
                         </select>
                     </div>
@@ -103,68 +102,77 @@
                     <div class="form-group">
                         <select class="form-control" name="str_id" id="str_id">
                             <option value="0" selected="selected">Pick One...</option>
-                            
+                            @foreach($streams as $key => $data)
+                              <option value="{{$data->str_id}}">{{$data->str_name}}</option>
+                            @endforeach
                         </select>
                     </div>
                   </div>
                   <div class="col-sm-2">
                     <label class="col-form-label text-dark">{{ __('Degree Medium') }}</label>
                     <div class="form-group">
-                        <select class="form-control" name="contact_type" id="contact_type">
+                        <select class="form-control" name="deg_medium" id="deg_medium">
                             <option value="0" selected="selected">Pick One...</option>
-                            <option value="1">Email</option>
-                            <option value="2">Telephone</option>
+                            <option value="Sinhala">Sinhala</option>
+                            <option value="Tamil">Tamil</option>
+                            <option value="English">English</option>
                         </select>
-                     @if ($errors->has('contact_type'))
-                        <span id="contact_type-error" class="error text-danger" for="contact_type">{{ $errors->first('contact_type') }}</span>
-                      @endif
-                    </div>
                   </div>
-                
+                </div>
                 </div>
                 <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <label class="col-form-label text-dark">{{ __('Institute') }}</label>
-                    <div class="form-group{{ $errors->has('contact_type') ? ' has-danger' : '' }}">
-                        <select class="form-control" name="contact_type" id="contact_type">
-                            <option value="0" selected="selected" disabled="disabled">Pick one...</option>
-                            <option value="1">Email</option>
-                            <option value="2">Telephone</option>
+                    <div class="form-group">
+                        <select class="form-control" name="ins_id" id="ins_id">
+                            <option value="0" selected="selected">Pick One...</option>
+                            @foreach($institutes as $key => $data)
+                            <option value="{{$data->ins_id}}">{{$data->ins_name}}</option>
+                            @endforeach
                         </select>
-                     @if ($errors->has('contact_type'))
-                        <span id="contact_type-error" class="error text-danger" for="contact_type">{{ $errors->first('contact_type') }}</span>
-                      @endif
                     </div>
                   </div>
                   <div class="col-sm-2">
                     <label class="col-form-label text-dark">{{ __('Degree Type') }}</label>
-                    <div class="form-group{{ $errors->has('contact_type') ? ' has-danger' : '' }}">
-                        <select class="form-control" name="contact_type" id="contact_type">
-                            <option value="0" selected="selected" disabled="disabled">Pick one...</option>
-                            <option value="1">Email</option>
-                            <option value="2">Telephone</option>
+                    <div class="form-group">
+                      <select class="form-control" name="deg_type" id="deg_type">
+                            <option value="0" selected="selected">Pick one...</option>
+                            <option value="General">General</option>
+                            <option value="Special">Special</option>
                         </select>
-                     @if ($errors->has('contact_type'))
-                        <span id="contact_type-error" class="error text-danger" for="contact_type">{{ $errors->first('contact_type') }}</span>
-                      @endif
                     </div>
                   </div>
                   <div class="col-sm-2">
                     <label class="col-form-label text-dark">{{ __('Degree Class') }}</label>
-                    <div class="form-group{{ $errors->has('contact_type') ? ' has-danger' : '' }}">
-                        <select class="form-control" name="contact_type" id="contact_type">
-                            <option value="0" selected="selected" disabled="disabled">Pick one...</option>
-                            <option value="1">Email</option>
-                            <option value="2">Telephone</option>
+                    <div class="form-group">
+                        <select class="form-control" name="deg_class" id="deg_class">
+                            <option value="0" selected="selected">Pick one...</option>
+                            <option value="First">First</option>
+                            <option value="Second Upper">Second Upper</option>
+                            <option value="Second Lower">Second Lower</option>
+                            <option value="General">General</option>
                         </select>
-                     @if ($errors->has('contact_type'))
-                        <span id="contact_type-error" class="error text-danger" for="contact_type">{{ $errors->first('contact_type') }}</span>
-                      @endif
                     </div>
                   </div>
+
                   <div class="col-sm-2">
+                    <label class="col-form-label text-dark">{{ __('Effective Date (From)') }}</label>
+                      <div class="form-group">
+                        <input class="form-control" name="deg_effective_date_from" id="deg_effective_date_from" type="date" value="" aria-required="true"/>
+                      </div>
+                  </div>
+
+                  <div class="col-sm-2">
+                    <label class="col-form-label text-dark">{{ __('Effective Date (To)') }}</label>
+                      <div class="form-group">
+                        <input class="form-control" name="deg_effective_date_to" id="deg_effective_date_to" type="date" value="" aria-required="true"/>
+                      </div>
+                  </div>
+                  </div>
+                  <div class="row">
+                  <div class="col-sm-4">
                     <button type="reset" id="" style="width:130px;" class="btn btn-success">{{ __('Reset') }}</button>
-                    <button type="button" id="" style="width:130px;" class="btn btn-success">{{ __('Load Data') }}</button>
+                    <button type="button" id="" style="width:130px;" onclick="contact_filter();" class="btn btn-success">{{ __('Load Data') }}</button>
                   </div>
                 </div>
                 </form>
@@ -172,12 +180,8 @@
                 <form>
                 <div class="row">
                   <div class="col-sm-12">
-                    <div class="form-group{{ $errors->has('stu_title') ? ' has-danger' : '' }}">
-                        
-                     <textarea id="copy_text" rows="9" cols="120">{{$data}}</textarea>
-                      @if ($errors->has('stu_title'))
-                        <span id="stu_title-error" class="error text-danger" for="stu_title">{{ $errors->first('ins_type') }}</span>
-                      @endif
+                    <div class="form-group">  
+                      <textarea id="copy_text" rows="8" cols="120">{{$filter}}</textarea>
                     </div>
                   </div>
                   
