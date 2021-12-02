@@ -101,13 +101,36 @@ function isMyFormValid(form){
    console.log(form);
 }
 
-function contact_filter()
+function contact_filter_graduate()
 {
        
    $values = $('#contact_form').serialize();
    
    jQuery.ajax({
       url : '/contacts/graduate/filter',
+      type : "POST",
+      data : $values,
+      dataType : "json",
+      success:function(data)
+      {
+         console.log(data);
+         document.getElementById('copy_text').value = '';
+         document.getElementById('copy_text').value = data;
+      },
+      error:function(data){
+         console.log(data)
+      }
+      
+   });
+}
+
+function contact_filter_diploma()
+{
+       
+   $values = $('#contact_form').serialize();
+   
+   jQuery.ajax({
+      url : '/contacts/diploma/filter',
       type : "POST",
       data : $values,
       dataType : "json",

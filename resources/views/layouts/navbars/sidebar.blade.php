@@ -137,7 +137,7 @@
               </a>
             </li>
             <li class="nav-item{{ $activePage == 'cont_diploma' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ url('register/diploma/show') }}">
+              <a class="nav-link" href="{{ url('contacts/diploma/') }}">
                 <i class="material-icons">receipt_long</i>
                 <p>{{ __('Diploma') }}</p>
               </a>

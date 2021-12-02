@@ -122,10 +122,16 @@ Route::group(['middleware' => 'auth'], function () {
 
 		Route::group(['prefix'=>'graduate','as'=>'graduate.'], function(){
 
-			Route::get('/',  [FilterController::class, 'show']);
-			Route::post('/filter',  [FilterController::class, 'get_contacts']);
+			Route::get('/',  [FilterController::class, 'show_graduate_filter_form']);
+			Route::post('/filter',  [FilterController::class, 'get_graduate_contacts']);
 			
-		});			
+		});	
+		Route::group(['prefix'=>'diploma','as'=>'diploma.'], function(){
+
+			Route::get('/',  [FilterController::class, 'show_diploma_filter_form']);
+			Route::post('/filter',  [FilterController::class, 'get_diploma_contacts']);
+			
+		});	
 	});
 });
 

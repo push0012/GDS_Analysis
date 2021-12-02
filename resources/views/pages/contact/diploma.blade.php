@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'cont_degree', 'titlePage' => __('Graduate Contacts')])
+@extends('layouts.app', ['activePage' => 'cont_diploma', 'titlePage' => __('Diploma Holder Contacts')])
 
 @section('content')
 <style>
@@ -37,7 +37,7 @@
 
             <div class="card ">
               <div class="card-header card-header-primary" style="padding-top:5px !important; padding-bottom:5px !important;">
-                <h4 class="card-title">{{ __('Graduate Student Contact') }} </h4>
+                <h4 class="card-title">{{ __('Diploma Holder Student Contact') }} </h4>
                 
               </div>
               <div class="card-body ">
@@ -96,21 +96,11 @@
                         </select>
                     </div>
                   </div>
+                
                   <div class="col-sm-2">
-                    <label class="col-form-label text-dark">{{ __('Stream') }}</label>
+                    <label class="col-form-label text-dark">{{ __('Diploma Medium') }}</label>
                     <div class="form-group">
-                        <select class="form-control" name="str_id" id="str_id">
-                            <option value="0" selected="selected">Pick One...</option>
-                            @foreach($streams as $key => $data)
-                              <option value="{{$data->str_id}}">{{$data->str_name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                  </div>
-                  <div class="col-sm-2">
-                    <label class="col-form-label text-dark">{{ __('Degree Medium') }}</label>
-                    <div class="form-group">
-                        <select class="form-control" name="deg_medium" id="deg_medium">
+                        <select class="form-control" name="dip_medium" id="dip_medium">
                             <option value="0" selected="selected">Pick One...</option>
                             <option value="Sinhala">Sinhala</option>
                             <option value="Tamil">Tamil</option>
@@ -118,9 +108,24 @@
                         </select>
                   </div>
                 </div>
+                <div class="col-sm-2">
+                    <label class="col-form-label text-dark">{{ __('Diploma Duration') }}</label>
+                    <div class="form-group">
+                        <select class="form-control" name="dip_duration" id="dip_duration">
+                            <option value="0" selected="selected">Pick One...</option>
+                            <option value="12" >12</option>
+                            <option value="18">18</option>
+                            <option value="24">24</option>
+                            <option value="30">30</option>
+                            <option value="36">36</option>
+                            <option value="42">42</option>
+                            <option value="48">48</option>
+                        </select>
+                    </div>
+                  </div>
                 </div>
                 <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <label class="col-form-label text-dark">{{ __('Institute') }}</label>
                     <div class="form-group">
                         <select class="form-control" name="ins_id" id="ins_id">
@@ -131,47 +136,26 @@
                         </select>
                     </div>
                   </div>
-                  <div class="col-sm-2">
-                    <label class="col-form-label text-dark">{{ __('Degree Type') }}</label>
-                    <div class="form-group">
-                      <select class="form-control" name="deg_type" id="deg_type">
-                            <option value="0" selected="selected">Pick one...</option>
-                            <option value="General">General</option>
-                            <option value="Special">Special</option>
-                        </select>
-                    </div>
-                  </div>
-                  <div class="col-sm-2">
-                    <label class="col-form-label text-dark">{{ __('Degree Class') }}</label>
-                    <div class="form-group">
-                        <select class="form-control" name="deg_class" id="deg_class">
-                            <option value="0" selected="selected">Pick one...</option>
-                            <option value="First">First</option>
-                            <option value="Second Upper">Second Upper</option>
-                            <option value="Second Lower">Second Lower</option>
-                            <option value="General">General</option>
-                        </select>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-2">
+                  
+                  
+                  <div class="col-sm-3">
                     <label class="col-form-label text-dark">{{ __('Effective Date (From)') }}</label>
                       <div class="form-group">
-                        <input class="form-control" name="deg_effective_date_from" id="deg_effective_date_from" type="date" value="" aria-required="true"/>
+                        <input class="form-control" name="dip_effective_date_from" id="dip_effective_date_from" type="date" value="" aria-required="true"/>
                       </div>
                   </div>
 
-                  <div class="col-sm-2">
+                  <div class="col-sm-3">
                     <label class="col-form-label text-dark">{{ __('Effective Date (To)') }}</label>
                       <div class="form-group">
-                        <input class="form-control" name="deg_effective_date_to" id="deg_effective_date_to" type="date" value="" aria-required="true"/>
+                        <input class="form-control" name="dip_effective_date_to" id="dip_effective_date_to" type="date" value="" aria-required="true"/>
                       </div>
                   </div>
                   </div>
                   <div class="row">
                   <div class="col-sm-4">
                     <button type="reset" id="" style="width:130px;" class="btn btn-danger">{{ __('Reset') }}</button>
-                    <button type="button" id="" style="width:130px;" onclick="contact_filter_graduate();" class="btn btn-info">{{ __('Load Data') }}</button>
+                    <button type="button" id="" style="width:130px;" onclick="contact_filter_diploma();" class="btn btn-info">{{ __('Load Data') }}</button>
                   </div>
                 </div>
                 </form>
