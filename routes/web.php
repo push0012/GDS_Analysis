@@ -15,6 +15,7 @@ use App\Http\Controllers\DiplomaController;
 
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\FilterController;
+use App\Http\Controllers\ImportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -112,6 +113,21 @@ Route::group(['middleware' => 'auth'], function () {
 
 			Route::get('/institutes_load',  [AjaxController::class, 'institutes']);
 			
+	});
+
+});
+
+Route::group(['middleware' => 'auth'], function () {
+
+	Route::group(['prefix'=>'import','as'=>'import.'], function(){
+
+		Route::group(['prefix'=>'graduate','as'=>'graduate.'], function(){
+
+			Route::get('/',  [ImportController::class, 'graduate_form_view']);
+			Route::post('/store',  [ImportController::class, 'importCsv']);
+
+		});
+
 	});
 
 });

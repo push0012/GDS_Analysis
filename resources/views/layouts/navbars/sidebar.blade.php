@@ -124,7 +124,7 @@
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }} ">
         <a class="nav-link " data-toggle="collapse" href="#contacts" aria-expanded="true">
         <i class="material-icons" style="color: green;">import_contacts</i>
-          <p>{{ __('Show Contacts') }}
+          <p>{{ __('Filter Contacts') }}
             <b class="caret"></b>
           </p>
         </a>
@@ -138,6 +138,31 @@
             </li>
             <li class="nav-item{{ $activePage == 'cont_diploma' ? ' active' : '' }}">
               <a class="nav-link" href="{{ url('contacts/diploma/') }}">
+                <i class="material-icons">receipt_long</i>
+                <p>{{ __('Diploma') }}</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }} ">
+        <a class="nav-link " data-toggle="collapse" href="#data_import" aria-expanded="true">
+        <i class="material-icons" style="color: green;">upload_file</i>
+          <p>{{ __('Data Import') }}
+            <b class="caret"></b>
+          </p>
+        </a>
+            <div class="collapse" id="data_import">
+            <ul class="nav">
+            <li class="nav-item{{ $activePage == 'import_degree' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ url('import/graduate/') }}">
+                <i class="material-icons">school</i>
+                <p>{{ __('Graduate') }}</p>
+              </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'import_diploma' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ url('import/diploma/') }}">
                 <i class="material-icons">receipt_long</i>
                 <p>{{ __('Diploma') }}</p>
               </a>
