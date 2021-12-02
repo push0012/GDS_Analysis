@@ -14,6 +14,7 @@ use App\Http\Controllers\DegreeController;
 use App\Http\Controllers\DiplomaController;
 
 use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\FilterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -121,8 +122,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 		Route::group(['prefix'=>'graduate','as'=>'graduate.'], function(){
 
-			Route::get('/',  [AjaxController::class, 'show']);
-			Route::post('/filter',  [AjaxController::class, 'get_contacts']);
+			Route::get('/',  [FilterController::class, 'show']);
+			Route::post('/filter',  [FilterController::class, 'get_contacts']);
 			
 		});			
 	});
