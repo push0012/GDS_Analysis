@@ -62,7 +62,6 @@
                     <label class="col-form-label text-dark">{{ __('Contact Type') }}</label>
                     <div class="form-group">
                         <select class="form-control" name="contact_type" id="contact_type" required>
-                            <option value="0" selected="selected">Pick One...</option>
                             <option value="1">Email</option>
                             <option value="2">Telephone</option>
                         </select>
@@ -171,8 +170,8 @@
                   </div>
                   <div class="row">
                   <div class="col-sm-4">
-                    <button type="reset" id="" style="width:130px;" class="btn btn-success">{{ __('Reset') }}</button>
-                    <button type="button" id="" style="width:130px;" onclick="contact_filter();" class="btn btn-success">{{ __('Load Data') }}</button>
+                    <button type="reset" id="" style="width:130px;" class="btn btn-danger">{{ __('Reset') }}</button>
+                    <button type="button" id="" style="width:130px;" onclick="contact_filter();" class="btn btn-info">{{ __('Load Data') }}</button>
                   </div>
                 </div>
                 </form>
@@ -181,7 +180,7 @@
                 <div class="row">
                   <div class="col-sm-12">
                     <div class="form-group">  
-                      <textarea id="copy_text" rows="8" cols="120">{{$filter}}</textarea>
+                      <textarea id="copy_text" name="copy_text" rows="8" cols="120">{{$filter}}</textarea>
                     </div>
                   </div>
                   
@@ -190,7 +189,7 @@
               </div>
               <div class="card-footer ml-auto mr-auto">
                 <button type="button" id="copy" class="btn btn-success">{{ __('Copy Text') }}</button>
-               
+                <button type="button" id="clear" class="btn btn-warning">{{ __('Clear Text') }}</button>
               </div>
             </div>
           

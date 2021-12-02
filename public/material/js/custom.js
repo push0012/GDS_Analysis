@@ -22,6 +22,10 @@ $("#copy").click(function(){
    showNotification('bottom','center','Text Copied to Clipboard','info');
 });
 
+$("#clear").click(function(){
+   document.getElementById('copy_text').value = '';
+});
+
 function showNotification(from, align,message,type) {
    //type = ['', 'info', 'danger', 'success', 'warning', 'rose', 'primary'];
    
@@ -99,28 +103,9 @@ function isMyFormValid(form){
 
 function contact_filter()
 {
-        /*$contact_type = $('#contact_type').val();
-        $ds_id = $('#ds_id').val();
-        $dv_id = $('#dv_id').val();
-        $sex = $('#sex').val();
-        $str_id = $('#str_id').val();
-        $deg_medium = $('#deg_medium').val();
-        $ins_id = $('#ins_id').val();
-        $deg_type = $('#deg_type').val();
-        $deg_class = $('#deg_class').val();
-        $deg_effective_date_from = $('#deg_effective_date_from').val();
-        $deg_effective_date_to = $('#deg_effective_date_to').val();*/
-
-       /* $email = $('#email').val();
-        $mobile_number = $('#mobile_number').val();
-        let subject = $('#subject').val();
-        let message = $('#message').val();*/
-
+       
    $values = $('#contact_form').serialize();
-   //$values = $('#contact_form').serializeArray();
-  // $val =  JSON.parse($values);
-   console.log("come here");
-  // console.log('call here');
+   
    jQuery.ajax({
       url : '/contacts/graduate/filter',
       type : "POST",
@@ -129,10 +114,11 @@ function contact_filter()
       success:function(data)
       {
          console.log(data);
-         
+         document.getElementById('copy_text').value = '';
+         document.getElementById('copy_text').value = data;
       },
       error:function(data){
-         console.log("error here")
+         console.log(data)
       }
       
    });

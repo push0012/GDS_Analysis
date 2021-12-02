@@ -42,61 +42,69 @@ class FilterController extends Controller
         $data = $request->all();
         
         $query = DB::table('degree_view_one');
-        
 
-        
-        //$query = User::query();
-        //return $query;
-        if ($data['deg_medium'] != '0') {
-            //return $query;
-            $query = $query->where('deg_medium', '=', $data['deg_medium']);
+        if ($data['ds_id'] != '0') 
+        {
+            $query = $query->where('ds_id', '=', $data['ds_id']);
         }
-        if ($data['sex'] != '0') {
-            //return $query;
+        if ($data['dv_id'] != '0') 
+        {
+            $query = $query->where('dv_id', '=', $data['dv_id']);
+        }
+        if ($data['sex'] != '0') 
+        {
             $query = $query->where('sex', '=', $data['sex']);
         }
+        if ($data['str_id'] != '0') 
+        {
+            $query = $query->where('str_id', '=', $data['str_id']);
+        }
+        if ($data['deg_medium'] != '0') 
+        {
+            $query = $query->where('deg_medium', '=', $data['deg_medium']);
+        }
+        if ($data['ins_id'] != '0') 
+        {
+            $query = $query->where('ins_id', '=', $data['ins_id']);
+        }
+        if ($data['deg_type'] != '0') 
+        {
+            $query = $query->where('deg_type', '=', $data['deg_type']);
+        }
+        if ($data['deg_class'] != '0') 
+        {
+            $query = $query->where('deg_class', '=', $data['deg_class']);
+        }
+        if ($data['deg_effective_date_from'] != '') 
+        {
+            $query = $query->where('deg_effective_date', '>', $data['deg_effective_date_from']);
+        }
+        if ($data['deg_effective_date_to'] != '')
+        {
+            $query = $query->where('deg_effective_date', '<', $data['deg_effective_date_to']);
+        }
+        
 
-        if ($data['contact_type'] == '1') {
-            //return $data->contact_type;
+        if ($data['contact_type'] == '1') 
+        {
             $results = $query->pluck('email');
-            //$query = DB::table('degree_view_one')->pluck('email');
         }
         else if ($data['contact_type'] == '2')
         {
-            //return $data->contact_type;
-            //$query = DB::table('degree_view_one')->pluck('telephone');
             $results = $query->pluck('telephone');
         }
 
-        return $results;
-       /* if ($data->sex != 0) {
-            $query = $query->where('sex', $data->sex);
+        if($results->isEmpty())
+        {
+            $string = 'Results not Found...!';
+            return json_encode($string);
         }
-/* 
-        if ($this == $yet_another_thing) {
-        $query = $query->orderBy('this');
-        }*/
-
-        
 
         $trimmed_array = preg_replace('/["]*/', '', $results);
 
-        //$trimmed_array1 = str_replace('[]', " ", $trimmed_array);
-
         $string = str_replace(array('[[',']]'),'',$trimmed_array);
 
-        //$results = $query->get();
-
-        //$degree_this_year = DB::table('get_emails')->pluck('email');
-       // $degree_this_year = DB::table('get_emails')->get();
-       //$myArray = json_decode($degree_this_year);
-        //$trimmed_array = str_replace(['"',"'"], " ", $myArray);
-
-        //$trimmed_array = preg_replace('/["]*/', '', $degree_this_year);
-        //$trimmed_array = array_map('trim', $myArray);
-
-        return $string;
+        return json_encode($string);
         
-        //return $myArray;
     }
 }
