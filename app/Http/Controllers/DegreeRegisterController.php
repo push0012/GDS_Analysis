@@ -20,7 +20,7 @@ class DegreeRegisterController extends Controller
 {
     public function index()
     {
-        $institutes = Institute::where('ins_type', 1)->get();
+        $institutes = Institute::where('ins_type', 1)->orWhere('ins_type', 2)->get();
         $streams = Stream::get();
         $degrees = Degree::get();
         $last_record = LastRegister::where('id', 1)->first();

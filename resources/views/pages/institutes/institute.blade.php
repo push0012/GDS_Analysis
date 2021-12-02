@@ -77,7 +77,8 @@
                       <select class="form-control" name="ins_category" id="ins_category">
                         <option value="0" selected="selected" disabled="disabled">Pick one...</option>
                         <option value="2">Local Institute</option>
-                        <option value="1">Foreign Providing Institute</option>
+                        <option value="3">Private Institute</option>
+                        <option value="1">Foreign Institute</option>
                       </select>
 
                       @if ($errors->has('ins_category'))
