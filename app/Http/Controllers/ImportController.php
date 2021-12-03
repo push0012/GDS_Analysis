@@ -11,6 +11,7 @@ use App\Models\Stream;
 use App\Models\Degree;
 use App\Models\Student;
 use App\Models\DegreeRegister;
+use App\Models\DiplomaRegister;
 use App\Models\LastRegister;
 use App\Models\District;
 use App\Models\Division;
@@ -58,7 +59,7 @@ class ImportController extends Controller
                         'dv_id' => $division->dv_id
                     ]);
 
-                    $institute = Institute::where("ins_name", "like", $row['ins_name'])->where('ins_type', '=', '1')->orWhere('ins_type', '=', '1')->first();
+                    $institute = Institute::where("ins_name", "like", $row['ins_name'])->first();
                     $stream = Stream::where("str_name", "like", $row['str_name'])->first();
 
                     $RegDate = $row['deg_reg_date'];
@@ -95,6 +96,67 @@ class ImportController extends Controller
 
     public function diploma_import_data(Request $request)
     {
-        
+        DB::beginTransaction();
+
+        try {
+                $file = $request->file('import_diploma');
+                $fileopen =  new FileOpen();
+
+                $recordArr = $fileopen->csvToArray($file);
+
+                $user = Auth::user();
+                
+                foreach ($recordArr as $row) {
+                    $district = '';
+                    $division = '';
+                    $institute = '';
+                    $district = District::where("ds_name", "like", $row['ds_name'])->first();
+                    $division = Division::where("dv_name", "=", $row['dv_name'])->first();
+
+                    $students = Student::create([
+                        'stu_title' => $row['stu_title'],
+                        'stu_name' => $row['stu_name'],
+                        'sex' => $row['sex'],
+                        'dob' => $row['dob'],
+                        'nic' => $row['nic'],
+                        'address' => $row['address'],
+                        'telephone' => $row['telephone'],
+                        'email' => $row['email'],
+                        'deleted' => 0,
+                        'user' => $user['name'],
+                        'ds_id' => $district->ds_id,
+                        'dv_id' => $division->dv_id
+                    ]);
+
+                    $institute = Institute::where("ins_name", "like", $row['ins_name'])->first();
+                   
+                    $RegDate = $row['dip_reg_date'];
+                    $year = Carbon::createFromFormat('Y-m-d', $RegDate)->format('Y');
+
+                    $degree_register = DiplomaRegister::create([
+                        'dip_title' => $row['dip_title'],
+                        'dip_medium' => $row['dip_medium'],
+                        'dip_duration' => $row['dip_duration'],
+                        'dip_effective_date' => $row['dip_effective_date'],
+                        'dip_job_preference' => $row['dip_job_preference'],
+                        'dip_reg_no' => $row['dip_reg_no'],
+                        'dip_reg_date' => $row['dip_reg_date'],
+                        'year' => $year,
+                        'deleted' => 0,
+                        'user' => $user['name'],
+                        'stu_id' => $students->stu_id,
+                        'ins_id' => $institute->ins_id,
+                    ]);
+
+                    LastRegister::where('id', 2)->update(['last_record' => $row['dip_reg_no']]);
+                }
+
+            DB::commit();
+            return back()->withStatusDiploma(__('Diploma Holder Register Details Successfully Inserted.'));
+            }catch (\Throwable $e) {
+            DB::rollback();
+            throw $e;
+            return back()->withStatusDiploma(__('Diploma Holder Register Details Insertion Unsuccessfull.'));
+        }
     }
 }

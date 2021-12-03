@@ -66,7 +66,7 @@
           </div>
         </form>
         <br /><br />
-        <form method="post" enctype="multipart/form-data" action="{{ url('import/graduate/store') }}" autocomplete="off" class="form-horizontal">
+        <form method="post" enctype="multipart/form-data" action="{{ url('import/diploma/store') }}" autocomplete="off" class="form-horizontal">
           @csrf
           @method('post')
 
