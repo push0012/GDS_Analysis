@@ -1,30 +1,11 @@
-ID,Image,Registered_No,Registered_Date (YYMMDD),Name,Titel,Gender,Date_of_Birth (YYMMDD),NIC_No,Address,TP_No,Email_Address,Districr,Divisional_Secretariate,University,Degree,Degree_Stream,Degree_Medium,Degree_Type,Degree_Class,Effective_Date (YYMMDD),Job_Preferance,Data Entered by
-1,,2021/0322,2020/01/01,P.G.J.M Karunarathna,Mr.,Male,1991/04/09,911001780v,"Sri Dheerananda Mavatha, Karangoda, Ratnapura.",0702519614,madushankarunarathne91@gmail.com,Rathnapura,Elapatha,University of Colombo,Bachelor of Animal Science,Management,English,Special,General,2020/01/01,Self_Industry,Saminda
-2,,2021/0002,2021/01/04,S.M.J.U Bandara,Miss.,Female,1992/07/12,926943596v,"C/5, Makoora, Mal Maduwa. Via Kegalle",0715190483,bandarajayamini18@gmail.com,Kegalle,Warakapola ,Uva Wellassa University of Sri Lanka,Bachelor of Science (Special) in Export Agriculture,Science,English,Special,Second Lower,2020/03/06,Goverment,Saminda
-3,,2021/0003,2021/01/05,M.N.A Swarnamali,Mrs.,Female,1992/10/23,927971771v,"Ihala Andaluwa, Kolambageadara.",0770417732,anuswarnamali@gmail.com,Rathnapura,Embilipitiya ,University of Kelaniya,Bachelor of Atrs (General),Art,Sinhala,General,General,2019/05/01,Goverment,Saminda
-4,,2021/0004,2021/01/05,A.A.P.D Amarakoon,Miss.,Female,1994/01/21,945212985v,"C150A, Batuwatta, Halamada.",0703401097,prabodhadeepthiamarakoon@gmail.com,Kegalle,Galigamuwa ,University of Sri Jayewardenepura,Bachelor of Business Management,Management,Sinhala,General,General,2020/02/03,Goverment,Saminda
-5,,2021/0005,2021/01/08,L.P.G Premarathna,Mrs.,Female,1991/08/18,917310734v,"Mallwatta, Kithulgala",0770568733,niluka0818premarathne@gmail.com,Rathnapura,Yatiyanthota ,University of Kelaniya,Bachelor of Atrs (General),Art,Sinhala,General,General,2019/05/01,Goverment,Saminda
-6,,2021/0006,2021/1/08,H.W.S.S. Wijepala,Mr.,Female,1995/03/01,950612274v,"124/A/1, Thennapita, Wijeriya",0714637921,sameerawj95@gmail.com,Rathnapura,Kolonna ,University of Ruhuna,Bachelor of Arts (Special) in Political science,Art,Sinhala,Special,Second Lower,2020/06/29,Goverment,Saminda
-7,,2021/0007,2021/01/13,H.R.L.S Bandara,Mr.,Male,1985/01/28,850282803v,"D137, Kongamuwa, Mawanella",0710839544,lakpriyasb@gmail.com,Kegalle,Mawanella,University of Kelaniya,Bachelor of Atrs (General),Art,Sinhala,General,Second Upper,2019/05/01,Goverment,Saminda
-8,,2021/0008,2021/01/18,M.D.A.P.L Dilshan,Mr.,Male,1995/03/18,950780223v,"no71, Hospital Place, Newtown, Embilipitiya",0710516427,palakshitha95@gmail.com,Rathnapura,Embilipitiya ,University of Colombo,Bachelor of Business Administration (Special) in Business Economics,Management,English,Special,General,2020/01/01,government,Saminda
-9,,2021/0009,2021/01/20,J.N. Pushpakumari,Miss.,Female,1993/07/14,936961630v,"475, Phalagama, Ellawala, Eheliyagoda.",0710115797,nimalipushpakumarisusl@gmail.com,Rathnapura,Eheliyagoda ,Sabaragamuwa University of Sri Lanka,Bachelor of Science (Special) in Agricultural Sciences and management,Science,English,Special,Second Lower,2021/11/06,government,Saminda
-10,,2021/0010,2021/02/20,K.K.D.M Premalal,Mr.,Male,1995/11/22,953272563v,"Sunil Niwasa, Kumburugama, Deraniyagala.",0768474772,kkdamithmadushan@gmail.com,Kegalle,Deraniyagala ,Open University of Sri Lanka,Bachelor of Atrs (General),Art,English,General,General,2019/09/01,Goverment,Saminda
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
-,,,,,,,,,,,,,,,,,,,,,,
+deg_reg_no,deg_reg_date,stu_name,stu_title,sex,dob,nic,address,telephone,email,ds_name,dv_name,ins_name,deg_title,str_name,deg_medium,deg_type,deg_class,deg_effective_date,deg_job_preference,user
+2021/0322,2020-01-01,P.G.J.M Karunarathna,Mr.,Male,1991-04-09,911001780v,"Sri Dheerananda Mavatha, Karangoda, Ratnapura.",702519614,madushankarunarathne91@gmail.com,Rathnapura,Elapatha,University of Colombo,Bachelor of Animal Science,Management,English,Special,General,2020-01-01,Self_Industry,Saminda
+2021/0002,2021-01-04,S.M.J.U Bandara,Miss.,Female,1992-07-12,926943596v,"C/5, Makoora, Mal Maduwa. Via Kegalle",715190483,bandarajayamini18@gmail.com,Kegalle,Warakapola ,Uva Wellassa University of Sri Lanka,Bachelor of Science (Special) in Export Agriculture,Science,English,Special,Second Lower,2020-03-06,Goverment,Saminda
+2021/0003,2021-01-05,M.N.A Swarnamali,Mrs.,Female,1992-10-23,927971771v,"Ihala Andaluwa, Kolambageadara.",770417732,anuswarnamali@gmail.com,Rathnapura,Embilipitiya ,University of Kelaniya,Bachelor of Atrs (General),Art,Sinhala,General,General,2019-05-01,Goverment,Saminda
+2021/0004,2021-01-05,A.A.P.D Amarakoon,Miss.,Female,1994-01-21,945212985v,"C150A, Batuwatta, Halamada.",703401097,prabodhadeepthiamarakoon@gmail.com,Kegalle,Galigamuwa ,University of Sri Jayewardenepura,Bachelor of Business Management,Management,Sinhala,General,General,2020-02-03,Goverment,Saminda
+2021/0005,2021-01-08,L.P.G Premarathna,Mrs.,Female,1991-08-18,917310734v,"Mallwatta, Kithulgala",770568733,niluka0818premarathne@gmail.com,Rathnapura,Yatiyanthota ,University of Kelaniya,Bachelor of Atrs (General),Art,Sinhala,General,General,2019-05-01,Goverment,Saminda
+2021/0006,2021-01-08,H.W.S.S. Wijepala,Mr.,Female,1995-03-01,950612274v,"124/A/1, Thennapita, Wijeriya",714637921,sameerawj95@gmail.com,Rathnapura,Kolonna ,University of Ruhuna,Bachelor of Arts (Special) in Political science,Art,Sinhala,Special,Second Lower,2020-06-29,Goverment,Saminda
+2021/0007,2021-01-13,H.R.L.S Bandara,Mr.,Male,1985-01-28,850282803v,"D137, Kongamuwa, Mawanella",710839544,lakpriyasb@gmail.com,Kegalle,Mawanella,University of Kelaniya,Bachelor of Atrs (General),Art,Sinhala,General,Second Upper,2019-05-01,Goverment,Saminda
+2021/0008,2021-01-18,M.D.A.P.L Dilshan,Mr.,Male,1995-03-18,950780223v,"no71, Hospital Place, Newtown, Embilipitiya",710516427,palakshitha95@gmail.com,Rathnapura,Embilipitiya ,University of Colombo,Bachelor of Business Administration (Special) in Business Economics,Management,English,Special,General,2020-01-01,government,Saminda
+2021/0009,2021-01-20,J.N. Pushpakumari,Miss.,Female,1993-07-14,936961630v,"475, Phalagama, Ellawala, Eheliyagoda.",710115797,nimalipushpakumarisusl@gmail.com,Rathnapura,Eheliyagoda ,Sabaragamuwa University of Sri Lanka,Bachelor of Science (Special) in Agricultural Sciences and management,Science,English,Special,Second Lower,2021-11-06,government,Saminda
+2021/0010,2021-02-20,K.K.D.M Premalal,Mr.,Male,1995-11-22,953272563v,"Sunil Niwasa, Kumburugama, Deraniyagala.",768474772,kkdamithmadushan@gmail.com,Kegalle,Deraniyagala ,Open University of Sri Lanka,Bachelor of Atrs (General),Art,English,General,General,2019-09-01,Goverment,Saminda

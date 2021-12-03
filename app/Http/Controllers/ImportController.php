@@ -3,71 +3,98 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Services\FileOpen;
+
+use App\Models\Institute;
+use App\Models\Stream;
+use App\Models\Degree;
+use App\Models\Student;
+use App\Models\DegreeRegister;
+use App\Models\LastRegister;
+use App\Models\District;
+use App\Models\Division;
+
+use DB;
+use Carbon\Carbon;
 
 class ImportController extends Controller
 {
     public function graduate_form_view()
     {
-        return view('pages.import.degree');
+        return view('pages.import.import');
     }
 
     public function graduate_import_data(Request $request)
     {
-       
-    }
+        DB::beginTransaction();
 
-function csvToArray($filename = '', $delimiter = ',')
-{
-    
-    if (!file_exists($filename) || !is_readable($filename)){
-        echo 'no file found';
-        return false;
-    }
-    $header = null;
-    $data = array();
-    if (($handle = fopen($filename, 'r')) !== false)
-    {
-        echo 'jsdfjsfskdf';
-        while (($row = fgetcsv($handle, 1000, $delimiter)) !== false)
-        {
-            if (!$header)
-                $header = $row;
-            else
-                $data[] = array_combine($header, $row);
+        try {
+                $file = $request->file('import_graduate');
+                $fileopen =  new FileOpen();
+
+                $recordArr = $fileopen->csvToArray($file);
+
+                $user = Auth::user();
+                //$request->request->add(['user' => $user]);
+
+                foreach ($recordArr as $row) {
+
+                    $district = District::where("ds_name", "like", $row['ds_name'])->first();
+                    $division = Division::where("dv_name", "=", $row['dv_name'])->first();
+
+                    $students = Student::create([
+                        'stu_title' => $row['stu_title'],
+                        'stu_name' => $row['stu_name'],
+                        'sex' => $row['sex'],
+                        'dob' => $row['dob'],
+                        'nic' => $row['nic'],
+                        'address' => $row['address'],
+                        'telephone' => $row['telephone'],
+                        'email' => $row['email'],
+                        'deleted' => 0,
+                        'user' => $user['name'],
+                        'ds_id' => $district->ds_id,
+                        'dv_id' => $division->dv_id
+                    ]);
+
+                    $institute = Institute::where("ins_name", "like", $row['ins_name'])->where('ins_type', '=', '1')->orWhere('ins_type', '=', '1')->first();
+                    $stream = Stream::where("str_name", "like", $row['str_name'])->first();
+
+                    $RegDate = $row['deg_reg_date'];
+                    $year = Carbon::createFromFormat('Y-m-d', $RegDate)->format('Y');
+
+                    $degree_register = DegreeRegister::create([
+                        'deg_title' => $row['deg_title'],
+                        'deg_medium' => $row['deg_medium'],
+                        'deg_type' => $row['deg_type'],
+                        'deg_class' => $row['deg_class'],
+                        'deg_effective_date' => $row['deg_effective_date'],
+                        'deg_job_preference' => $row['deg_job_preference'],
+                        'deg_reg_no' => $row['deg_reg_no'],
+                        'deg_reg_date' => $row['deg_reg_date'],
+                        'year' => $year,
+                        'deleted' => 0,
+                        'user' => $user['name'],
+                        'stu_id' => $students->stu_id,
+                        'str_id' => $stream->str_id,
+                        'ins_id' => $institute->ins_id,
+                    ]);
+
+                    LastRegister::where('id', 1)->update(['last_record' => $row['deg_reg_no']]);
+                }
+
+            DB::commit();
+            return back()->withStatusDegree(__('Graduate Register Details Successfully Inserted.'));
+            }catch (\Throwable $e) {
+            DB::rollback();
+            throw $e;
+            return back()->withStatusDegree(__('Graduate Register Details Insertion Unsuccessfull.'));
         }
-        fclose($handle);
     }
 
-    return $data;
-}
-
-public function importCsv(Request $request)
-{
-    $file = $request->file('import_graduate');
-    if ($file) {
-        $filename = $file->getClientOriginalName();
-        $extension = $file->getClientOriginalExtension(); //Get extension of uploaded file
-        $tempPath = $file->getRealPath();
-        $fileSize = $file->getSize(); //Get size of uploaded file in bytes
-        
-        //Where uploaded file will be stored on the server 
-        $location = 'uploads'; //Created an "uploads" folder for that
-        // Upload file
-        $file->move($location, $filename);
-        // In case the uploaded file path is to be stored in the database
-    $filepath = public_path($location . "/" . $filename);
-    //$file = public_path($filename);
-
-    $customerArr = $this->csvToArray($filepath);
-
-
-    /*for ($i = 0; $i < count($customerArr); $i ++)
+    public function diploma_import_data(Request $request)
     {
-        User::firstOrCreate($customerArr[$i]);
-    }*/
-
-    return dd( $customerArr);   
-    } 
-}
-
+        
+    }
 }

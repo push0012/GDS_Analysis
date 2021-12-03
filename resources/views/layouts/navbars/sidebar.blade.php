@@ -14,7 +14,7 @@
       <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('home') }}">
           <i class="material-icons">dashboard</i>
-            <p>{{ __('Dashboard') }}</p>
+          <p>{{ __('Dashboard') }}</p>
         </a>
       </li>
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
@@ -44,13 +44,13 @@
       <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('table') }}">
           <i class="material-icons">content_paste</i>
-            <p>{{ __('Table List') }}</p>
+          <p>{{ __('Table List') }}</p>
         </a>
       </li>
       <li class="nav-item{{ $activePage == 'typography' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('typography') }}">
           <i class="material-icons">library_books</i>
-            <p>{{ __('Typography') }}</p>
+          <p>{{ __('Typography') }}</p>
         </a>
       </li>
       <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
@@ -62,7 +62,7 @@
       <li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('map') }}">
           <i class="material-icons">location_ons</i>
-            <p>{{ __('Maps') }}</p>
+          <p>{{ __('Maps') }}</p>
         </a>
       </li>
       <li class="nav-item{{ $activePage == 'notifications' ? ' active' : '' }}">
@@ -73,13 +73,13 @@
       </li>
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }} ">
         <a class="nav-link " data-toggle="collapse" href="#graduate" aria-expanded="true">
-        <i class="material-icons" style="color: red;">school</i>
+          <i class="material-icons" style="color: red;">school</i>
           <p>{{ __('Graduate') }}
             <b class="caret"></b>
           </p>
         </a>
-            <div class="collapse" id="graduate">
-            <ul class="nav">
+        <div class="collapse" id="graduate">
+          <ul class="nav">
             <li class="nav-item{{ $activePage == 'degree_add' ? ' active' : '' }}">
               <a class="nav-link" href="{{ url('register/graduate/create') }}">
                 <i class="material-icons">person_add_alt</i>
@@ -98,13 +98,13 @@
 
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }} ">
         <a class="nav-link " data-toggle="collapse" href="#diploma" aria-expanded="true">
-        <i class="material-icons" style="color: green;">receipt_long</i>
+          <i class="material-icons" style="color: green;">receipt_long</i>
           <p>{{ __('Diploma') }}
             <b class="caret"></b>
           </p>
         </a>
-            <div class="collapse" id="diploma">
-            <ul class="nav">
+        <div class="collapse" id="diploma">
+          <ul class="nav">
             <li class="nav-item{{ $activePage == 'diploma_add' ? ' active' : '' }}">
               <a class="nav-link" href="{{ url('register/diploma/create') }}">
                 <i class="material-icons">person_add_alt</i>
@@ -123,13 +123,13 @@
 
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }} ">
         <a class="nav-link " data-toggle="collapse" href="#contacts" aria-expanded="true">
-        <i class="material-icons" style="color: green;">import_contacts</i>
+          <i class="material-icons" style="color: green;">import_contacts</i>
           <p>{{ __('Filter Contacts') }}
             <b class="caret"></b>
           </p>
         </a>
-            <div class="collapse" id="contacts">
-            <ul class="nav">
+        <div class="collapse" id="contacts">
+          <ul class="nav">
             <li class="nav-item{{ $activePage == 'cont_degree' ? ' active' : '' }}">
               <a class="nav-link" href="{{ url('contacts/graduate/') }}">
                 <i class="material-icons">school</i>
@@ -146,29 +146,11 @@
         </div>
       </li>
 
-      <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }} ">
-        <a class="nav-link " data-toggle="collapse" href="#data_import" aria-expanded="true">
-        <i class="material-icons" style="color: green;">upload_file</i>
-          <p>{{ __('Data Import') }}
-            <b class="caret"></b>
-          </p>
+      <li class="nav-item{{ $activePage == 'import_records' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ url('import') }}">
+          <i class="material-icons" style="color: blue;">upload_file</i>
+          <p>{{ __('Data Import') }}</p>
         </a>
-            <div class="collapse" id="data_import">
-            <ul class="nav">
-            <li class="nav-item{{ $activePage == 'import_degree' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ url('import/graduate/') }}">
-                <i class="material-icons">school</i>
-                <p>{{ __('Graduate') }}</p>
-              </a>
-            </li>
-            <li class="nav-item{{ $activePage == 'import_diploma' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ url('import/diploma/') }}">
-                <i class="material-icons">receipt_long</i>
-                <p>{{ __('Diploma') }}</p>
-              </a>
-            </li>
-          </ul>
-        </div>
       </li>
 
       <li class="nav-item{{ $activePage == 'institutes' ? ' active' : '' }}">
@@ -177,7 +159,7 @@
           <p>{{ __('Institutes') }}</p>
         </a>
       </li>
-      
+
     </ul>
   </div>
 </div>

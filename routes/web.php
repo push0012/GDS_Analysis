@@ -28,7 +28,7 @@ use App\Http\Controllers\ImportController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
 Auth::routes();
@@ -77,13 +77,12 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('institutes', InstituteController::class);
-
 });
 Route::group(['middleware' => 'auth'], function () {
 
-	Route::group(['prefix'=>'register','as'=>'register.'], function(){
+	Route::group(['prefix' => 'register', 'as' => 'register.'], function () {
 
-		Route::group(['prefix'=>'graduate','as'=>'graduate.'], function(){
+		Route::group(['prefix' => 'graduate', 'as' => 'graduate.'], function () {
 
 			Route::get('/create',  [DegreeRegisterController::class, 'index']);
 			Route::post('/store',  [DegreeRegisterController::class, 'store']);
@@ -93,7 +92,7 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::put('/update/{id}',  [DegreeRegisterController::class, 'update']);
 		});
 
-		Route::group(['prefix'=>'diploma','as'=>'diploma.'], function(){
+		Route::group(['prefix' => 'diploma', 'as' => 'diploma.'], function () {
 
 			Route::get('/create',  [DiplomaRegisterController::class, 'index']);
 			Route::post('/store',  [DiplomaRegisterController::class, 'store']);
@@ -102,60 +101,57 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::get('/edit/{id}',  [DiplomaRegisterController::class, 'edit']);
 			Route::put('/update/{id}',  [DiplomaRegisterController::class, 'update']);
 		});
-		
 	});
-
 });
 
 Route::group(['middleware' => 'auth'], function () {
 
-	Route::group(['prefix'=>'ajax','as'=>'ajax.'], function(){
+	Route::group(['prefix' => 'ajax', 'as' => 'ajax.'], function () {
 
-			Route::get('/institutes_load',  [AjaxController::class, 'institutes']);
-			
+		Route::get('/institutes_load',  [AjaxController::class, 'institutes']);
 	});
-
 });
 
 Route::group(['middleware' => 'auth'], function () {
 
-	Route::group(['prefix'=>'import','as'=>'import.'], function(){
+	Route::group(['prefix' => 'import', 'as' => 'import.'], function () {
 
-		Route::group(['prefix'=>'graduate','as'=>'graduate.'], function(){
+		Route::get('/',  [ImportController::class, 'graduate_form_view']);
 
-			Route::get('/',  [ImportController::class, 'graduate_form_view']);
-			Route::post('/store',  [ImportController::class, 'importCsv']);
+		Route::group(['prefix' => 'graduate', 'as' => 'graduate.'], function () {
 
+			Route::post('/store',  [ImportController::class, 'graduate_import_data']);
 		});
 
-	});
+		Route::group(['prefix' => 'diploma', 'as' => 'diploma.'], function () {
 
+			Route::post('/store',  [ImportController::class, 'diploma_import_data']);
+		});
+	});
 });
 
 Route::group(['middleware' => 'auth'], function () {
 
-	Route::group(['prefix'=>'contacts','as'=>'contacts.'], function(){
+	Route::group(['prefix' => 'contacts', 'as' => 'contacts.'], function () {
 
-		Route::group(['prefix'=>'graduate','as'=>'graduate.'], function(){
+		Route::group(['prefix' => 'graduate', 'as' => 'graduate.'], function () {
 
 			Route::get('/',  [FilterController::class, 'show_graduate_filter_form']);
 			Route::post('/filter',  [FilterController::class, 'get_graduate_contacts']);
-			
-		});	
-		Route::group(['prefix'=>'diploma','as'=>'diploma.'], function(){
+		});
+		Route::group(['prefix' => 'diploma', 'as' => 'diploma.'], function () {
 
 			Route::get('/',  [FilterController::class, 'show_diploma_filter_form']);
 			Route::post('/filter',  [FilterController::class, 'get_diploma_contacts']);
-			
-		});	
+		});
 	});
 });
 
 Route::resource('districts', DistrictController::class)->only([
-    'index', 'show'
+	'index', 'show'
 ]);
 Route::resource('divisions', DivisionController::class)->only([
-    'index', 'show'
+	'index', 'show'
 ]);
 Route::resource('institutes', InstituteController::class);
 
