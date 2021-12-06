@@ -1,6 +1,11 @@
 @extends('layouts.app', ['activePage' => 'dashboard', 'titlePage' => __('Dashboard')])
 
 @section('content')
+<style>
+  .card-header-secondary{
+
+  }
+  </style>
   <div class="content">
     <div class="container-fluid">
       <div class="row">
@@ -72,39 +77,111 @@
           </div>
         </div>
       </div>
+
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="card card-chart">
-            <div class="card-header card-header-success">
-              <div class="ct-chart" id="dailySalesChart"></div>
+            <div class="card-header " style="">
+                <canvas id="district_chart"></canvas> 
             </div>
             <div class="card-body">
-              <h4 class="card-title">Daily Sales</h4>
+              <h4 class="card-title">District Summery</h4>
               <p class="card-category">
-                <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+                <span class="text-success"><span class="material-icons">timeline</span> for {{$this_year}} Year</span></p>
             </div>
             <div class="card-footer">
               <div class="stats">
-                <i class="material-icons">access_time</i> updated 4 minutes ago
+   
               </div>
             </div>
           </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="card card-chart">
-            <div class="card-header card-header-warning">
-              <div class="ct-chart" id="websiteViewsChart"></div>
+            <div class="card-header">
+              <canvas id="gender_chart"></canvas> 
             </div>
             <div class="card-body">
-              <h4 class="card-title">Email Subscriptions</h4>
-              <p class="card-category">Last Campaign Performance</p>
+              <h4 class="card-title">Gender Summery ({{$this_year}})</h4>
+              <p class="card-category">
+                <span class="text-success">
+                  <span class="material-icons">timeline</span> for {{$this_year}} Year
+                </span>
+              </p>
+            
             </div>
             <div class="card-footer">
               <div class="stats">
-                <i class="material-icons">access_time</i> campaign sent 2 days ago
+                
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card card-chart">
+            <div class="card-header">
+              <canvas id="deg_type_chart"></canvas> 
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Degree Type Summery</h4>
+              <p class="card-category">
+                <span class="text-success">
+                  <span class="material-icons">timeline</span> for {{$this_year}} Year
+                </span>
+              </p>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+               
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card card-chart">
+            <div class="card-header">
+              <canvas id="deg_class_chart"></canvas> 
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Result Summery</h4>
+              <p class="card-category">
+                <span class="text-success">
+                  <span class="material-icons">timeline</span> for {{$this_year}} Year
+                </span>
+              </p>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="card card-chart">
+            <div class="card-header ">
+              <canvas id="stream_chart"></canvas>
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Stream Summery</h4>
+              <p class="card-category">
+                <span class="text-success">
+                  <span class="material-icons">timeline</span> for {{$this_year}} Year
+                </span>
+              </p>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                
+              </div>
+            </div>
+          </div>
+        
+          
         </div>
         <div class="col-md-4">
           <div class="card card-chart">
@@ -123,303 +200,155 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-lg-6 col-md-12">
-          <div class="card">
-            <div class="card-header card-header-tabs card-header-primary">
-              <div class="nav-tabs-navigation">
-                <div class="nav-tabs-wrapper">
-                  <span class="nav-tabs-title">Tasks:</span>
-                  <ul class="nav nav-tabs" data-tabs="tabs">
-                    <li class="nav-item">
-                      <a class="nav-link active" href="#profile" data-toggle="tab">
-                        <i class="material-icons">bug_report</i> Bugs
-                        <div class="ripple-container"></div>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#messages" data-toggle="tab">
-                        <i class="material-icons">code</i> Website
-                        <div class="ripple-container"></div>
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#settings" data-toggle="tab">
-                        <i class="material-icons">cloud</i> Server
-                        <div class="ripple-container"></div>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="tab-content">
-                <div class="tab-pane active" id="profile">
-                  <table class="table">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" value="" checked>
-                              <span class="form-check-sign">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                        </td>
-                        <td>Sign contract for "What are conference organizers afraid of?"</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" value="">
-                              <span class="form-check-sign">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                        </td>
-                        <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" value="">
-                              <span class="form-check-sign">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                        </td>
-                        <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                        </td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" value="" checked>
-                              <span class="form-check-sign">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                        </td>
-                        <td>Create 4 Invisible User Experiences you Never Knew About</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="tab-pane" id="messages">
-                  <table class="table">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" value="" checked>
-                              <span class="form-check-sign">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                        </td>
-                        <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                        </td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" value="">
-                              <span class="form-check-sign">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                        </td>
-                        <td>Sign contract for "What are conference organizers afraid of?"</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="tab-pane" id="settings">
-                  <table class="table">
-                    <tbody>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" value="">
-                              <span class="form-check-sign">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                        </td>
-                        <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" value="" checked>
-                              <span class="form-check-sign">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                        </td>
-                        <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                        </td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>
-                          <div class="form-check">
-                            <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" value="" checked>
-                              <span class="form-check-sign">
-                                <span class="check"></span>
-                              </span>
-                            </label>
-                          </div>
-                        </td>
-                        <td>Sign contract for "What are conference organizers afraid of?"</td>
-                        <td class="td-actions text-right">
-                          <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">edit</i>
-                          </button>
-                          <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-md-12">
-          <div class="card">
-            <div class="card-header card-header-warning">
-              <h4 class="card-title">Employees Stats</h4>
-              <p class="card-category">New employees on 15th September, 2016</p>
-            </div>
-            <div class="card-body table-responsive">
-              <table class="table table-hover">
-                <thead class="text-warning">
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Salary</th>
-                  <th>Country</th>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Dakota Rice</td>
-                    <td>$36,738</td>
-                    <td>Niger</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Minerva Hooper</td>
-                    <td>$23,789</td>
-                    <td>Curaçao</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Sage Rodriguez</td>
-                    <td>$56,142</td>
-                    <td>Netherlands</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>Philip Chaney</td>
-                    <td>$38,735</td>
-                    <td>Korea, South</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 @endsection
 
 @push('js')
   <script>
+    //District Summery PIE Chart
+    var canvas = document.getElementById("district_chart");
+      var ctxpie = canvas.getContext('2d');
+      var data = {
+          labels: ["Ratnapura", "Kegalle"],
+            datasets: [
+              {
+                  hoverBackgroundColor: [ '#dc3545b5', '#1a7be2c4'],
+                  backgroundColor: [ '#dc3545b5', '#1a7be2c4'],
+                  data: [{!! $ratnapura_count !!}, {!! $kegalle_count !!}],
+                  borderColor:    ['#dc3545b5', '#1a7be2c4'],
+                  borderWidth: [1,1]
+              }
+          ]
+      };
+      var options = {
+      };
+      var myBarChart = new Chart(ctxpie, {
+          type: 'pie',
+          data: data,
+          options:{
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+          }
+        },
+      });
+
+      //Gender Summery PIE Chart
+      var canvas = document.getElementById("gender_chart");
+      var ctxpie = canvas.getContext('2d');
+      var data = {
+          labels: ["Male", "Female"],
+            datasets: [
+              {
+                  hoverBackgroundColor: [ '#0000ff', '#ff00ff'],
+                  backgroundColor: [ '#0000ff', '#ff00ff'],
+                  data: [{!! $male_count !!}, {!! $female_count !!}],
+                  borderColor:    ['#0000ff', '#ff00ff'],
+                  borderWidth: [1,1]
+              }
+          ]
+      };
+      var options = {
+      };
+      var myBarChart = new Chart(ctxpie, {
+          type: 'pie',
+          data: data,
+          options:options
+      });
+
+      //degree type chart
+      var canvas = document.getElementById("deg_type_chart");
+      var ctxpie = canvas.getContext('2d');
+      var data = {
+          labels: ["General", "Special"],
+            datasets: [
+              {
+                  hoverBackgroundColor: [ '#009900', '#663300'],
+                  backgroundColor: [ '#009900', '#663300'],
+                  data: [{!! $general_count !!}, {!! $special_count !!}],
+                  borderColor:    ['#009900', '#663300'],
+                  borderWidth: [1,1]
+              }
+          ]
+      };
+      var options = {
+      };
+      var myBarChart = new Chart(ctxpie, {
+          type: 'pie',
+          data: data,
+          options:options
+      });
+
+      //degree class chart
+      var canvas = document.getElementById("deg_class_chart");
+      var ctxpie = canvas.getContext('2d');
+      var data = {
+          labels: ["First","2nd Upper", "2nd Lower", "General"],
+            datasets: [
+              {
+                  hoverBackgroundColor: [ '#009900', '#663300','#0000ff', '#ff00ff'],
+                  backgroundColor: [ '#009900', '#663300','#0000ff', '#ff00ff'],
+                  data: [{!! implode(', ', $deg_class_count) !!}],
+                  borderColor:    ['#009900', '#663300','#0000ff', '#ff00ff'],
+                  borderWidth: [1,1]
+              }
+          ]
+      };
+      var options = {
+      };
+      var myBarChart = new Chart(ctxpie, {
+          type: 'pie',
+          data: data,
+          options:options
+      });
+
+      //stream bar chart
+      var ctxbar = document.getElementById("stream_chart").getContext('2d'); 
+      var chart = new Chart(ctxbar, {
+      type: 'bar',
+      data: {
+      labels: [{!! $stream_names->pluck('str_name')->transform(function ($item, $key) {return "'" . $item ."'"; })->implode(',') !!}],
+      datasets: [{
+         label: 'Stream',
+         data: [{!! implode(', ', $str_count) !!}],
+         //data: [1, 5,1, 3,1, 4,1, 7,1,9,1, 5,1, 11,1, 12],
+         backgroundColor: 'rgba(255, 99, 132, 0.6)',
+         hoverBackgroundColor: 'rgba(255, 99, 132, 0.9)',
+         borderColor: 'rgba(255, 99, 132, 0.9)',
+         borderRadius:'20px',
+          borderWidth: 1
+      }]
+   },
+   options: {
+    plugins: {
+         title: {
+           display: false,
+           text: 'Stream Summery'
+         },
+       },
+      maintainAspectRatio: true,
+      responsive: true,
+      legend: {
+         position: 'right' // place legend on the right side of chart
+      },
+      scales: {
+         xAxes: [{
+            stacked: true, // this should be set to make the bars stacked- 
+         },
+        ],
+         yAxes: [{
+            stacked: true, // this also..
+            ticks: {
+              stepSize: 1,
+              
+            },
+         }]
+      }
+   }
+});
+
+
     $(document).ready(function() {
       // Javascript method's body can be found in assets/js/demos.js
       md.initDashboardPageCharts();

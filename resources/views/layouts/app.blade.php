@@ -161,6 +161,9 @@
         <script src="{{ asset('material') }}/demo/demo.js"></script>
         <script src="{{ asset('material') }}/js/settings.js"></script>
         <script src="{{ asset('material') }}/js/custom.js"></script>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.6.2/dist/chart.min.js"></script>
         @stack('js')
     </body>
 </html>
