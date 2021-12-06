@@ -5,18 +5,21 @@
       Tip 2: you can also add an image using data-image tag
   -->
   <div class="logo">
-    <a href="https://creative-tim.com/" class="simple-text logo-normal">
+    <a href="{{ route('home') }}" class="simple-text logo-normal">
       {{ __('GDS Analysis') }}
     </a>
   </div>
+
   <div class="sidebar-wrapper">
     <ul class="nav">
+       <!--
       <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('home') }}">
           <i class="material-icons">dashboard</i>
           <p>{{ __('Dashboard') }}</p>
         </a>
       </li>
+     
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
         <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
           <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
@@ -41,6 +44,7 @@
           </ul>
         </div>
       </li>
+
       <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('table') }}">
           <i class="material-icons">content_paste</i>
@@ -53,12 +57,14 @@
           <p>{{ __('Typography') }}</p>
         </a>
       </li>
+      -->
       <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('icons') }}">
           <i class="material-icons">bubble_chart</i>
           <p>{{ __('Icons') }}</p>
         </a>
       </li>
+      <!--
       <li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('map') }}">
           <i class="material-icons">location_ons</i>
@@ -71,6 +77,7 @@
           <p>{{ __('Notifications') }}</p>
         </a>
       </li>
+-->
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }} ">
         <a class="nav-link " data-toggle="collapse" href="#graduate" aria-expanded="true">
           <i class="material-icons" style="color: red;">school</i>
@@ -157,6 +164,14 @@
         <a class="nav-link" href="{{ url('institutes') }}">
           <i class="material-icons">business</i>
           <p>{{ __('Institutes') }}</p>
+        </a>
+      </li>
+
+      <li class="nav-item{{ $activePage == 'institutes' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ url('institutes') }}">
+          <i class="material-icons">picture_as_pdf</i>
+          
+          <p>{{ __('Reports') }}</p>
         </a>
       </li>
 

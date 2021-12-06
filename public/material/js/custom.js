@@ -8,13 +8,17 @@ $(document).ready(function () {
       paging: true,
       searching: true,
       "columns": [
-         { "width": "10%" },
+         { "width": "15%" },
          { "width": "10%" },
          { "width": "40%" },
          { "width": "10%" },
          { "width": "10%" },
-         { "width": "10%" },
-         { "width": "10%" },
+         { "width": "15%" },
+
+      ],
+      dom: 'Bfrtip',
+      buttons: [
+         'excel'
       ]
    });
    $('#myTableview').DataTable({

@@ -25,7 +25,7 @@
           </div>
           <div class="card-body">
             <div class="table-responsive">
-              <table class="table table-hover stripe" id="myTabledeg" style="font-size:0.85em">
+              <table class="table table-hover stripe" id="myTabledeg" >
                 <thead class="">
                   <th>
                     Reg No
@@ -45,9 +45,6 @@
                   <th>
                     View
                   </th>
-                  <th>
-                    View
-                  </th>
                 </thead>
                 <tbody>
                   @foreach($students as $key => $data)
@@ -58,8 +55,7 @@
                     <th>{{$data->nic}}</th>
                     <th>{{$data->telephone}}</th>
                     <th><a href="{{ url('/register/graduate/view/'. $data->stu_id) }}"><span class="material-icons">visibility</span></a></th>
-                    <th><a href="{{ url('/register/graduate/view/'. $data->stu_id) }}"><span class="material-icons">visibility</span></a></th>
-
+                   
                   </tr>
                   @endforeach
                   <!-- <tr>
