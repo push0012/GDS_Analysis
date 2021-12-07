@@ -77,7 +77,7 @@
           </div>
         </div>
       </div>
-
+      <h4 class="text-danger" style="font-style:underline;"><b>Year Summery (for {{$this_year}})</b></h4>
       <div class="row">
         <div class="col-md-3">
           <div class="card card-chart">
@@ -85,7 +85,7 @@
                 <canvas id="district_chart"></canvas> 
             </div>
             <div class="card-body">
-              <h4 class="card-title">District Summery</h4>
+              <h4 class="card-title">by District</h4>
               <p class="card-category">
                 <span class="text-success"><span class="material-icons">timeline</span> for {{$this_year}} Year</span></p>
             </div>
@@ -102,7 +102,7 @@
               <canvas id="gender_chart"></canvas> 
             </div>
             <div class="card-body">
-              <h4 class="card-title">Gender Summery ({{$this_year}})</h4>
+              <h4 class="card-title">by Gender</h4>
               <p class="card-category">
                 <span class="text-success">
                   <span class="material-icons">timeline</span> for {{$this_year}} Year
@@ -123,7 +123,7 @@
               <canvas id="deg_type_chart"></canvas> 
             </div>
             <div class="card-body">
-              <h4 class="card-title">Degree Type Summery</h4>
+              <h4 class="card-title">by Degree Type</h4>
               <p class="card-category">
                 <span class="text-success">
                   <span class="material-icons">timeline</span> for {{$this_year}} Year
@@ -144,7 +144,7 @@
               <canvas id="deg_class_chart"></canvas> 
             </div>
             <div class="card-body">
-              <h4 class="card-title">Result Summery</h4>
+              <h4 class="card-title">by Result</h4>
               <p class="card-category">
                 <span class="text-success">
                   <span class="material-icons">timeline</span> for {{$this_year}} Year
@@ -167,7 +167,7 @@
               <canvas id="stream_chart"></canvas>
             </div>
             <div class="card-body">
-              <h4 class="card-title">Stream Summery</h4>
+              <h4 class="card-title">by Stream</h4>
               <p class="card-category">
                 <span class="text-success">
                   <span class="material-icons">timeline</span> for {{$this_year}} Year
@@ -189,7 +189,7 @@
               <canvas id="medium_chart"></canvas>
             </div>
             <div class="card-body">
-              <h4 class="card-title">Degree Medium Summery</h4>
+              <h4 class="card-title">by Degree Medium</h4>
               <p class="card-category">
                 <span class="text-success">
                   <span class="material-icons">timeline</span> for {{$this_year}} Year
@@ -212,7 +212,7 @@
             <canvas id="year_chart"></canvas>
             </div>
             <div class="card-body">
-              <h4 class="card-title">Summery by Graduated Year</h4>
+              <h4 class="card-title">by Graduated Year</h4>
               <p class="card-category">
                 <span class="text-success">
                   <span class="material-icons">timeline</span> for {{$this_year}} Year
