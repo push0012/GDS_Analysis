@@ -42,7 +42,7 @@ class HomeController extends Controller
         $general_count = DB::table('degree_view_one')->where('deg_type','=','General')->count();
 
 
-        $deg_class_types = ['First Class', 'Second Upper', 'Second Lower', 'General'];
+        $deg_class_types = ['First', 'Second Upper', 'Second Lower', 'General'];
         $res_arr_class=[];
         $deg_class_count=[];
         foreach ($deg_class_types as $deg_class_type) {
@@ -57,10 +57,26 @@ class HomeController extends Controller
         foreach ($stream_names as $stream_name) {
             $str_temp =  DB::table('degree_view_one')->where('str_name', '=', $stream_name->str_name)->count();
             array_push($str_count, $str_temp);
-
-            
         }
-        //return $str_count;
+
+        $deg_medium_types = ['Sinhala', 'Tamil', 'English'];
+        $res_arr_temp=[];
+        $deg_medium_count=[];
+        foreach ($deg_medium_types as $deg_medium_type) {
+            $res_arr_temp =  DB::table('degree_view_one')->where('deg_medium', '=', $deg_medium_type)->count(); 
+            array_push($deg_medium_count, $res_arr_temp);
+
+        }
+
+        //SELECT YEAR(deg_effective_date) as years, degree_view_one.year FROM example.degree_view_one  group by deg_effective_date order by deg_effective_date;
+
+        //$res_arr_temp_year =  DB::table('get_effective_years')->groupBy('effective_year')->get(); 
+            
+
+
+
+
+        //return $res_arr_temp_year;
 
      //return $deg_class_count;
         
@@ -85,6 +101,9 @@ class HomeController extends Controller
 
             'stream_names' => $stream_names,
             'str_count' => $str_count,
+
+            'deg_medium_types' => $deg_medium_types,
+            'deg_medium_count' => $deg_medium_count
         ]);
     }
 }

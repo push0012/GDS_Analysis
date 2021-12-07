@@ -45,7 +45,7 @@
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card card-stats">
+          <div class="card card-stats" style="display: none !important;">
             <div class="card-header card-header-danger card-header-icon">
               <div class="card-icon">
                 <i class="material-icons">info_outline</i>
@@ -61,7 +61,7 @@
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
-          <div class="card card-stats">
+          <div class="card card-stats" style="display: none !important;">
             <div class="card-header card-header-info card-header-icon">
               <div class="card-icon">
                 <i class="fa fa-twitter"></i>
@@ -185,16 +185,65 @@
         </div>
         <div class="col-md-4">
           <div class="card card-chart">
-            <div class="card-header card-header-danger">
-              <div class="ct-chart" id="completedTasksChart"></div>
+            <div class="card-header ">
+              <canvas id="medium_chart"></canvas>
             </div>
             <div class="card-body">
-              <h4 class="card-title">Completed Tasks</h4>
-              <p class="card-category">Last Campaign Performance</p>
+              <h4 class="card-title">Degree Medium Summery</h4>
+              <p class="card-category">
+                <span class="text-success">
+                  <span class="material-icons">timeline</span> for {{$this_year}} Year
+                </span>
+              </p>
             </div>
             <div class="card-footer">
               <div class="stats">
-                <i class="material-icons">access_time</i> campaign sent 2 days ago
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="card card-chart">
+            <div class="card-header ">
+            <canvas id="year_chart"></canvas>
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Summery by Graduated Year</h4>
+              <p class="card-category">
+                <span class="text-success">
+                  <span class="material-icons">timeline</span> for {{$this_year}} Year
+                </span>
+              </p>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                
+              </div>
+            </div>
+          </div>
+        
+          
+        </div>
+        <div class="col-md-4">
+          <div class="card card-chart">
+            <div class="card-header ">
+              <canvas id="year_chart"></canvas>
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Summery by Graduated Year</h4>
+              <p class="card-category">
+                <span class="text-success">
+                  <span class="material-icons">timeline</span> for {{$this_year}} Year
+                </span>
+              </p>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                
               </div>
             </div>
           </div>
@@ -347,6 +396,75 @@
       }
    }
 });
+
+
+//Medium bar chart
+var canvas = document.getElementById("medium_chart"); 
+var ctxpie = canvas.getContext('2d');
+      var data = {
+          labels: ['Sinhala','Tamil', 'English'],
+            datasets: [
+              {
+                  hoverBackgroundColor: [ '#009900', '#663300','#0000ff'],
+                  backgroundColor: [ '#009900', '#663300','#0000ff'],
+                  data: [{!! implode(', ', $deg_medium_count) !!}],
+                  borderColor:    ['#009900', '#663300','#0000ff'],
+                  borderWidth: [1,1]
+              }
+          ]
+      };
+      var options = {
+      };
+      var myBarChart = new Chart(ctxpie, {
+          type: 'pie',
+          data: data,
+          options:options
+      });     
+
+//year summery line chart
+/*var ctxbar = document.getElementById("year_chart").getContext('2d'); 
+      var chart = new Chart(ctxbar, {
+      type: 'line',
+      data: {
+      labels: [{!! $stream_names->pluck('str_name')->transform(function ($item, $key) {return "'" . $item ."'"; })->implode(',') !!}],
+      datasets: [{
+         label: 'Stream',
+         data: [{!! implode(', ', $str_count) !!}],
+         //data: [1, 5,1, 3,1, 4,1, 7,1,9,1, 5,1, 11,1, 12],
+         backgroundColor: 'rgba(255, 99, 132, 0.6)',
+         hoverBackgroundColor: 'rgba(255, 99, 132, 0.9)',
+         borderColor: 'rgba(255, 99, 132, 0.9)',
+         borderRadius:'20px',
+          borderWidth: 1
+      }]
+   },
+   options: {
+    plugins: {
+         title: {
+           display: false,
+           text: 'Stream Summery'
+         },
+       },
+      maintainAspectRatio: true,
+      responsive: true,
+      legend: {
+         position: 'right' // place legend on the right side of chart
+      },
+      scales: {
+         xAxes: [{
+            stacked: true, // this should be set to make the bars stacked- 
+         },
+        ],
+         yAxes: [{
+            stacked: true, // this also..
+            ticks: {
+              stepSize: 1,
+              
+            },
+         }]
+      }
+   }
+});*/
 
 
     $(document).ready(function() {
