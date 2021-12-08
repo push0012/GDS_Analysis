@@ -28,7 +28,7 @@ class FilterController extends Controller
 
         if ($data['ds_id'] != '0') 
         {
-            $query = $query->where('ds_id', '=', $data['ds_id']);
+            $query = $query->where('ds_name', '=', $data['ds_name']);
         }
         if ($data['dv_id'] != '0') 
         {

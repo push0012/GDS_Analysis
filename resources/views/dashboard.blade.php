@@ -77,7 +77,7 @@
           </div>
         </div>
       </div>
-      <h4 class="text-danger" style="font-style:underline;"><b>Year Summery (for {{$this_year}})</b></h4>
+      <h4 class="text-danger" style="font-style:underline;"><b>Graduate Survay Year Summery (for {{$this_year}})</b></h4>
       <div class="row">
         <div class="col-md-3">
           <div class="card card-chart">

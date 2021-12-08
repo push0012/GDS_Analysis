@@ -70,7 +70,7 @@ jQuery(document).ready(function () {
             success: function (data) {
                console.log(data);
                jQuery('select[name="dv_id"]').empty();
-               $('select[name="dv_id"]').append('<option value="0" disabled="disabled" selected="selected">Pick One...</option>');
+               $('select[name="dv_id"]').append('<option value="0" selected="selected">Pick One...</option>');
                jQuery.each(data, function (key, value) {
                   $('select[name="dv_id"]').append('<option value="' + key + '">' + value + '</option>');
                });
@@ -142,6 +142,25 @@ function contact_filter_diploma() {
          console.log(data);
          document.getElementById('copy_text').value = '';
          document.getElementById('copy_text').value = data;
+      },
+      error: function (data) {
+         console.log(data)
+      }
+
+   });
+}
+
+function student_list_graduate() {
+
+   $values = $('#listdown_form').serialize();
+
+   jQuery.ajax({
+      url: '/list/graduate/export',
+      type: "POST",
+      data: $values,
+      dataType: "json",
+      success: function (data) {
+         console.log(data);
       },
       error: function (data) {
          console.log(data)

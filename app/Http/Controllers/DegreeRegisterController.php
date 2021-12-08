@@ -115,7 +115,7 @@ class DegreeRegisterController extends Controller
 
     public function edit($id)
     {
-        $institutes = Institute::where('ins_type', 1)->get();
+        $institutes = Institute::where('ins_type', 1)->orWhere('ins_type', 2)->get();
         $streams = Stream::get();
         $degrees = Degree::get();
         $divisions = Division::get();

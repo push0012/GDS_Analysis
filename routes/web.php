@@ -16,6 +16,7 @@ use App\Http\Controllers\DiplomaController;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\ImportController;
+use App\Http\Controllers\ListController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -111,6 +112,26 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('/institutes_load',  [AjaxController::class, 'institutes']);
 	});
 });
+
+Route::group(['middleware' => 'auth'], function () {
+
+	Route::group(['prefix' => 'list', 'as' => 'list.'], function () {
+
+		Route::group(['prefix' => 'graduate', 'as' => 'graduate.'], function () {
+
+			Route::get('/',  [ListController::class, 'show_graduate_form']);
+			Route::post('/view',  [ListController::class, 'show_graduate_list']);
+			Route::post('/export',  [ListController::class, 'export_graduate_list_excel']);
+		});
+		Route::group(['prefix' => 'diploma', 'as' => 'diploma.'], function () {
+
+			Route::get('/',  [ListController::class, 'show_diploma_form']);
+
+		});
+
+	});
+});
+
 
 Route::group(['middleware' => 'auth'], function () {
 

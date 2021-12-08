@@ -167,6 +167,31 @@
         </a>
       </li>
 
+      <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }} ">
+        <a class="nav-link " data-toggle="collapse" href="#student_list" aria-expanded="true">
+          <i class="material-icons" style="color: green;">format_list_bulleted</i>
+          <p>{{ __('Student List') }}
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse" id="student_list">
+          <ul class="nav">
+            <li class="nav-item{{ $activePage == 'cont_degree' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ url('list/graduate/') }}">
+                <i class="material-icons">school</i>
+                <p>{{ __('Graduate') }}</p>
+              </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'cont_diploma' ? ' active' : '' }}">
+              <a class="nav-link" href="{{ url('list/diploma/') }}">
+                <i class="material-icons">receipt_long</i>
+                <p>{{ __('Diploma') }}</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
       <li class="nav-item{{ $activePage == 'institutes' ? ' active' : '' }}">
         <a class="nav-link" href="{{ url('institutes') }}">
           <i class="material-icons">picture_as_pdf</i>
