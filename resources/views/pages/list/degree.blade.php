@@ -41,7 +41,7 @@
                 
               </div>
               <div class="card-body ">
-              <form method="post" action="{{ url('list/graduate/view') }}" autocomplete="off" class="form-horizontal" id="listdown_form" name="listdown_form">
+              <form method="post" action="{{ url('list/graduate/view') }}" target="_blank" autocomplete="off" class="form-horizontal" id="listdown_form" name="listdown_form">
               <!--action="{{ url('institutes') }}"-->
               @csrf
               
@@ -176,8 +176,6 @@
                   <div class="col-sm-12">
                     <button type="reset" id="" style="width:130px;" class="btn btn-danger">{{ __('Reset') }}</button>
                     <button type="submit" id="" style="width:130px;" class="btn btn-info">{{ __('Load Data') }}</button>
-                    <button type="button" id="" style="width:130px;" onclick="student_list_graduate();" class="btn btn-info">{{ __('Export Data') }}</button>
-                  
                 </div>
                 </div>
                 </form>

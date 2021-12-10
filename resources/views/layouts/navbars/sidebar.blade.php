@@ -176,13 +176,13 @@
         </a>
         <div class="collapse" id="student_list">
           <ul class="nav">
-            <li class="nav-item{{ $activePage == 'cont_degree' ? ' active' : '' }}">
+            <li class="nav-item{{ $activePage == 'list_degree' ? ' active' : '' }}">
               <a class="nav-link" href="{{ url('list/graduate/') }}">
                 <i class="material-icons">school</i>
                 <p>{{ __('Graduate') }}</p>
               </a>
             </li>
-            <li class="nav-item{{ $activePage == 'cont_diploma' ? ' active' : '' }}">
+            <li class="nav-item{{ $activePage == 'list_diploma' ? ' active' : '' }}">
               <a class="nav-link" href="{{ url('list/diploma/') }}">
                 <i class="material-icons">receipt_long</i>
                 <p>{{ __('Diploma') }}</p>
@@ -192,8 +192,8 @@
         </div>
       </li>
 
-      <li class="nav-item{{ $activePage == 'institutes' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ url('institutes') }}">
+      <li class="nav-item{{ $activePage == 'reports' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ url('report') }}">
           <i class="material-icons">picture_as_pdf</i>
           
           <p>{{ __('Reports') }}</p>

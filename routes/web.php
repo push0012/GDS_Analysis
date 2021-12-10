@@ -17,6 +17,7 @@ use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\FilterController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\ListController;
+use App\Http\Controllers\ReportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -165,6 +166,18 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::get('/',  [FilterController::class, 'show_diploma_filter_form']);
 			Route::post('/filter',  [FilterController::class, 'get_diploma_contacts']);
 		});
+	});
+});
+
+
+Route::group(['middleware' => 'auth'], function () {
+
+	Route::group(['prefix' => 'report', 'as' => 'report.'], function () {
+
+			Route::get('/',  [ReportController::class, 'index']);
+			Route::post('/generate',  [ReportController::class, 'report']);
+		
+		
 	});
 });
 
