@@ -37,6 +37,44 @@ class ReportController extends Controller
                 $recordArr = $reportGenerator->byGender($dataArr);
                 return view('pages.report.report_bygender', ['results'=>$recordArr ]);
             }
+            if($request['report_id'] == 3)
+            {
+                $recordArrKeg = $reportGenerator->byDivisionKegalle($dataArr);
+                $recordArrRat = $reportGenerator->byDivisionRatnapura($dataArr);
+                //return $recordArr;
+                return view('pages.report.report_bydivision', 
+                    [
+                        'results_keg'=>$recordArrKeg , 
+                        'results_rat'=>$recordArrRat 
+                    ]
+                );
+            }
+
+            if($request['report_id'] == 4)
+            {
+                $recordArr = $reportGenerator->byStream($dataArr);
+                
+                //return $recordArr;
+                return view('pages.report.report_bystream', 
+                    [
+                        'results'=>$recordArr , 
+                       
+                    ]
+                );
+            }
+
+            if($request['report_id'] == 5)
+            {
+                $recordArr = $reportGenerator->byMedium($dataArr);
+                
+                //return $recordArr;
+                return view('pages.report.report_bymedium', 
+                    [
+                        'results'=>$recordArr , 
+                       
+                    ]
+                );
+            }
         }
     }
 }
