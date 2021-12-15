@@ -78,6 +78,12 @@
         </a>
       </li>
 -->
+      <li class="nav-item{{ $activePage == 'institutes' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ url('institutes') }}">
+          <i class="material-icons">business</i>
+          <p>{{ __('Institutes') }}</p>
+        </a>
+      </li>
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }} ">
         <a class="nav-link " data-toggle="collapse" href="#graduate" aria-expanded="true">
           <i class="material-icons" style="color: red;">school</i>
@@ -127,7 +133,14 @@
           </ul>
         </div>
       </li>
+      <li class="nav-item{{ $activePage == 'import_records' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ url('import') }}">
+          <i class="material-icons" style="color: blue;">upload_file</i>
+          <p>{{ __('Data Import') }}</p>
+        </a>
+      </li>
 
+      
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }} ">
         <a class="nav-link " data-toggle="collapse" href="#contacts" aria-expanded="true">
           <i class="material-icons" style="color: green;">import_contacts</i>
@@ -153,19 +166,9 @@
         </div>
       </li>
 
-      <li class="nav-item{{ $activePage == 'import_records' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ url('import') }}">
-          <i class="material-icons" style="color: blue;">upload_file</i>
-          <p>{{ __('Data Import') }}</p>
-        </a>
-      </li>
+      
 
-      <li class="nav-item{{ $activePage == 'institutes' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ url('institutes') }}">
-          <i class="material-icons">business</i>
-          <p>{{ __('Institutes') }}</p>
-        </a>
-      </li>
+      
 
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }} ">
         <a class="nav-link " data-toggle="collapse" href="#student_list" aria-expanded="true">
