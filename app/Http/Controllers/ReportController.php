@@ -75,6 +75,32 @@ class ReportController extends Controller
                     ]
                 );
             }
+
+            if($request['report_id'] == 6)
+            {
+                $recordArr = $reportGenerator->byResult($dataArr);
+                
+                //return $recordArr;
+                return view('pages.report.report_byresult', 
+                    [
+                        'results'=>$recordArr , 
+                       
+                    ]
+                );
+            }
+            
+            if($request['report_id'] == 9)
+            {
+                $recordArr = $reportGenerator->bySpeciality($dataArr);
+                
+                //return $recordArr;
+                return view('pages.report.report_byspeciality', 
+                    [
+                        'results'=>$recordArr , 
+                       
+                    ]
+                );
+            }
         }
     }
 }

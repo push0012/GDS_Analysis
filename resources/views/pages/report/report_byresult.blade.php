@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
     
-    <title>Graduate / Diploma Survay Report - by Medium</title>
+    <title>Graduate / Diploma Survay Report - by Result</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.1.0/css/buttons.dataTables.min.css">
     
@@ -25,7 +25,7 @@
        
     <script>
         $(document).ready( function () {
-            $('#report_bymedium').DataTable({
+            $('#report_byresult').DataTable({
                 dom: 'Bfrtip',
                 buttons: [
                     'excel'
@@ -44,11 +44,11 @@
 <table width="1200px" height="60px" cellpadding="0px" cellspacing="0px"  id="results"  >
     <tr width='1200px' height='30px'>
         <td  align="center" style=" font-weight:bold;  font-size:16px; font-family:"Arial Narrow"">
-            Provincial Overall Summery - by Medium
+            Provincial Overall Summery - by Result
         </td>
     </tr>
 </table>
-<table width="120px" height="60px" cellpadding="0px" cellspacing="1px"  id="report_bymedium"  style="border: solid 1px; width: 25%" >
+<table width="120px" height="60px" cellpadding="0px" cellspacing="1px"  id="report_byresult"  style="border: solid 1px; width: 25%" >
 <thead style="font-size:1em">	
 <tr width='120px' height='25px'   bgcolor='#EBEBEB'>
     <td width='60px' height='25px'  align='center' class='Viso2' style="border-bottom:solid 1px; border-right:solid 1px"></td>
@@ -61,14 +61,14 @@
 <tbody style="font-size:0.7em">
 @foreach($results['res_001'] as $key => $data)                  
 <tr width='120px' height='25px'   bgcolor='#EBEBEB'>
-    <td width='60px' height='25px'  align='center' class='Viso2' style="border-bottom:solid 1px; border-right:solid 1px"> {{$data['medium']}} </td>
+    <td width='60px' height='25px'  align='center' class='Viso2' style="border-bottom:solid 1px; border-right:solid 1px"> {{$data['result']}} </td>
     <td width='60px' height='25px'  align='center' class='Viso2' style="border-bottom:solid 1px; border-right:solid 1px"> {{$data['r_count']}}  </td>
     <td width='80px' height='25px'  align='center' class='Viso2' style="border-bottom:solid 1px; border-right:solid 1px"> {{$data['k_count']}} </td>
     <td width='80px' height='25px'  align='center' class='Viso2' style="border-bottom:solid 1px; border-right:solid 1px"> {{$data['p_count']}} </td>
 </tr>
 @endforeach
 <tr width='120px' height='25px'   bgcolor='#999999'>
-    <td width='60px' height='25px' bgcolor='#999999'  align='center' class='Viso2' style="border-bottom:solid 1px; border-right:solid 1px"> {{$results['res_002']['medium']}} </td>
+    <td width='60px' height='25px' bgcolor='#999999'  align='center' class='Viso2' style="border-bottom:solid 1px; border-right:solid 1px">   ToTal </td>
     <td width='60px' height='25px' bgcolor='#999999'  align='center' class='Viso2' style="border-bottom:solid 1px; border-right:solid 1px"> {{$results['res_002']['r_count']}}  </td>
     <td width='80px' height='25px' bgcolor='#999999'  align='center' class='Viso2' style="border-bottom:solid 1px; border-right:solid 1px"> {{$results['res_002']['k_count']}} </td>
     <td width='80px' height='25px' bgcolor='#999999'  align='center' class='Viso2' style="border-bottom:solid 1px; border-right:solid 1px"> {{$results['res_002']['p_count']}} </td>
