@@ -73,6 +73,7 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
+	Route::post('profile', ['as' => 'profile.create', 'uses' => 'App\Http\Controllers\ProfileController@create']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
@@ -86,7 +87,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 		Route::group(['prefix' => 'graduate', 'as' => 'graduate.'], function () {
 
-			Route::get('/create',  [DegreeRegisterController::class, 'index']);
+			Route::get('/create',  [DegreeRegisterController::class, 'index'])->middleware(['role:operator']);
 			Route::post('/store',  [DegreeRegisterController::class, 'store']);
 			Route::get('/show',  [DegreeRegisterController::class, 'show']);
 			Route::get('/view/{id}',  [DegreeRegisterController::class, 'view']);
