@@ -352,3 +352,34 @@
     </div>
   </div>
 @endsection
+@push('js')
+<script>
+jQuery(document).ready(function () {
+   console.log("lic here");
+   jQuery('select[name="ds_id"]').on('change', function () {
+      console.log("here come");
+      var countryID = jQuery(this).val();
+      console.log(countryID);
+      if (countryID) {
+         console.log(countryID);
+         jQuery.ajax({
+            url: '/divisions/' + countryID,
+            type: "GET",
+            dataType: "json",
+            success: function (data) {
+               console.log(data);
+               jQuery('select[name="dv_id"]').empty();
+               $('select[name="dv_id"]').append('<option value="0" selected="selected">Pick One...</option>');
+               jQuery.each(data, function (key, value) {
+                  $('select[name="dv_id"]').append('<option value="' + key + '">' + value + '</option>');
+               });
+            }
+         });
+      }
+      else {
+         $('select[name="dv_id"]').empty();
+      }
+   });
+});
+</script>
+@endpush
