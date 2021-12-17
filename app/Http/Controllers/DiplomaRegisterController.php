@@ -95,7 +95,7 @@ class DiplomaRegisterController extends Controller
         $streams = Stream::get();
         $degrees = Degree::get();*/
 
-        $student_list = DB::table('diploma_small_list')->get();
+        $student_list = DB::table('diploma_view_one')->get();
 
         return view('pages.diploma.list', ['students' => $student_list]);
     }

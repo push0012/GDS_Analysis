@@ -97,7 +97,7 @@ class DegreeRegisterController extends Controller
         $streams = Stream::get();
         $degrees = Degree::get();*/
 
-        $student_list = DB::table('degree_small_list')->get();
+        $student_list = DB::table('degree_view_one')->get();
 
         return view('pages.degree.list', ['students' => $student_list]);
     }

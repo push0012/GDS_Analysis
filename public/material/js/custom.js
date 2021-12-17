@@ -10,16 +10,14 @@ $(document).ready(function () {
       "columns": [
          { "width": "15%" },
          { "width": "10%" },
-         { "width": "40%" },
+         { "width": "30%" },
+         { "width": "10%" },
          { "width": "10%" },
          { "width": "10%" },
          { "width": "15%" },
 
       ],
-      dom: 'Bfrtip',
-      buttons: [
-         'excel'
-      ]
+      
    });
    $('#myTableview').DataTable({
       paging: false,

@@ -40,6 +40,9 @@
                     NIC
                   </th>
                   <th>
+                    Division
+                  </th>
+                  <th>
                     Telephone
                   </th>
                   <th>
@@ -53,6 +56,7 @@
                       <th>{{$data->dip_reg_date}}</th>
                       <th>{{$data->stu_name}}</th>        
                       <th>{{$data->nic}}</th>
+                      <th>{{$data->dv_name}}</th>
                       <th>{{$data->telephone}}</th>  
                       <th><a href="{{ url('/register/diploma/view/'. $data->stu_id) }}"><span class="material-icons">visibility</span></a></th>     
                     </tr>

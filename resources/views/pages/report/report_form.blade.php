@@ -61,16 +61,6 @@
                     </div>
                   </div>
                   <div class="col-sm-2">
-                    <label class="col-form-label text-dark">{{ __('District') }}</label>
-                    <div class="form-group">
-                        <select class="form-control" name="ds_id" id="ds_id">
-                            <option value="0" selected="selected">Pick One...</option>
-                            <option value="2">Rathnapura</option>
-                            <option value="1">Kegalle</option>
-                        </select>
-                    </div>
-                  </div>
-                  <div class="col-sm-2">
                     <label class="col-form-label text-dark">{{ __('Survay Type') }}</label>
                     <div class="form-group">
                         <select class="form-control" name="survay_id" id="survay_id">
@@ -80,7 +70,7 @@
                         </select>
                     </div>
                   </div>
-                  <div class="col-sm-6">
+                  <div class="col-sm-8">
                     <label class="col-form-label text-dark">{{ __('Report Type') }}</label>
                     <div class="form-group">
                         <select class="form-control" name="report_id" id="report_id">

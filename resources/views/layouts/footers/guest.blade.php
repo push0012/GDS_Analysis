@@ -1,21 +1,16 @@
 <footer class="footer">
     <div class="container">
         <nav class="float-left">
-        <ul>
-            <li>
-            <a href="https://www.creative-tim.com">
-                {{ __('DCS (Planning) Office') }}
-            </a>
-            </li>
-           
-        </ul>
+        
+            Copyright &copy;
+            <a href="https://planning.sg.gov.lk" target="_blank">DCS (Planning) Office, Sabaragamuwa </a>
+            <script>
+                document.write(new Date().getFullYear())
+            </script>
+            
         </nav>
         <div class="copyright float-right">
-        &copy;
-        <script>
-            document.write(new Date().getFullYear())
-        </script>, made with <i class="material-icons">favorite</i> by
-        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> and <a href="https://www.updivision.com" target="_blank">UPDIVISION</a> for a better web.
+        Design & Develop by Pushpamal Gunasena (IT Assistant) 
         </div>
     </div>
 </footer>

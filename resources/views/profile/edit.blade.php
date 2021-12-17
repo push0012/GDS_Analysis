@@ -67,7 +67,9 @@
                     <select class="form-control" name="role_id" id="role_id">
                             <option value="1">Viewer</option>
                             <option value="2">Operator</option>
+                            @if (Auth::user()->hasRole('owner') )
                             <option value="3">Admin</option>
+                            @endif
                       </select>
                       @if ($errors->has('role_id'))
                         <span id="role_id-error" class="error text-danger" for="input-role_id">{{ $errors->first('role_id') }}</span>

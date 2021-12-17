@@ -10,11 +10,6 @@ use DB;
 
 class FilterController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:admin');
-    }
-
     public function show_graduate_filter_form(){
         $institutes = Institute::where('ins_type', '=',1)->orWhere('ins_type', '=', 2)->get();
         $streams = Stream::get();

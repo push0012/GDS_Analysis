@@ -11,10 +11,12 @@
       <div class="row">
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="card card-stats">
-            <div class="card-header card-header-warning card-header-icon">
+            <div class="card-header card-header-danger card-header-icon">
+              <a href=" {{url('register/graduate/show')}}" style="color: white;">
               <div class="card-icon">
                 <i class="material-icons">school</i>
               </div>
+              </a>
               <p class="card-category">This Year / All</p>
               <h3 class="card-title">{{$degree_this_year->degree_all}} / {{$degree_all->degree_all}}
               </h3>
@@ -29,9 +31,11 @@
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="card card-stats">
             <div class="card-header card-header-success card-header-icon">
-              <div class="card-icon">
-                <i class="material-icons">receipt_long</i>
-              </div>
+              <a href="{{ url('register/diploma/show') }}" style="color: white;">
+                <div class="card-icon">
+                  <i class="material-icons">receipt_long</i>
+                </div>
+              </a>
               <p class="card-category">This Year / All</p>
               <h3 class="card-title">
                 {{$diploma_this_year->diploma_all}} / {{$diploma_all->diploma_all}}

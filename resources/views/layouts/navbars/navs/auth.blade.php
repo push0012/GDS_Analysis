@@ -31,8 +31,17 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          @if (Auth::user()->hasRole('viewer') )
+            <i class="material-icons" >preview</i>
+          @elseif(Auth::user()->hasRole('operator'))
+            <i class="material-icons">border_color</i>
+          @elseif(Auth::user()->hasRole('admin'))
+            <i class="material-icons">engineering</i>
+          @elseif(Auth::user()->hasRole('owner'))
             <i class="material-icons">person</i>
-            
+          @endif
+
+
             <span>
               {{Auth::user()->name}}
             </span>

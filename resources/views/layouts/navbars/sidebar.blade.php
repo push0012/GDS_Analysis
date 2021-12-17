@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="orange" data-background-color="white" data-image="{{ asset('material') }}/img/sidebar-3.jpg">
+<div class="sidebar" data-color="azure" data-background-color="white" data-image="{{ asset('material') }}/img/sidebar-3.jpg">
   <!--
       Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -12,80 +12,31 @@
 
   <div class="sidebar-wrapper">
     <ul class="nav">
-       <!--
-      <li class="nav-item{{ $activePage == 'dashboard' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('home') }}">
-          <i class="material-icons">dashboard</i>
-          <p>{{ __('Dashboard') }}</p>
-        </a>
-      </li>
-     
-      <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }}">
-        <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="true">
-          <i><img style="width:25px" src="{{ asset('material') }}/img/laravel.svg"></i>
-          <p>{{ __('Laravel Examples') }}
-            <b class="caret"></b>
-          </p>
-        </a>
-        <div class="collapse show" id="laravelExample">
-          <ul class="nav">
-            <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('profile.edit') }}">
-                <span class="sidebar-mini"> UP </span>
-                <span class="sidebar-normal">{{ __('User profile') }} </span>
-              </a>
-            </li>
-            <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('user.index') }}">
-                <span class="sidebar-mini"> UM </span>
-                <span class="sidebar-normal"> {{ __('User Management') }} </span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </li>
+      
 
-      <li class="nav-item{{ $activePage == 'table' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('table') }}">
-          <i class="material-icons">content_paste</i>
-          <p>{{ __('Table List') }}</p>
+      @if (Auth::user()->hasRole('viewer'))
+      <li class="nav-item{{ $activePage == 'degree_list' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ url('register/graduate/show')  }}">
+          <i class="material-icons" style="color: blue;">school</i>
+          <p>{{ __('Graduate') }}</p>
         </a>
       </li>
-      <li class="nav-item{{ $activePage == 'typography' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('typography') }}">
-          <i class="material-icons">library_books</i>
-          <p>{{ __('Typography') }}</p>
-        </a>
-      </li>
-      -->
-      <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('icons') }}">
-          <i class="material-icons">bubble_chart</i>
-          <p>{{ __('Icons') }}</p>
-        </a>
-      </li>
-      <!--
-      <li class="nav-item{{ $activePage == 'map' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('map') }}">
-          <i class="material-icons">location_ons</i>
-          <p>{{ __('Maps') }}</p>
-        </a>
-      </li>
-      <li class="nav-item{{ $activePage == 'notifications' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ route('notifications') }}">
-          <i class="material-icons">notifications</i>
-          <p>{{ __('Notifications') }}</p>
-        </a>
-      </li>
--->
-      @if (!(Auth::user()->hasRole('viewer')))
-      <li class="nav-item{{ $activePage == 'institutes' ? ' active' : '' }}">
-        <a class="nav-link" href="{{ url('institutes') }}">
-          <i class="material-icons">business</i>
-          <p>{{ __('Institutes') }}</p>
+      <li class="nav-item{{ $activePage == 'diploma_list' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ url('register/diploma/show')  }}">
+          <i class="material-icons" style="color: blue;">receipt_long</i>
+          <p>{{ __('Diploma') }}</p>
         </a>
       </li>
       @endif
+
+
+      @if (!(Auth::user()->hasRole('viewer')))
+      <li class="nav-item{{ $activePage == 'institutes' ? ' active' : '' }}">
+        <a class="nav-link" href="{{ url('institutes') }}">
+          <i class="material-icons" style="color: blue;">business</i>
+          <p>{{ __('Institutes') }}</p>
+        </a>
+      </li>
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }} ">
         <a class="nav-link " data-toggle="collapse" href="#graduate" aria-expanded="true">
           <i class="material-icons" style="color: red;">school</i>
@@ -95,14 +46,12 @@
         </a>
         <div class="collapse" id="graduate">
           <ul class="nav">
-          @if (!(Auth::user()->hasRole('viewer')))
             <li class="nav-item{{ $activePage == 'degree_add' ? ' active' : '' }}">
               <a class="nav-link" href="{{ url('register/graduate/create') }}">
                 <i class="material-icons">person_add_alt</i>
                 <p>{{ __('Add New Graduate') }}</p>
               </a>
             </li>
-            @endif
             <li class="nav-item{{ $activePage == 'degree_list' ? ' active' : '' }}">
               <a class="nav-link" href="{{ url('register/graduate/show') }}">
                 <i class="material-icons">list</i>
@@ -112,7 +61,6 @@
           </ul>
         </div>
       </li>
-
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }} ">
         <a class="nav-link " data-toggle="collapse" href="#diploma" aria-expanded="true">
           <i class="material-icons" style="color: green;">receipt_long</i>
@@ -122,14 +70,12 @@
         </a>
         <div class="collapse" id="diploma">
           <ul class="nav">
-          @if (!(Auth::user()->hasRole('viewer')))
             <li class="nav-item{{ $activePage == 'diploma_add' ? ' active' : '' }}">
               <a class="nav-link" href="{{ url('register/diploma/create') }}">
                 <i class="material-icons">person_add_alt</i>
                 <p>{{ __('Add New Diploma') }}</p>
               </a>
             </li>
-            @endif
             <li class="nav-item{{ $activePage == 'diploma_list' ? ' active' : '' }}">
               <a class="nav-link" href="{{ url('register/diploma/show') }}">
                 <i class="material-icons">list</i>
@@ -139,7 +85,6 @@
           </ul>
         </div>
       </li>
-      @if (!(Auth::user()->hasRole('viewer')))
       <li class="nav-item{{ $activePage == 'import_records' ? ' active' : '' }}">
         <a class="nav-link" href="{{ url('import') }}">
           <i class="material-icons" style="color: blue;">upload_file</i>
@@ -173,7 +118,6 @@
           </ul>
         </div>
       </li>
-
       <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'user-management') ? ' active' : '' }} ">
         <a class="nav-link " data-toggle="collapse" href="#student_list" aria-expanded="true">
           <i class="material-icons" style="color: green;">format_list_bulleted</i>
@@ -201,7 +145,7 @@
       
       <li class="nav-item{{ $activePage == 'reports' ? ' active' : '' }}">
         <a class="nav-link" href="{{ url('report') }}">
-          <i class="material-icons">picture_as_pdf</i>
+          <i class="material-icons" style="color: red;">picture_as_pdf</i>
           <p>{{ __('Reports') }}</p>
         </a>
       </li>

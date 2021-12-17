@@ -40,37 +40,7 @@ Auth::routes();
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
 
-Route::group(['middleware' => 'auth'], function () {
-	Route::get('table-list', function () {
-		return view('pages.table_list');
-	})->name('table');
-
-	Route::get('typography', function () {
-		return view('pages.typography');
-	})->name('typography');
-
-	Route::get('icons', function () {
-		return view('pages.icons');
-	})->name('icons');
-
-	Route::get('map', function () {
-		return view('pages.map');
-	})->name('map');
-
-	Route::get('notifications', function () {
-		return view('pages.notifications');
-	})->name('notifications');
-
-	Route::get('rtl-support', function () {
-		return view('pages.language');
-	})->name('language');
-
-	Route::get('upgrade', function () {
-		return view('pages.upgrade');
-	})->name('upgrade');
-});
-
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth','role:admin,owner']], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
 	Route::post('profile', ['as' => 'profile.create', 'uses' => 'App\Http\Controllers\ProfileController@create']);
@@ -79,43 +49,49 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-	Route::resource('institutes', InstituteController::class);
-});
-Route::group(['middleware' => 'auth'], function () {
 
 	Route::group(['prefix' => 'register', 'as' => 'register.'], function () {
 
 		Route::group(['prefix' => 'graduate', 'as' => 'graduate.'], function () {
 
-			Route::get('/create',  [DegreeRegisterController::class, 'index'])->middleware(['role:operator']);
-			Route::post('/store',  [DegreeRegisterController::class, 'store']);
+			Route::group(['middleware' => 'role:admin,operator,owner'], function () {
+
+				Route::get('/create',  [DegreeRegisterController::class, 'index']);
+				Route::post('/store',  [DegreeRegisterController::class, 'store']);
+				Route::get('/view/{id}',  [DegreeRegisterController::class, 'view']);
+				Route::get('/edit/{id}',  [DegreeRegisterController::class, 'edit']);
+				Route::put('/update/{id}',  [DegreeRegisterController::class, 'update']);
+			});
+	
 			Route::get('/show',  [DegreeRegisterController::class, 'show']);
-			Route::get('/view/{id}',  [DegreeRegisterController::class, 'view']);
-			Route::get('/edit/{id}',  [DegreeRegisterController::class, 'edit']);
-			Route::put('/update/{id}',  [DegreeRegisterController::class, 'update']);
+			
 		});
 
 		Route::group(['prefix' => 'diploma', 'as' => 'diploma.'], function () {
 
-			Route::get('/create',  [DiplomaRegisterController::class, 'index']);
-			Route::post('/store',  [DiplomaRegisterController::class, 'store']);
+			Route::group(['middleware' => 'role:admin,operator,owner'], function () {
+
+				Route::get('/create',  [DiplomaRegisterController::class, 'index']);
+				Route::post('/store',  [DiplomaRegisterController::class, 'store']);
+				Route::get('/view/{id}',  [DiplomaRegisterController::class, 'view']);
+				Route::get('/edit/{id}',  [DiplomaRegisterController::class, 'edit']);
+				Route::put('/update/{id}',  [DiplomaRegisterController::class, 'update']);
+
+			});
+			
 			Route::get('/show',  [DiplomaRegisterController::class, 'show']);
-			Route::get('/view/{id}',  [DiplomaRegisterController::class, 'view']);
-			Route::get('/edit/{id}',  [DiplomaRegisterController::class, 'edit']);
-			Route::put('/update/{id}',  [DiplomaRegisterController::class, 'update']);
+			
 		});
 	});
 });
 
-Route::group(['middleware' => 'auth'], function () {
-
+Route::group(['middleware' => ['auth','role:operator,admin,owner']], function () {
 	Route::group(['prefix' => 'ajax', 'as' => 'ajax.'], function () {
-
 		Route::get('/institutes_load',  [AjaxController::class, 'institutes']);
 	});
 });
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth','role:admin,owner']], function () {
 
 	Route::group(['prefix' => 'list', 'as' => 'list.'], function () {
 
@@ -135,7 +111,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth','role:operator,admin,owner']], function () {
 
 	Route::group(['prefix' => 'import', 'as' => 'import.'], function () {
 
@@ -153,8 +129,8 @@ Route::group(['middleware' => 'auth'], function () {
 	});
 });
 
-Route::group(['middleware' => 'auth'], function () {
 
+Route::group(['middleware' => ['auth','role:admin,owner']], function () {
 	Route::group(['prefix' => 'contacts', 'as' => 'contacts.'], function () {
 
 		Route::group(['prefix' => 'graduate', 'as' => 'graduate.'], function () {
@@ -170,29 +146,31 @@ Route::group(['middleware' => 'auth'], function () {
 	});
 });
 
-
-Route::group(['middleware' => 'auth'], function () {
-
+Route::group(['middleware' => ['auth','role:admin,owner']], function () {
 	Route::group(['prefix' => 'report', 'as' => 'report.'], function () {
-
-			Route::get('/',  [ReportController::class, 'index']);
-			Route::post('/generate',  [ReportController::class, 'report']);
-		
-		
+		Route::get('/',  [ReportController::class, 'index']);
+		Route::post('/generate',  [ReportController::class, 'report']);	
 	});
 });
 
-Route::resource('districts', DistrictController::class)->only([
-	'index', 'show'
-]);
-Route::resource('divisions', DivisionController::class)->only([
-	'index', 'show'
-]);
-Route::resource('institutes', InstituteController::class);
+Route::group(['middleware' => ['auth','role:admin,operator,owner']], function () {
 
-Route::resource('streams', StreamController::class);
+	Route::resource('institutes', InstituteController::class);
 
-Route::resource('degrees', DegreeController::class);
-Route::resource('diplomas', DiplomaController::class);
+	Route::resource('districts', DistrictController::class)->only([
+		'index', 'show'
+	]);
 
-Route::get('get_email',  [AjaxController::class, 'get_email']);
+	Route::resource('divisions', DivisionController::class)->only([
+		'index', 'show'
+	]);
+
+	Route::resource('streams', StreamController::class);
+
+	Route::resource('degrees', DegreeController::class);
+
+	Route::resource('diplomas', DiplomaController::class);
+
+	Route::get('get_email',  [AjaxController::class, 'get_email']);
+
+});
