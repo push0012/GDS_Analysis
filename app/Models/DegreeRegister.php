@@ -20,6 +20,7 @@ class DegreeRegister extends Model
         'deg_class',
         'deg_effective_date',
         'deg_job_preference',
+        'submit_via',
         'deg_reg_no',
         'deg_reg_date',
         'year',
