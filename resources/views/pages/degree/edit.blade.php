@@ -62,7 +62,7 @@
                 @endif
                 <div class="row">
                   <label class="col-sm-2 col-form-label text-dark bg-info">{{ __('Register No') }}</label>
-                  <div class="col-sm-4">
+                  <div class="col-sm-2">
                     <div class="form-group{{ $errors->has('deg_reg_no') ? ' has-danger' : '' }}">
                       <input class="form-control{{ $errors->has('deg_reg_no') ? ' is-invalid' : '' }}" name="deg_reg_no" id="deg_reg_no" type="text" placeholder="" value="{{ $student->deg_reg_no }}" required="true" aria-required="true" />
                       @if ($errors->has('deg_reg_no'))
@@ -71,11 +71,26 @@
                     </div>
                   </div>
                   <label class="col-sm-2 col-form-label text-dark bg-info">{{ __('Register Date') }}</label>
-                  <div class="col-sm-4">
+                  <div class="col-sm-2">
                     <div class="form-group{{ $errors->has('deg_reg_date') ? ' has-danger' : '' }}">
                       <input class="form-control{{ $errors->has('deg_reg_date') ? ' is-invalid' : '' }}" name="deg_reg_date" id="deg_reg_date" type="date" placeholder="" value="{{ $student->deg_reg_date }}" required="true" aria-required="true" />
                       @if ($errors->has('deg_reg_date'))
                         <span id="deg_reg_date-error" class="error text-danger" for="deg_reg_date">{{ $errors->first('deg_reg_date') }}</span>
+                      @endif
+                    </div>
+                  </div>
+
+                  <label class="col-sm-2 col-form-label form-lable-black text-dark bg-info">{{ __('Submit via') }}</label>
+                  <div class="col-sm-2">
+                    <div class="form-group{{ $errors->has('submit_via') ? ' has-danger' : '' }}">
+                      <select class="form-control" name="submit_via" id="submit_via">
+                        <option value="0" selected="selected" disabled="disabled">Pick one...</option>
+                        <option {{ $student->submit_via == 'Post' ? 'selected' : '' }} value="Post">Post</option>
+                        <option {{ $student->submit_via == 'Hand' ? 'selected' : '' }} value="Hand">Hand</option>
+                        <option {{ $student->submit_via == 'Online' ? 'selected' : '' }} value="Online">Online</option>
+                      </select>
+                    @if ($errors->has('submit_via'))
+                        <span id="submit_via-error" class="error text-danger" for="submit_via">{{ $errors->first('submit_via') }}</span>
                       @endif
                     </div>
                   </div>

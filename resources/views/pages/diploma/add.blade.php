@@ -61,7 +61,7 @@
                 @endif
                 <div class="row">
                   <label class="col-sm-2 col-form-label text-dark bg-info">{{ __('Register No') }}</label>
-                  <div class="col-sm-4">
+                  <div class="col-sm-2">
                     <div class="form-group{{ $errors->has('dip_reg_no') ? ' has-danger' : '' }}">
                       <input class="form-control{{ $errors->has('dip_reg_no') ? ' is-invalid' : '' }}" name="dip_reg_no" id="dip_reg_no" type="text" placeholder="{{ __('Last Register No - '. $last_record->last_record) }}" value="" required="true" aria-required="true"/>
                       @if ($errors->has('dip_reg_no'))
@@ -70,11 +70,26 @@
                     </div>
                   </div>
                   <label class="col-sm-2 col-form-label text-dark bg-info">{{ __('Register Date') }}</label>
-                  <div class="col-sm-4">
+                  <div class="col-sm-2">
                     <div class="form-group{{ $errors->has('dip_reg_date') ? ' has-danger' : '' }}">
                       <input class="form-control{{ $errors->has('dip_reg_date') ? ' is-invalid' : '' }}" name="dip_reg_date" id="dip_reg_date" type="date" placeholder="{{ __('Register Date') }}" value="" required="true" aria-required="true"/>
                       @if ($errors->has('dip_reg_date'))
                         <span id="dip_reg_date-error" class="error text-danger" for="dip_reg_date">{{ $errors->first('dip_reg_date') }}</span>
+                      @endif
+                    </div>
+                  </div>
+
+                  <label class="col-sm-2 col-form-label form-lable-black text-dark bg-info">{{ __('Submit via') }}</label>
+                  <div class="col-sm-2">
+                    <div class="form-group{{ $errors->has('submit_via') ? ' has-danger' : '' }}">
+                      <select class="form-control" name="submit_via" id="submit_via">
+                        <option value="0" selected="selected" disabled="disabled">Pick one...</option>
+                        <option value="Post">Post</option>
+                        <option value="Hand">by Hand</option>
+                        <option value="Online">Online</option>
+                      </select>
+                    @if ($errors->has('submit_via'))
+                        <span id="submit_via-error" class="error text-danger" for="submit_via">{{ $errors->first('submit_via') }}</span>
                       @endif
                     </div>
                   </div>
@@ -287,21 +302,29 @@
                         @endif
                         </div>
                     </div>
-                    <label class="col-sm-2 col-form-label text-dark bg-info">{{ __('Job Preferance') }}</label>
-                    <div class="col-sm-4">
-                        <div class="form-group{{ $errors->has('dip_job_preference') ? ' has-danger' : '' }}">
-                        <select class="form-control" name="dip_job_preference" id="dip_job_preference">
-                            <option value="0" selected="selected" disabled="disabled">Pick one...</option>
-                            <option value="Goverment">Goverment</option>
-                            <option value="Private">Private</option>
-                            <option value="Self Industry">Self Industry</option>
-                        </select>
-                        @if ($errors->has('dip_job_preference'))
-                            <span id="dip_job_preference-error" class="error text-danger" for="dip_job_preference">{{ $errors->first('dip_job_preference') }}</span>
-                        @endif
-                        </div>
+                    <label class="col-sm-2 col-form-label form-lable-black text-dark bg-info">{{ __('Job Preferance') }}</label>
+                    <div class="col-sm-6">
+                    <div class="form-group{{ $errors->has('dip_job_preference') ? ' has-danger' : '' }}">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="dip_job_preference[]"  value="Government">Government
+                        </label>
+                      </div>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="dip_job_preference[]"  value="Private">Private
+                        </label>
+                      </div>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="dip_job_preference[]"  value="Self Industry">Self Industry
+                        </label>
+                      </div>
+                    @if ($errors->has('dip_job_preference'))
+                      <span id="dip_job_preference-error" class="error text-danger" for="dip_job_preference">{{ $errors->first('dip_job_preference') }}</span>
+                    @endif
                     </div>
-                    
+                  </div>
                 </div>
               </div>
               <div class="card-footer ml-auto mr-auto">

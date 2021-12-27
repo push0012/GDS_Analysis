@@ -2,10 +2,17 @@
 
 @section('content')
 <style>
-  .col-form-label{
+    .form-lable-black{
     font-weight: bold;
     background-color: black !important;
     color: white !important;
+    height: 50% !important;
+  }
+  .form-lable-blue{
+    font-weight: bold;
+    background-color: blue !important;
+    color: white !important;
+    height: 50% !important;
   }
   hr{
     margin: 5px !important;
@@ -61,17 +68,17 @@
                   </div>
                 @endif
                 <div class="row">
-                  <label class="col-sm-2 col-form-label text-dark bg-info">{{ __('Register No') }}</label>
-                  <div class="col-sm-4">
+                  <label class="col-sm-2 col-form-label form-lable-blue text-dark bg-info">{{ __('Register No') }}</label>
+                  <div class="col-sm-2">
                     <div class="form-group{{ $errors->has('deg_reg_no') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('deg_reg_no') ? ' is-invalid' : '' }}" name="deg_reg_no" id="deg_reg_no" type="text" placeholder="{{ __('Last Register No - '. $last_record->last_record) }}" value="" required="true" aria-required="true"/>
+                      <input class="form-control{{ $errors->has('deg_reg_no') ? ' is-invalid' : '' }}" name="deg_reg_no" id="deg_reg_no" type="text" placeholder="{{ __('Register No') }}" value="" required="true" aria-required="true"/>
                       @if ($errors->has('deg_reg_no'))
                         <span id="ins_name-error" class="error text-danger" for="deg_reg_no">{{ $errors->first('deg_reg_no') }}</span>
                       @endif
                     </div>
                   </div>
-                  <label class="col-sm-2 col-form-label text-dark bg-info">{{ __('Register Date') }}</label>
-                  <div class="col-sm-4">
+                  <label class="col-sm-2 col-form-label form-lable-black text-dark bg-info">{{ __('Register Date') }}</label>
+                  <div class="col-sm-2">
                     <div class="form-group{{ $errors->has('deg_reg_date') ? ' has-danger' : '' }}">
                       <input class="form-control{{ $errors->has('deg_reg_date') ? ' is-invalid' : '' }}" name="deg_reg_date" id="deg_reg_date" type="date" placeholder="{{ __('Register Date') }}" value="" required="true" aria-required="true"/>
                       @if ($errors->has('deg_reg_date'))
@@ -79,11 +86,26 @@
                       @endif
                     </div>
                   </div>
+                  <label class="col-sm-2 col-form-label form-lable-black text-dark bg-info">{{ __('Submit via') }}</label>
+                  <div class="col-sm-2">
+                    <div class="form-group{{ $errors->has('submit_via') ? ' has-danger' : '' }}">
+                      <select class="form-control" name="submit_via" id="submit_via">
+                        <option value="0" selected="selected" disabled="disabled">Pick one...</option>
+                        <option value="Post">Post</option>
+                        <option value="Hand">by Hand</option>
+                        <option value="Online">Online</option>
+                        
+                      </select>
+                    @if ($errors->has('submit_via'))
+                        <span id="submit_via-error" class="error text-danger" for="submit_via">{{ $errors->first('submit_via') }}</span>
+                      @endif
+                    </div>
+                  </div>
                   
                 </div>
                 <hr>
                 <div class="row">
-                  <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('Title') }}</label>
+                  <label class="col-sm-1 col-form-label form-lable-black text-dark bg-info">{{ __('Title') }}</label>
                   <div class="col-sm-1">
                     <div class="form-group{{ $errors->has('stu_title') ? ' has-danger' : '' }}">
                       <select class="form-control" name="stu_title" id="stu_title">
@@ -98,7 +120,7 @@
                       @endif
                     </div>
                   </div>
-                  <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('Name') }}</label>
+                  <label class="col-sm-1 col-form-label form-lable-blue text-dark bg-info">{{ __('Name') }}</label>
                   <div class="col-sm-6">
                     <div class="form-group{{ $errors->has('stu_name') ? ' has-danger' : '' }}">
                       <input class="form-control{{ $errors->has('stu_name') ? ' is-invalid' : '' }}" name="stu_name" id="stu_name" type="text" placeholder="{{ __('Student Name') }}" value="" required="true" aria-required="true"/>
@@ -108,7 +130,7 @@
                     </div>
                   </div>
                   
-                  <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('Date of Birth') }}</label>
+                  <label class="col-sm-1 col-form-label form-lable-black text-dark bg-info">{{ __('Date of Birth') }}</label>
                     <div class="col-sm-2">
                         <div class="form-group{{ $errors->has('dob') ? ' has-danger' : '' }}">
                             <input class="form-control{{ $errors->has('dob') ? ' is-invalid' : '' }}" name="dob" id="dob" type="date" placeholder="{{ __('Date of Birth') }}" value="" required="true" aria-required="true"/>
@@ -119,7 +141,7 @@
                     </div>  
                 </div>
                 <div class="row">
-                 <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('Gender') }}</label>
+                 <label class="col-sm-1 col-form-label form-lable-black text-dark bg-info">{{ __('Gender') }}</label>
                   <div class="col-sm-1">
                     <div class="form-group{{ $errors->has('sex') ? ' has-danger' : '' }}">
                       <select class="form-control" name="sex" id="sex">
@@ -132,7 +154,7 @@
                       @endif
                     </div>
                   </div>
-                  <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('Address') }}</label>
+                  <label class="col-sm-1 col-form-label form-lable-blue text-dark bg-info">{{ __('Address') }}</label>
                     <div class="col-sm-6">
                         <div class="form-group{{ $errors->has('address') ? ' has-danger' : '' }}">
                             <input class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" id="address" type="text" placeholder="{{ __('Student Address') }}" value="" required="true" aria-required="true"/>
@@ -141,7 +163,7 @@
                             @endif
                         </div>
                     </div>  
-                    <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('NIC') }}</label>
+                    <label class="col-sm-1 col-form-label form-lable-blue text-dark bg-info">{{ __('NIC') }}</label>
                     <div class="col-sm-2">
                         <div class="form-group{{ $errors->has('nic') ? ' has-danger' : '' }}">
                             <input class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}" name="nic" id="nic" type="text" placeholder="{{ __('NIC') }}" value="" required="true" aria-required="true"/>
@@ -155,7 +177,7 @@
                 
 
                 <div class="row">
-                    <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('District') }}</label>
+                    <label class="col-sm-1 col-form-label form-lable-black text-dark bg-info">{{ __('District') }}</label>
                     <div class="col-sm-1">
                     <div class="form-group{{ $errors->has('ds_id') ? ' has-danger' : '' }}">
                       <select class="form-control" name="ds_id" id="ds_id">
@@ -168,7 +190,7 @@
                       @endif
                     </div>
                   </div>
-                  <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('DS Area') }}</label>
+                  <label class="col-sm-1 col-form-label form-lable-black text-dark bg-info">{{ __('DS Area') }}</label>
                   <div class="col-sm-1">
                     <div class="form-group{{ $errors->has('dv_id') ? ' has-danger' : '' }}">
                       <select class="form-control" name="dv_id" id="dv_id">
@@ -180,7 +202,7 @@
                       @endif
                     </div>
                   </div>
-                  <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('TP No') }}</label>
+                  <label class="col-sm-1 col-form-label form-lable-blue text-dark bg-info">{{ __('TP No') }}</label>
                     <div class="col-sm-2">
                         <div class="form-group{{ $errors->has('telephone') ? ' has-danger' : '' }}">
                             <input class="form-control{{ $errors->has('telephone') ? ' is-invalid' : '' }}" name="telephone" id="telephone" type="text" placeholder="{{ __('Telephone') }}" value="" required="true" aria-required="true"/>
@@ -189,7 +211,7 @@
                             @endif
                         </div>
                     </div>
-                    <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('Email Address') }}</label>
+                    <label class="col-sm-1 col-form-label form-lable-blue text-dark bg-info">{{ __('Email Address') }}</label>
                     <div class="col-sm-4">
                         <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                             <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="email" type="email" placeholder="{{ __('Email') }}" value="" required="true" aria-required="true"/>
@@ -202,7 +224,7 @@
                 </div>
                 <hr>
                 <div class="row">
-                  <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('Institute') }}</label>
+                  <label class="col-sm-1 col-form-label form-lable-black text-dark bg-info">{{ __('Institute') }}</label>
                   <div class="col-sm-4">
                     <div class="form-group{{ $errors->has('ins_id') ? ' has-danger' : '' }}">
                       <select class="form-control" name="ins_id" id="ins_id">
@@ -227,7 +249,7 @@
                       <span class="material-icons left">autorenew</span>
 </a>
                   </div>
-                  <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('Degree') }}</label>
+                  <label class="col-sm-1 col-form-label form-lable-blue text-dark bg-info">{{ __('Degree') }}</label>
                   <div class="col-sm-4">
                     <div class="form-group{{ $errors->has('deg_title') ? ' has-danger' : '' }}">
                       <input class="form-control" list="deg_title" name="deg_title">
@@ -244,7 +266,7 @@
                 </div>
 
                 <div class="row">
-                    <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('Degree Stream') }}</label>
+                    <label class="col-sm-1 col-form-label form-lable-black text-dark bg-info">{{ __('Degree Stream') }}</label>
                     <div class="col-sm-2">
                         <div class="form-group{{ $errors->has('str_id') ? ' has-danger' : '' }}">
                         <select class="form-control" name="str_id" id="str_id">
@@ -258,7 +280,7 @@
                         @endif
                         </div>
                     </div>
-                    <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('Degree Medium') }}</label>
+                    <label class="col-sm-1 col-form-label form-lable-black text-dark bg-info">{{ __('Degree Medium') }}</label>
                     <div class="col-sm-2">
                         <div class="form-group{{ $errors->has('deg_medium') ? ' has-danger' : '' }}">
                         <select class="form-control" name="deg_medium" id="deg_medium">
@@ -272,7 +294,7 @@
                         @endif
                         </div>
                     </div>
-                    <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('Degree Type') }}</label>
+                    <label class="col-sm-1 col-form-label form-lable-black text-dark bg-info">{{ __('Degree Type') }}</label>
                     <div class="col-sm-2">
                         <div class="form-group{{ $errors->has('deg_type') ? ' has-danger' : '' }}">
                         <select class="form-control" name="deg_type" id="deg_type">
@@ -285,7 +307,7 @@
                         @endif
                         </div>
                     </div>
-                    <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('Degree Class') }}</label>
+                    <label class="col-sm-1 col-form-label form-lable-black text-dark bg-info">{{ __('Degree Class') }}</label>
                     <div class="col-sm-2">
                         <div class="form-group{{ $errors->has('deg_class') ? ' has-danger' : '' }}">
                         <select class="form-control" name="deg_class" id="deg_class">
@@ -304,7 +326,7 @@
 
                 </div>
                 <div class="row">
-                    <label class="col-sm-2 col-form-label text-dark bg-info">{{ __('Effective Date') }}</label>
+                    <label class="col-sm-2 col-form-label form-lable-black text-dark bg-info">{{ __('Effective Date') }}</label>
                     <div class="col-sm-2">
                         <div class="form-group{{ $errors->has('deg_effective_date') ? ' has-danger' : '' }}">
                         <input class="form-control{{ $errors->has('deg_effective_date') ? ' is-invalid' : '' }}" name="deg_effective_date" id="deg_effective_date" type="date" placeholder="{{ __('Effective Date') }}" value="" required="true" aria-required="true"/>
@@ -313,21 +335,29 @@
                         @endif
                         </div>
                     </div>
-                    <label class="col-sm-2 col-form-label text-dark bg-info">{{ __('Job Preferance') }}</label>
-                    <div class="col-sm-2">
-                        <div class="form-group{{ $errors->has('deg_job_preference') ? ' has-danger' : '' }}">
-                        <select class="form-control" name="deg_job_preference" id="deg_job_preference">
-                            <option value="0" selected="selected" disabled="disabled">Pick one...</option>
-                            <option value="Goverment">Goverment</option>
-                            <option value="Private">Private</option>
-                            <option value="Self Industry">Self Industry</option>
-                        </select>
-                        @if ($errors->has('deg_job_preference'))
-                            <span id="deg_job_preference-error" class="error text-danger" for="deg_job_preference">{{ $errors->first('deg_job_preference') }}</span>
-                        @endif
-                        </div>
+                    <label class="col-sm-2 col-form-label form-lable-black text-dark bg-info">{{ __('Job Preferance') }}</label>
+                    <div class="col-sm-6">
+                    <div class="form-group{{ $errors->has('deg_job_preference') ? ' has-danger' : '' }}">
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="deg_job_preference[]"  value="Government">Government
+                        </label>
+                      </div>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="deg_job_preference[]"  value="Private">Private
+                        </label>
+                      </div>
+                      <div class="form-check-inline">
+                        <label class="form-check-label">
+                          <input type="checkbox" class="form-check-input" name="deg_job_preference[]"  value="Self Industry">Self Industry
+                        </label>
+                      </div>
+                    @if ($errors->has('deg_job_preference'))
+                      <span id="deg_job_preference-error" class="error text-danger" for="deg_job_preference">{{ $errors->first('deg_job_preference') }}</span>
+                    @endif
                     </div>
-                    
+                  </div>
                 </div>
               </div>
               <div class="card-footer ml-auto mr-auto">
