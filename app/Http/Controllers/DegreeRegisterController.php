@@ -30,6 +30,7 @@ class DegreeRegisterController extends Controller
 
     public function store(Request $request)
     {
+       
         DB::beginTransaction();
 
         try {
@@ -62,7 +63,8 @@ class DegreeRegisterController extends Controller
                 'deg_type' => $request->deg_type,
                 'deg_class' => $request->deg_class,
                 'deg_effective_date' => $request->deg_effective_date,
-                'deg_job_preference' => $request->deg_job_preference,
+                'deg_job_preference' => implode(",", $request->deg_job_preference),
+                'submit_via' => $request->submit_via,
                 'deg_reg_no' => $request->deg_reg_no,
                 'deg_reg_date' => $request->deg_reg_date,
                 'year' => $year,
