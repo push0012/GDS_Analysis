@@ -19,6 +19,7 @@ class DiplomaRegister extends Model
         'dip_duration',
         'dip_effective_date',
         'dip_job_preference',
+        'submit_via',
         'dip_reg_no',
         'dip_reg_date',
         'year',
