@@ -63,7 +63,7 @@
                   <label class="col-sm-2 col-form-label text-dark bg-info">{{ __('Register No') }}</label>
                   <div class="col-sm-2">
                     <div class="form-group{{ $errors->has('dip_reg_no') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('dip_reg_no') ? ' is-invalid' : '' }}" name="dip_reg_no" id="dip_reg_no" type="text" placeholder="{{ __('Last Register No - '. $last_record->last_record) }}" value="" required="true" aria-required="true"/>
+                      <input class="form-control{{ $errors->has('dip_reg_no') ? ' is-invalid' : '' }}" name="dip_reg_no" id="dip_reg_no" type="text" placeholder="{{ __('Register No') }}" value="" required="true" aria-required="true"/>
                       @if ($errors->has('dip_reg_no'))
                         <span id="dip_reg_no-error" class="error text-danger" for="dip_reg_no">{{ $errors->first('dip_reg_no') }}</span>
                       @endif
@@ -206,7 +206,7 @@
                     <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('Email Address') }}</label>
                     <div class="col-sm-4">
                         <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                            <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="email" type="email" placeholder="{{ __('Email') }}" value="" required="true" aria-required="true"/>
+                            <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="email" type="email" placeholder="{{ __('Email') }}" value=""/>
                             @if ($errors->has('email'))
                                 <span id="email-error" class="error text-danger" for="email">{{ $errors->first('email') }}</span>
                             @endif
@@ -294,7 +294,7 @@
                 </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label text-dark bg-info">{{ __('Effective Date') }}</label>
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         <div class="form-group{{ $errors->has('dip_effective_date') ? ' has-danger' : '' }}">
                         <input class="form-control{{ $errors->has('dip_effective_date') ? ' is-invalid' : '' }}" name="dip_effective_date" id="dip_effective_date" type="date" placeholder="{{ __('Effective Date') }}" value="" required="true" aria-required="true"/>
                         @if ($errors->has('dip_effective_date'))
