@@ -41,9 +41,9 @@
                     <tr >
                         <td class="text-primary" colspan="4"><h4>Student Details</h4></td>
                     </tr>
-                    <tr>      
+                    <tr>   
                         <th>Student Name</th>
-                        <td colspan="3">{{$student->stu_name}}</td>
+                        <td colspan="3" >{{$student->stu_title}} {{$student->stu_name}}</td>
                     </tr>
                     <tr >      
                         <th>Gender</th>
@@ -115,6 +115,11 @@
                         
                         <th>Data Updated at</th>
                         <td>{{$student->updated_at}}</td>
+                    </tr>
+                    <tr>      
+                        <th>Data Submited via</th>
+                        <td>{{$student->submit_via}}</td>
+        
                     </tr>
                 </tbody>
               </table>
