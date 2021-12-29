@@ -43,7 +43,7 @@
                     Division
                   </th>
                   <th>
-                    Telephone
+                    Address
                   </th>
                   <th>
                     View
@@ -54,10 +54,10 @@
                     <tr>    
                       <th>{{$data->dip_reg_no}}</th>
                       <th>{{$data->dip_reg_date}}</th>
-                      <th>{{$data->stu_name}}</th>        
+                      <th>{{$data->stu_title}} {{$data->stu_name}}</th>        
                       <th>{{$data->nic}}</th>
                       <th>{{$data->dv_name}}</th>
-                      <th>{{$data->telephone}}</th>  
+                      <th>{{$data->address}}</th>  
                       <th><a href="{{ url('/register/diploma/view/'. $data->stu_id) }}"><span class="material-icons">visibility</span></a></th>     
                     </tr>
                 @endforeach
