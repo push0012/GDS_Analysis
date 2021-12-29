@@ -8,12 +8,12 @@ $(document).ready(function () {
       paging: true,
       searching: true,
       "columns": [
-         { "width": "15%" },
-         { "width": "10%" },
-         { "width": "30%" },
          { "width": "10%" },
          { "width": "10%" },
+         { "width": "20%" },
          { "width": "10%" },
+         { "width": "10%" },
+         { "width": "20%" },
          { "width": "15%" },
 
       ],
