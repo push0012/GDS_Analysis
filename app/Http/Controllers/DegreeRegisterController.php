@@ -30,6 +30,10 @@ class DegreeRegisterController extends Controller
 
     public function store(Request $request)
     {
+        if(DB::table('degree_view_one')->where('deg_reg_no','=',$request->deg_reg_no)->exists())
+        {
+            return back()->withDanger(__('This Register Number Already Exist'));
+        }
        
         DB::beginTransaction();
 
@@ -37,7 +41,6 @@ class DegreeRegisterController extends Controller
             $user = Auth::user();
             $request->request->add(['user' => $user]);
             
-            //dd($year);
             
             $students = Student::create([
                 'stu_title' => $request->stu_title,
