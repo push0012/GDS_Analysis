@@ -29,9 +29,11 @@ class DiplomaRegisterController extends Controller
 
     public function store(Request $request)
     {
+        if(DB::table('diploma_view_one')->where('dip_reg_no','=',$request->dip_reg_no)->exists())
+        {
+            return back()->withDanger(__('This Register Number Already Exist'));
+        }
 
-        //return $request;
-        //return json_encode($request);
         DB::beginTransaction();
 
         try {
