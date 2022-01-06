@@ -24,6 +24,16 @@ $(document).ready(function () {
       searching: false,
 
    });
+
+
+
+   
+   $('#search_table').DataTable({
+      paging: false,
+      searching: false,
+      info: false,
+      "ordering": false
+   });
 });
 
 $("#copy").click(function () {

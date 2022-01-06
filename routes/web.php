@@ -18,6 +18,8 @@ use App\Http\Controllers\FilterController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\ReportController;
+
+use App\Http\Controllers\GuestController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -174,3 +176,7 @@ Route::group(['middleware' => ['auth','role:admin,operator,owner']], function ()
 	Route::get('get_email',  [AjaxController::class, 'get_email']);
 
 });
+
+//Guest Route
+Route::get('/search',  [GuestController::class, 'index']);
+Route::post('/find_data',  [GuestController::class, 'view']);
