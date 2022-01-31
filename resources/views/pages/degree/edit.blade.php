@@ -333,14 +333,23 @@
                         </div>
                     </div>
                     <label class="col-sm-2 col-form-label text-dark bg-info">{{ __('Job Preferance') }}</label>
-                    <div class="col-sm-2">
+                    <div class="col-sm-6">
                         <div class="form-group{{ $errors->has('deg_job_preference') ? ' has-danger' : '' }}">
-                        <select class="form-control" name="deg_job_preference" id="deg_job_preference">
-                            <option value="0" selected="selected" disabled="disabled">Pick one...</option>
-                            <option value="Goverment" {{ $student->deg_job_preference == 'Goverment' ? 'selected' : '' }}>Goverment</option>
-                            <option value="Private" {{ $student->deg_job_preference == 'Private' ? 'selected' : '' }}>Private</option>
-                            <option value="Self Industry" {{ $student->deg_job_preference == 'Self Industry' ? 'selected' : '' }}>Self Industry</option>
-                        </select>
+                          <div class="form-check-inline">
+                          <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="deg_job_preference[]"  value="Government" {{ (is_array( $deg_job_preference) && in_array('Government', $deg_job_preference)) ? ' checked' : '' }}>Government
+                          </label>
+                        </div>
+                        <div class="form-check-inline">
+                          <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="deg_job_preference[]"  value="Private" {{ (is_array($deg_job_preference) && in_array('Private', $deg_job_preference)) ? ' checked' : '' }}>Private
+                          </label>
+                        </div>
+                        <div class="form-check-inline">
+                          <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="deg_job_preference[]"  value="Self Industry" {{ (is_array($deg_job_preference) && in_array('Self Industry', $deg_job_preference)) ? ' checked' : '' }}>Self Industry
+                          </label>
+                        </div>
                         @if ($errors->has('deg_job_preference'))
                             <span id="deg_job_preference-error" class="error text-danger" for="deg_job_preference">{{ $errors->first('deg_job_preference') }}</span>
                         @endif

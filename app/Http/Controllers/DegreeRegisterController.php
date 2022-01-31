@@ -126,7 +126,16 @@ class DegreeRegisterController extends Controller
         $divisions = Division::get();
         $student_one = DB::table('degree_view_one')->where('stu_id','=',$id)->first();
 
-        return view('pages.degree.edit', ['institutes' => $institutes, 'streams' => $streams, 'degrees' => $degrees, 'divisions'=>$divisions, 'student' => $student_one]);
+        $job_pref_temp = explode(",", $student_one->deg_job_preference);
+        //return $job_pref_temp;
+        return view('pages.degree.edit', [
+            'institutes' => $institutes,
+            'streams' => $streams,
+            'degrees' => $degrees,
+            'divisions'=>$divisions,
+            'student' => $student_one,
+            'deg_job_preference' => $job_pref_temp
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -167,7 +176,7 @@ class DegreeRegisterController extends Controller
                 'deg_type' => $request->deg_type,
                 'deg_class' => $request->deg_class,
                 'deg_effective_date' => $request->deg_effective_date,
-                'deg_job_preference' => $request->deg_job_preference,
+                'deg_job_preference' => implode(",", $request->deg_job_preference),
                 'deg_reg_no' => $request->deg_reg_no,
                 'deg_reg_date' => $request->deg_reg_date,
                 'year' => $year,
