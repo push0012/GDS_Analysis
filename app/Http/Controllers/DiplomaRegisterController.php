@@ -122,7 +122,15 @@ class DiplomaRegisterController extends Controller
 
         $student_one = DB::table('diploma_view_one')->where('stu_id','=',$id)->first();
 
-        return view('pages.diploma.edit', ['institutes' => $institutes, 'diplomas' => $diplomas, 'divisions'=>$divisions, 'student' => $student_one]);
+        $job_pref_temp = explode(",", $student_one->dip_job_preference);
+        //return $job_pref_temp;
+        return view('pages.diploma.edit', 
+        ['institutes' => $institutes, 
+        'diplomas' => $diplomas, 
+        'divisions'=>$divisions, 
+        'student' => $student_one,
+        'dip_job_preference' => $job_pref_temp
+    ]);
    
     }
 
@@ -165,7 +173,7 @@ class DiplomaRegisterController extends Controller
                 'dip_medium' => $request->dip_medium,
                 'dip_duration' => $request->dip_duration,
                 'dip_effective_date' => $request->dip_effective_date,
-                'dip_job_preference' => $request->dip_job_preference,
+                'dip_job_preference' => implode(",", $request->dip_job_preference),
                 'dip_reg_no' => $request->dip_reg_no,
                 'dip_reg_date' => $request->dip_reg_date,
                 'year' => $year,

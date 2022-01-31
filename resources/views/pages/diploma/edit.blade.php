@@ -107,7 +107,7 @@
 
                         <option {{ $student->stu_title == 'Mr.' ? 'selected' : '' }} value="Mr.">Mr.</option>
                         <option {{ $student->stu_title == 'Mrs.' ? 'selected' : '' }} value="Mrs.">Mrs.</option>
-                        <option {{ $student->stu_title == 'Miss.' ? 'selected' : '' }} value="Miss">Miss.</option>
+                        <option {{ $student->stu_title == 'Miss.' ? 'selected' : '' }} value="Miss.">Miss.</option>
                       </select>
                       @if ($errors->has('stu_title'))
                         <span id="stu_title-error" class="error text-danger" for="stu_title">{{ $errors->first('ins_type') }}</span>
@@ -298,7 +298,7 @@
                 </div>
                 <div class="row">
                     <label class="col-sm-2 col-form-label text-dark bg-info">{{ __('Effective Date') }}</label>
-                    <div class="col-sm-4">
+                    <div class="col-sm-2">
                         <div class="form-group{{ $errors->has('dip_effective_date') ? ' has-danger' : '' }}">
                         <input class="form-control{{ $errors->has('dip_effective_date') ? ' is-invalid' : '' }}" name="dip_effective_date" id="dip_effective_date" type="date" placeholder="" value="{{ $student->dip_effective_date }}" required="true" aria-required="true"/>
                         @if ($errors->has('dip_effective_date'))
@@ -307,14 +307,23 @@
                         </div>
                     </div>
                     <label class="col-sm-2 col-form-label text-dark bg-info">{{ __('Job Preferance') }}</label>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="form-group{{ $errors->has('dip_job_preference') ? ' has-danger' : '' }}">
-                        <select class="form-control" name="dip_job_preference" id="dip_job_preference">
-                            <option value="0" selected="selected" disabled="disabled">Pick one...</option>
-                            <option value="Goverment" {{ $student->dip_job_preference == 'Goverment' ? 'selected' : '' }}>Goverment</option>
-                            <option value="Private" {{ $student->dip_job_preference == 'Private' ? 'selected' : '' }}>Private</option>
-                            <option value="Self Industry" {{ $student->dip_job_preference == 'Self Industry' ? 'selected' : '' }}>Self Industry</option>
-                        </select>
+                        <div class="form-check-inline">
+                          <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="dip_job_preference[]"  value="Government" {{ (is_array( $dip_job_preference) && in_array('Government', $dip_job_preference)) ? ' checked' : '' }}>Government
+                          </label>
+                        </div>
+                        <div class="form-check-inline">
+                          <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="dip_job_preference[]"  value="Private" {{ (is_array($dip_job_preference) && in_array('Private', $dip_job_preference)) ? ' checked' : '' }}>Private
+                          </label>
+                        </div>
+                        <div class="form-check-inline">
+                          <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" name="dip_job_preference[]"  value="Self Industry" {{ (is_array($dip_job_preference) && in_array('Self Industry', $dip_job_preference)) ? ' checked' : '' }}>Self Industry
+                          </label>
+                        </div>
                         @if ($errors->has('dip_job_preference'))
                             <span id="dip_job_preference-error" class="error text-danger" for="dip_job_preference">{{ $errors->first('dip_job_preference') }}</span>
                         @endif
