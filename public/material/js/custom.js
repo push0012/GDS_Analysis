@@ -14,7 +14,8 @@ $(document).ready(function () {
          { "width": "10%" },
          { "width": "10%" },
          { "width": "20%" },
-         { "width": "15%" },
+         { "width": "7%" },
+         { "width": "7%" },
 
       ],
       
