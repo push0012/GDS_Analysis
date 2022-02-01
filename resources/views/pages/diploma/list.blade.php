@@ -48,6 +48,9 @@
                   <th>
                     View
                   </th>
+                  <th>
+                    Inform
+                  </th>
                 </thead>
                 <tbody>
                 @foreach($students as $key => $data)
@@ -59,6 +62,8 @@
                       <th>{{$data->dv_name}}</th>
                       <th>{{$data->address}}</th>  
                       <th><a href="{{ url('/register/diploma/view/'. $data->stu_id) }}"><span class="material-icons">visibility</span></a></th>     
+                      <th><a href="{{ url('/register/diploma/inform/'. $data->stu_id) }}"><span class="material-icons text-success">send</span></a></th>     
+                    
                     </tr>
                 @endforeach
                  
