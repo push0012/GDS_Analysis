@@ -118,6 +118,13 @@ class DegreeRegisterController extends Controller
         return view('pages.degree.view', ['student' => $student_one]);
     }
 
+    public function inform($id)
+    {
+        $student_one = DB::table('degree_view_one')->where('stu_id','=',$id)->first();
+        $this_year = date("Y");
+        return view('pages.degree.inform', ['student' => $student_one, 'this_year' => $this_year]);
+    }
+
     public function edit($id)
     {
         $institutes = Institute::where('ins_type', 1)->orWhere('ins_type', 2)->get();
