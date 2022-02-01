@@ -64,6 +64,7 @@ Route::group(['middleware' => 'auth'], function () {
 				Route::get('/create',  [DegreeRegisterController::class, 'index']);
 				Route::post('/store',  [DegreeRegisterController::class, 'store']);
 				Route::get('/view/{id}',  [DegreeRegisterController::class, 'view']);
+				Route::get('/inform/{id}',  [DegreeRegisterController::class, 'inform']);
 				Route::get('/edit/{id}',  [DegreeRegisterController::class, 'edit']);
 				Route::put('/update/{id}',  [DegreeRegisterController::class, 'update']);
 			});
@@ -79,6 +80,7 @@ Route::group(['middleware' => 'auth'], function () {
 				Route::get('/create',  [DiplomaRegisterController::class, 'index']);
 				Route::post('/store',  [DiplomaRegisterController::class, 'store']);
 				Route::get('/view/{id}',  [DiplomaRegisterController::class, 'view']);
+				Route::get('/inform/{id}',  [DiplomaRegisterController::class, 'inform']);
 				Route::get('/edit/{id}',  [DiplomaRegisterController::class, 'edit']);
 				Route::put('/update/{id}',  [DiplomaRegisterController::class, 'update']);
 
