@@ -114,6 +114,13 @@ class DiplomaRegisterController extends Controller
         return view('pages.diploma.view', ['student' => $student_one]);
     }
 
+    public function inform($id)
+    {
+        $student_one = DB::table('diploma_view_one')->where('stu_id','=',$id)->first();
+
+        return view('pages.diploma.inform', ['student' => $student_one]);
+    }
+
     public function edit($id)
     {
         $institutes = Institute::where('ins_type', 1)->orWhere('ins_type', 3)->get();
