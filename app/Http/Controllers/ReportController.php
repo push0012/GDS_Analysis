@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Services\GraduateReportGenerator;
+use App\Services\DiplomaReportGenerator;
 
 use DB;
 class ReportController extends Controller
@@ -24,6 +25,7 @@ class ReportController extends Controller
     {
         $dataArr = $request->all();
         $reportGenerator = new GraduateReportGenerator();
+        $reportGeneratorDiploma = new DiplomaReportGenerator();
 
         if($request['survay_id'] == 1)
         {
@@ -101,6 +103,17 @@ class ReportController extends Controller
                     ]
                 );
             }
+        }
+        elseif($request['survay_id'] == 2)
+        {
+
+            if($request['report_id'] == 1)
+            {
+                $recordArr = $reportGeneratorDiploma->byDistrict($dataArr);
+                return view('pages.report.diploma.report_bydistrict', ['results'=>$recordArr ]);
+            }
+
+            
         }
     }
 }
