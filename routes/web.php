@@ -111,6 +111,8 @@ Route::group(['middleware' => ['auth','role:admin,owner']], function () {
 		Route::group(['prefix' => 'diploma', 'as' => 'diploma.'], function () {
 
 			Route::get('/',  [ListController::class, 'show_diploma_form']);
+			Route::post('/view',  [ListController::class, 'show_diploma_list']);
+			Route::post('/export',  [ListController::class, 'export_diploma_list_excel']);
 
 		});
 
