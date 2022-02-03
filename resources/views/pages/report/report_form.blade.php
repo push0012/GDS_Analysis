@@ -78,12 +78,13 @@
                             <option value="1" >Provincial Overall Summery - by District</option>
                             <option value="2" >Summery by Gender</option>
                             <option value="3" >Summery by Divisional Secretariat Area</option>
-                            <option value="4" >Summery by Stream</option>
+                            <option value="4" >Summery by Stream (Only Graduate)</option>
                             <option value="5" >Summery by Medium</option>
-                            <option value="6" >Summery by Result</option>
+                            <option value="6" >Summery by Result (Only Graduate)</option>
                             <option value="7" >Summery by Graduated / Diploma Awarded Year </option>
                             <option value="8" >Summery by University / Institute Type</option>
-                            <option value="9" >Summery by Degree Type</option>
+                            <option value="9" >Summery by Degree Type (Only Graduate)</option>
+                            <!--<option value="10">Summery by Diploma Duration (Only Diploma)</option>-->
                         </select>
                     </div>
                   </div>

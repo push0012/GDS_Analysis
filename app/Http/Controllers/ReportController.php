@@ -110,7 +110,38 @@ class ReportController extends Controller
             if($request['report_id'] == 1)
             {
                 $recordArr = $reportGeneratorDiploma->byDistrict($dataArr);
-                return view('pages.report.diploma.report_bydistrict', ['results'=>$recordArr ]);
+                return view('pages.report.report_bydistrict', ['results'=>$recordArr ]);
+            }
+            if($request['report_id'] == 2)
+            {
+                $recordArr = $reportGeneratorDiploma->byGender($dataArr);
+                return view('pages.report.report_bygender', ['results'=>$recordArr ]);
+            }
+
+            if($request['report_id'] == 3)
+            {
+                $recordArrKeg = $reportGeneratorDiploma->byDivisionKegalle($dataArr);
+                $recordArrRat = $reportGeneratorDiploma->byDivisionRatnapura($dataArr);
+                //return $recordArr;
+                return view('pages.report.report_bydivision', 
+                    [
+                        'results_keg'=>$recordArrKeg , 
+                        'results_rat'=>$recordArrRat 
+                    ]
+                );
+            }
+
+            if($request['report_id'] == 5)
+            {
+                $recordArr = $reportGeneratorDiploma->byMedium($dataArr);
+                
+                //return $recordArr;
+                return view('pages.report.report_bymedium', 
+                    [
+                        'results'=>$recordArr , 
+                       
+                    ]
+                );
             }
 
             

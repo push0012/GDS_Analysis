@@ -51,26 +51,24 @@ class DiplomaReportGenerator {
 
     function byGender($dataArr)
     {
-
-
-        $ratnapura_male_count = DB::table('degree_view_one')
-            ->where('ds_name','=','Rathnapura')
+        $ratnapura_male_count = DB::table('diploma_view_one')
+            ->where('ds_name','=','Ratnapura')
             ->where('sex','=','Male')
             ->where('year', '=', $dataArr['reg_year'])
             ->count();
-        $ratnapura_female_count = DB::table('degree_view_one')
-            ->where('ds_name','=','Rathnapura')
+        $ratnapura_female_count = DB::table('diploma_view_one')
+            ->where('ds_name','=','Ratnapura')
             ->where('sex','=','Female')
             ->where('year', '=', $dataArr['reg_year'])
             ->count();
 
-        $kegalle_male_count = DB::table('degree_view_one')
+        $kegalle_male_count = DB::table('diploma_view_one')
             ->where('ds_name','=','Kegalle')
             ->where('sex','=','Male')
             ->where('year', '=', $dataArr['reg_year'])
             ->count();
             
-        $kegalle_female_count = DB::table('degree_view_one')
+        $kegalle_female_count = DB::table('diploma_view_one')
             ->where('ds_name','=','Kegalle')
             ->where('sex','=','Female')
             ->where('year', '=', $dataArr['reg_year'])
@@ -119,9 +117,10 @@ class DiplomaReportGenerator {
         $divisions = Division::where("ds_id",'=','1')->get();
         $res_arr_class=[];
         $deg_class_count=[];
-        $all =  DB::table('degree_view_one')->where('year', '=', $dataArr['reg_year'])->count(); 
+        $all =  DB::table('diploma_view_one')->where('year', '=', $dataArr['reg_year'])->count(); 
+        $dist_all =  DB::table('diploma_view_one')->where('year', '=', $dataArr['reg_year'])->where("ds_id",'=','1')->count(); 
         foreach ($divisions as $division) {
-            $res_arr_class =  DB::table('degree_view_one')
+            $res_arr_class =  DB::table('diploma_view_one')
                 ->where('dv_id', '=', $division->dv_id)
                 ->where('year', '=', $dataArr['reg_year'])
                 ->count(); 
@@ -142,7 +141,7 @@ class DiplomaReportGenerator {
                     [
                         'dv_id'=>100,
                         'dv_name' => 'Total',
-                        'count' => $all,
+                        'count' => $dist_all,
                         'present' => 100,
                     ];
 
@@ -154,9 +153,10 @@ class DiplomaReportGenerator {
         $divisions = Division::where("ds_id",'=','2')->get();
         $res_arr_class=[];
         $deg_class_count=[];
-        $all =  DB::table('degree_view_one')->where('year', '=', $dataArr['reg_year'])->count(); 
+        $all =  DB::table('diploma_view_one')->where('year', '=', $dataArr['reg_year']) ->count(); 
+        $dist_all =  DB::table('diploma_view_one')->where('year', '=', $dataArr['reg_year'])->where("ds_id",'=','2')->count(); 
         foreach ($divisions as $division) {
-            $res_arr_class =  DB::table('degree_view_one')
+            $res_arr_class =  DB::table('diploma_view_one')
                 ->where('dv_id', '=', $division->dv_id)
                 ->where('year', '=', $dataArr['reg_year'])
                 ->count(); 
@@ -177,59 +177,14 @@ class DiplomaReportGenerator {
                     [
                         'dv_id'=>100,
                         'dv_name' => 'Total',
-                        'count' => $all,
+                        'count' => $dist_all,
                         'present' => 100,
                     ];
 
         array_push($deg_class_count, $resultArr_class_csa);
         return $deg_class_count;
     }
-    function byStream($dataArr)
-    {
-        $streams = Stream::get();
-        $res_arr_class_rat=[];
-        $res_arr_class_keg=[];
-        $deg_class_count=[];
-        $all =  DB::table('degree_view_one')->where('year', '=', $dataArr['reg_year'])->count(); 
-        $r_all =  DB::table('degree_view_one')->where('ds_id', '=', '2')->where('year', '=', $dataArr['reg_year'])->count(); 
-        $k_all =  DB::table('degree_view_one')->where('ds_id', '=', '1')->where('year', '=', $dataArr['reg_year'])->count(); 
-        foreach ($streams as $stream) {
-            $res_arr_class_rat =  DB::table('degree_view_one')
-                ->where('str_id', '=', $stream->str_id)
-                ->where('year', '=', $dataArr['reg_year'])
-                ->where('ds_id', '=', '2')
-                ->count(); 
-
-            $res_arr_class_keg =  DB::table('degree_view_one')
-                ->where('str_id', '=', $stream->str_id)
-                ->where('year', '=', $dataArr['reg_year'])
-                ->where('ds_id', '=', '1')
-                ->count(); 
-            $p_count = $res_arr_class_rat + $res_arr_class_keg;
-            $resultArr_class = 
-                    [
-                        'str_id'=>$stream->str_id,
-                        'str_name' => $stream->str_name,
-                        'r_count' => $res_arr_class_rat,
-                        'k_count' => $res_arr_class_keg,
-                        'p_count' => $p_count,
-                    ];
-
-            array_push($deg_class_count, $resultArr_class);
-
-        }
-        $resultArr_class_csa = 
-                    [
-                        'str_id'=>100,
-                        'str_name' => 'Total',
-                        'r_count' => $r_all,
-                        'k_count' => $k_all,
-                        'p_count' => $all,
-                    ];
-
-        array_push($deg_class_count, $resultArr_class_csa);
-        return $deg_class_count;
-    }
+    
 
     function byMedium($dataArr)
     {
@@ -237,19 +192,19 @@ class DiplomaReportGenerator {
         $res_arr_class_rat=[];
         $res_arr_class_keg=[];
         $deg_class_count=[];
-        $all =  DB::table('degree_view_one')->where('year', '=', $dataArr['reg_year'])->count(); 
-        $r_all =  DB::table('degree_view_one')->where('ds_id', '=', '2')->where('year', '=', $dataArr['reg_year'])->count(); 
-        $k_all =  DB::table('degree_view_one')->where('ds_id', '=', '1')->where('year', '=', $dataArr['reg_year'])->count(); 
+        $all =  DB::table('diploma_view_one')->where('year', '=', $dataArr['reg_year'])->count(); 
+        $r_all =  DB::table('diploma_view_one')->where('ds_id', '=', '2')->where('year', '=', $dataArr['reg_year'])->count(); 
+        $k_all =  DB::table('diploma_view_one')->where('ds_id', '=', '1')->where('year', '=', $dataArr['reg_year'])->count(); 
         
         foreach ($mediums as $medium) {
-            $res_arr_class_rat =  DB::table('degree_view_one')
-                ->where('deg_medium', '=', $medium)
+            $res_arr_class_rat =  DB::table('diploma_view_one')
+                ->where('dip_medium', '=', $medium)
                 ->where('year', '=', $dataArr['reg_year'])
                 ->where('ds_id', '=', '2')
                 ->count(); 
 
-            $res_arr_class_keg =  DB::table('degree_view_one')
-                ->where('deg_medium', '=', $medium)
+            $res_arr_class_keg =  DB::table('diploma_view_one')
+                ->where('dip_medium', '=', $medium)
                 ->where('year', '=', $dataArr['reg_year'])
                 ->where('ds_id', '=', '1')
                 ->count(); 
@@ -285,106 +240,6 @@ class DiplomaReportGenerator {
         return $result_send;
     }
 
-    function byResult($dataArr)
-    {
-        $results = ['First','Second Upper','Second Lower', 'General'];
-        $res_arr_class_rat=[];
-        $res_arr_class_keg=[];
-        $deg_class_count=[];
-        $all =  DB::table('degree_view_one')->where('year', '=', $dataArr['reg_year'])->count(); 
-        $r_all =  DB::table('degree_view_one')->where('ds_id', '=', '2')->where('year', '=', $dataArr['reg_year'])->count(); 
-        $k_all =  DB::table('degree_view_one')->where('ds_id', '=', '1')->where('year', '=', $dataArr['reg_year'])->count(); 
-        
-        foreach ($results as $result) {
-            $res_arr_class_rat =  DB::table('degree_view_one')
-                ->where('deg_class', '=', $result)
-                ->where('year', '=', $dataArr['reg_year'])
-                ->where('ds_id', '=', '2')
-                ->count(); 
-
-            $res_arr_class_keg =  DB::table('degree_view_one')
-                ->where('deg_class', '=', $result)
-                ->where('year', '=', $dataArr['reg_year'])
-                ->where('ds_id', '=', '1')
-                ->count(); 
-
-            $p_count = $res_arr_class_rat + $res_arr_class_keg;
-
-            $resultArr_class = 
-                    [
-                        'result' => $result,
-                        'r_count' => $res_arr_class_rat,
-                        'k_count' => $res_arr_class_keg,
-                        'p_count' => $p_count,
-                    ];
-
-            array_push($deg_class_count, $resultArr_class);
-        }
-        $resultArr_class_csa = 
-                    [
-                        'result' => 'Total',
-                        'r_count' => $r_all,
-                        'k_count' => $k_all,
-                        'p_count' => $all,
-                    ];
-
-                    $result_send = [
-                        'res_001'=> $deg_class_count,
-                        'res_002' => $resultArr_class_csa
-                    ];
-
-        return $result_send;
-    }
-
-    function bySpeciality($dataArr)
-    {
-        $specialities = ['Special', 'General'];
-        $res_arr_class_rat=[];
-        $res_arr_class_keg=[];
-        $deg_class_count=[];
-        $all =  DB::table('degree_view_one')->where('year', '=', $dataArr['reg_year'])->count(); 
-        $r_all =  DB::table('degree_view_one')->where('ds_id', '=', '2')->where('year', '=', $dataArr['reg_year'])->count(); 
-        $k_all =  DB::table('degree_view_one')->where('ds_id', '=', '1')->where('year', '=', $dataArr['reg_year'])->count(); 
-        
-        foreach ($specialities as $speciality) {
-            $res_arr_class_rat =  DB::table('degree_view_one')
-                ->where('deg_type', '=', $speciality)
-                ->where('year', '=', $dataArr['reg_year'])
-                ->where('ds_id', '=', '2')
-                ->count(); 
-
-            $res_arr_class_keg =  DB::table('degree_view_one')
-                ->where('deg_type', '=', $speciality)
-                ->where('year', '=', $dataArr['reg_year'])
-                ->where('ds_id', '=', '1')
-                ->count(); 
-
-            $p_count = $res_arr_class_rat + $res_arr_class_keg;
-
-            $resultArr_class = 
-                    [
-                        'speciality' => $speciality,
-                        'r_count' => $res_arr_class_rat,
-                        'k_count' => $res_arr_class_keg,
-                        'p_count' => $p_count,
-                    ];
-
-            array_push($deg_class_count, $resultArr_class);
-        }
-        $resultArr_class_csa = 
-                    [
-                        'speciality' => 'Total',
-                        'r_count' => $r_all,
-                        'k_count' => $k_all,
-                        'p_count' => $all,
-                    ];
-
-                    $result_send = [
-                        'res_001'=> $deg_class_count,
-                        'res_002' => $resultArr_class_csa
-                    ];
-
-        return $result_send;
-    }
+    
 
 }
