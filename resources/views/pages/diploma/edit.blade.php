@@ -210,7 +210,7 @@
                     <label class="col-sm-1 col-form-label text-dark bg-info">{{ __('Email Address') }}</label>
                     <div class="col-sm-4">
                         <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                            <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="email" type="email" placeholder="" value="{{ $student->email }}" required="true" aria-required="true"/>
+                            <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="email" type="email" placeholder="" value="{{ $student->email }}" />
                             @if ($errors->has('email'))
                                 <span id="email-error" class="error text-danger" for="email">{{ $errors->first('email') }}</span>
                             @endif
