@@ -79,25 +79,6 @@ class ListController extends Controller
         }
         $results = $query->get();
 
-        //return $results;
-
-        /*if ($data['contact_type'] == '1') 
-        {
-            $results = $query->pluck('email');
-        }
-        else if ($data['contact_type'] == '2')
-        {
-            $results = $query->pluck('telephone');
-        }*/
-
-        /*if($results->isEmpty())
-        {
-            $string = 'Results not Found...!';
-            return json_encode($string);
-        }
-
-       
-
         //return json_encode($string);*/
         return view('pages.list.degree_list', [
             'results'=>$results,
@@ -107,18 +88,65 @@ class ListController extends Controller
 
     public function show_diploma_form()
     {
-        $institutes = Institute::where('ins_type', '=',1)->orWhere('ins_type', '=', 2)->get();
+        $years = DB::table('diploma_view_one')->select('year')->groupBy('year')->get();
 
-        $streams = Stream::get();
-        return view('pages.list.degree', 
+        $institutes = Institute::where('ins_type', '=',1)->orWhere('ins_type', '=', 3)->get();
+
+        
+        return view('pages.list.diploma', 
             [
-                'streams'=>$streams, 
-                'institutes'=>$institutes
+                'institutes'=>$institutes,
+                'years' => $years
             ]);
     }
 
-    public function show_diploma_list()
+    public function show_diploma_list(Request $request)
     {
-        return view('pages.list.diploma_list');
+        $data = $request->all();
+        //return  $data;
+        $query = DB::table('diploma_view_one');
+
+        if ($data['reg_year'] != '0') 
+        {
+            $query = $query->where('year', '=', $data['reg_year']);
+        }
+
+        if ($data['ds_id'] != '0') 
+        {
+            $query = $query->where('ds_id', '=', $data['ds_id']);
+        }
+        if ($data['dv_id'] != '0') 
+        {
+            $query = $query->where('dv_id', '=', $data['dv_id']);
+        }
+        if ($data['sex'] != '0') 
+        {
+            $query = $query->where('sex', '=', $data['sex']);
+        }
+        if ($data['dip_medium'] != '0') 
+        {
+            $query = $query->where('dip_medium', '=', $data['dip_medium']);
+        }
+        if ($data['ins_id'] != '0') 
+        {
+            $query = $query->where('ins_id', '=', $data['ins_id']);
+        }
+        if ($data['dip_effective_date_from'] != '') 
+        {
+            $query = $query->where('dip_effective_date', '>', $data['dip_effective_date_from']);
+        }
+        if ($data['dip_effective_date_to'] != '')
+        {
+            $query = $query->where('dip_effective_date', '<', $data['dip_effective_date_to']);
+        }
+        $results = $query->get();
+
+        //return json_encode($string);*/
+        return view('pages.list.diploma_list', [
+            'results'=>$results,
+            'year' => $data['reg_year']
+        ]);
+
+        //return view('pages.list.diploma_list');
     }
 }
