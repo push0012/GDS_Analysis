@@ -67,6 +67,8 @@ Route::group(['middleware' => 'auth'], function () {
 				Route::get('/inform/{id}',  [DegreeRegisterController::class, 'inform']);
 				Route::get('/edit/{id}',  [DegreeRegisterController::class, 'edit']);
 				Route::put('/update/{id}',  [DegreeRegisterController::class, 'update']);
+				
+				Route::post('/listing',  [DegreeRegisterController::class, 'listing']);
 			});
 	
 			Route::get('/show',  [DegreeRegisterController::class, 'show']);

@@ -52,36 +52,7 @@
                     Inform
                   </th>
                 </thead>
-                <tbody>
-                  @foreach($students as $key => $data)
-                  <tr>
-                    <th>{{$data->deg_reg_no}}</th>
-                    <th>{{$data->deg_reg_date}}</th>
-                    <th>{{$data->stu_title}} {{$data->stu_name}}</th>
-                    <th>{{$data->nic}}</th>
-                    <th>{{$data->dv_name}}</th>
-                    <th>{{$data->address}}</th>
-                    <th><a href="{{ url('/register/graduate/view/'. $data->stu_id) }}"><span class="material-icons">visibility</span></a></th>
-                    <th><a href="{{ url('/register/graduate/inform/'. $data->stu_id) }}"><span class="material-icons text-success">send</span></a></th>
-                   
-                  </tr>
-                  @endforeach
-                  <!-- <tr>
-                    <td>
-                      1
-                    </td>
-                    <td>
-                      Dakota Rice
-                    </td>
-                    <td>
-                      Niger
-                    </td>
-                    <td>
-                      Oud-Turnhout
-                    </td>
-                  </tr>
--->
-                </tbody>
+                
               </table>
             </div>
           </div>

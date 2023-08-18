@@ -4,7 +4,7 @@ $(document).ready(function () {
       paging: true,
       searching: false,
    });
-   $('#myTabledeg').DataTable({
+   /*$('#myTabledeg').DataTable({
       paging: true,
       searching: true,
       "columns": [
@@ -19,7 +19,33 @@ $(document).ready(function () {
 
       ],
       
+   });*/
+
+   $('#myTabledeg').DataTable({
+      paging: true,
+      //searching: true,
+      "processing": true,
+      "serverSide": true,
+      "order": [],
+      "ajax": {
+         url: '/register/graduate/listing',
+         type: "POST"
+      },
+      "columns": [
+         { "width": "10%" },
+         { "width": "10%" },
+         { "width": "20%" },
+         { "width": "10%" },
+         { "width": "10%" },
+         { "width": "20%" },
+         { "width": "7%" },
+         { "width": "7%" },
+
+      ],
+      
+      
    });
+
    $('#myTableview').DataTable({
       paging: false,
       searching: false,

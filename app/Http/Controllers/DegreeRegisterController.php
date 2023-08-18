@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use App\Services\DegreeRegisterService;
+
 
 use App\Models\Institute;
 use App\Models\Stream;
@@ -15,6 +17,8 @@ use App\Models\Division;
 
 use DB;
 use Carbon\Carbon;
+
+
 
 class DegreeRegisterController extends Controller
 {
@@ -102,10 +106,56 @@ class DegreeRegisterController extends Controller
         $streams = Stream::get();
         $degrees = Degree::get();*/
 
-        $student_list = DB::table('degree_view_one')->get();
+        //$student_list = DB::table('degree_view_one')->get();
 
-        return view('pages.degree.list', ['students' => $student_list]);
+        return view('pages.degree.list');
     }
+
+    public function listing()
+    {
+        $degreeRegister = new DegreeRegisterService();
+
+
+
+        $query = $degreeRegister->makeDataTable();
+
+        $data = array();
+
+        foreach($query as $row){
+            $data_table = array();
+            $data_table[] = $row->deg_reg_no;
+            $data_table[] = $row->deg_reg_date;
+            $data_table[] = $row->stu_title." ".$row->stu_name;
+            $data_table[] = $row->nic;
+            $data_table[] = $row->dv_name;
+            $data_table[] = $row->address;
+            /*$data_table[] = $row->ds_name;
+            $data_table[] = $row->address;*/
+
+            $btn_view = '<a href="'.url('/register/graduate/view/'. $row->stu_id).'"
+                                <span class="material-icons">visibility</span></a>';
+
+            $btn_inform = '<a href="'.url('/register/graduate/inform/'. $row->stu_id).'"
+                                <span class="material-icons text-success">send</span></a>';
+
+            $data_table[] = $btn_view;
+            $data_table[] = $btn_inform;
+            $data[] = $data_table;
+
+            
+        }
+        $output = array(
+            "draw" => intval($_POST["draw"]),
+            "recordsTotal" => $degreeRegister->getAllData(),
+            "recordsFiltered" => $degreeRegister->getFilteredData(),
+            "data" => $data
+        );
+
+        return json_encode($output);
+
+       // return view('pages.degree.list', ['students' => $student_list]);
+    }
+
 
     public function view($id)
     {
